@@ -1,14 +1,12 @@
 import { createContext } from "react";
 import { User } from "../models";
 
-type AuthProviderProps = {
-	children: React.ReactNode;
+type AuthContextType = {
 	currentUser: User | null;
 	setCurrentUser: (user: User | null) => void;
 };
 
-const AuthContext = createContext<AuthProviderProps>({
-	children: null,
+export const AuthContext = createContext<AuthContextType>({
 	currentUser: null,
 	setCurrentUser: () => {},
 });

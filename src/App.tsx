@@ -5,6 +5,10 @@ import {
 	RouterProvider,
 } from "react-router-dom";
 import { routes } from "./Routes";
+import { useState } from "react";
+import { User } from "./models";
+import { AuthContextProvider } from "./contexts/AuthContext";
+
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		routes.map((route) => (
@@ -16,10 +20,18 @@ const router = createBrowserRouter(
 		))
 	)
 );
+
 const App = () => {
+	const [currentUser, setCurrentUser] = useState<User | null>(null);
 	return (
 		<>
-			<RouterProvider router={router}></RouterProvider>
+			<AuthContextProvider
+				value={{
+					currentUser: currentUser,
+					setCurrentUser: setCurrentUser,
+				}}>
+				<RouterProvider router={router}></RouterProvider>
+			</AuthContextProvider>
 		</>
 	);
 };
