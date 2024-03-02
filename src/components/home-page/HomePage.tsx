@@ -5,7 +5,7 @@ export const HomePage = () => {
 	const { currentUser } = useContext(AuthContext);
 	useEffect(() => {
 		console.log(currentUser);
-	}, []);
+	}, [currentUser]);
 	return (
 		<div>
 			<h1>Home Page</h1>

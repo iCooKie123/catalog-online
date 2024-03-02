@@ -8,6 +8,7 @@ import { routes } from "./Routes";
 import { useState } from "react";
 import { User } from "./models";
 import { AuthContextProvider } from "./contexts/AuthContext";
+import { ProtectedRoute } from "./components/private-route/PrivateRoute";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -15,7 +16,13 @@ const router = createBrowserRouter(
 			<Route
 				key={route.path}
 				path={route.path}
-				element={route.element}
+				element={
+					route.isPrivate ? (
+						<ProtectedRoute>{route.element}</ProtectedRoute>
+					) : (
+						route.element
+					)
+				}
 			/>
 		))
 	)
