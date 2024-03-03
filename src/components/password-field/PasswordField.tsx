@@ -5,6 +5,7 @@ import {
 	OutlinedInput,
 	InputAdornment,
 	IconButton,
+	FilledInput,
 } from "@mui/material";
 import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
@@ -30,7 +31,12 @@ export const PasswordField = ({
 	) => {
 		event.preventDefault();
 	};
-	const { control } = methods;
+	const {
+		control,
+		watch,
+		trigger,
+		formState: { errors },
+	} = methods;
 	return (
 		<Controller
 			name={name ?? ""}
@@ -39,12 +45,13 @@ export const PasswordField = ({
 			render={({ field }) => (
 				<FormControl
 					sx={{ m: 1, width: "25ch" }}
-					variant="outlined">
-					<InputLabel htmlFor="outlined-adornment-password">
+					variant="filled"
+					error={!!errors[name]}>
+					<InputLabel htmlFor="filled-adornment-password">
 						Password
 					</InputLabel>
-					<OutlinedInput
-						id="outlined-adornment-password"
+					<FilledInput
+						id="standard-adornment-password"
 						type={showPassword ? "text" : "password"}
 						endAdornment={
 							<InputAdornment position="end">
@@ -61,8 +68,11 @@ export const PasswordField = ({
 								</IconButton>
 							</InputAdornment>
 						}
-						value={field}
-						label={label ?? "Parola"}
+						value={watch(name)}
+						onChange={field.onChange}
+						onBlur={() => {
+							trigger(name);
+						}}
 					/>
 				</FormControl>
 			)}></Controller>

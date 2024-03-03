@@ -1,37 +1,41 @@
-import {
-	Box,
-	FormControl,
-	Grid,
-	IconButton,
-	InputAdornment,
-	InputLabel,
-	OutlinedInput,
-	TextField,
-} from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { useLoginPage } from "./hooks";
-import { VisibilityOff, Visibility } from "@mui/icons-material";
-import { useState } from "react";
+import { PasswordField } from "../../components";
+import { FormProvider } from "react-hook-form";
 
 export const LoginPage = () => {
-	
 	const methods = useLoginPage();
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		getValues,
+		formState: { errors, dirtyFields },
 	} = methods;
 	return (
-		<Box sx={{ flexGrow: 1, backgroundColor: "white" }}>
-			<Grid
-				container
-				spacing={{ xs: 2 }}
-				columns={{ xs: 4 }}>
+		<FormProvider {...methods}>
+			<Box sx={{ flexGrow: 1, backgroundColor: "white" }}>
 				<Grid
-					item
-					xs={2}>
-					
+					container
+					spacing={{ xs: 2 }}
+					columns={{ xs: 4 }}
+					padding={4}>
+					<Grid
+						item
+						xs={2}>
+						<PasswordField name={"password"}></PasswordField>
+					</Grid>
+					<Grid
+						item
+						xs={2}>
+						<Button onClick={() => console.log(getValues())}>
+							asd
+						</Button>
+						<Button onClick={() => console.log(dirtyFields)}>
+							dirtyFields
+						</Button>
+					</Grid>
 				</Grid>
-			</Grid>
-		</Box>
+			</Box>
+		</FormProvider>
 	);
 };
