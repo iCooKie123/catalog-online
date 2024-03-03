@@ -7,7 +7,7 @@ import {
 	ListItemButton,
 } from "@mui/material";
 import { CustomRoute } from "../../../models/";
-import { NavLink } from "react-router-dom";
+import { Navlink } from "../links";
 
 interface DrawerContentProps {
 	navItems: CustomRoute[];
@@ -34,24 +34,10 @@ export const DrawerContents = ({
 							key={item.path}
 							disablePadding>
 							<ListItemButton sx={{ textAlign: "center" }}>
-								<NavLink
-									to={`/${item.path}`} // Ensure the path is absolute
-									replace={true}
-									style={{
-										textDecoration: "none",
-										textAlign: "center",
-										width: "100%",
-									}}
-									className={({ isActive, isPending }) =>
-										isPending
-											? "pending"
-											: isActive
-											? "active"
-											: ""
-									}
-									onClick={() => closeDrawer(false)}>
-									{item.text}
-								</NavLink>
+								<Navlink
+									item={item}
+									setModalIsOpen={closeDrawer}
+									textColor="black"></Navlink>
 							</ListItemButton>
 						</ListItem>
 					))}

@@ -13,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { DrawerContents } from "../drawer";
 import { CustomRoute } from "../../../models";
-import { NavLink } from "react-router-dom";
+import { Navlink } from "../links";
 
 interface NavBarProps {
 	navItems: CustomRoute[];
@@ -58,27 +58,7 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 										disablePadding>
 										<ListItemButton
 											sx={{ textAlign: "center" }}>
-											<NavLink
-												to={`/${item.path}`}
-												replace={true}
-												style={{
-													textDecoration: "none",
-													textAlign: "center",
-													width: "100%",
-													color: "white",
-												}}
-												className={({
-													isActive,
-													isPending,
-												}) =>
-													isPending
-														? "pending"
-														: isActive
-														? "active"
-														: ""
-												}>
-												{item.text}
-											</NavLink>
+											<Navlink item={item}></Navlink>
 										</ListItemButton>
 									</ListItem>
 								))}
