@@ -15,6 +15,7 @@ import { DrawerContents } from "../drawer";
 import { CustomRoute } from "../../../models";
 import { Navlink } from "../links";
 import { AuthContext } from "../../../contexts";
+import { ProfileSection } from "../profile-section";
 
 interface NavBarProps {
 	navItems: CustomRoute[];
@@ -78,6 +79,14 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 								})}
 							</List>
 						</nav>
+					</Box>
+					<Box
+						sx={{
+							display: { xs: "flex", sm: "block" },
+							width: { xs: "100%", sm: "auto" },
+							justifyContent: "flex-end",
+						}}>
+						<ProfileSection />
 					</Box>
 				</Toolbar>
 			</AppBar>
