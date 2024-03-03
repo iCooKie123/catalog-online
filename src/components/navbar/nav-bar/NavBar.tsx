@@ -6,16 +6,24 @@ import {
 	IconButton,
 	Toolbar,
 	Drawer,
+	List,
+	ListItem,
+	ListItemButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { DrawerContents } from "../drawer";
 import { CustomRoute } from "../../../models";
+import { NavLink } from "react-router-dom";
 
 interface NavBarProps {
 	navItems: CustomRoute[];
 }
-
+const flexContainer = {
+	display: "flex",
+	flexDirection: "row",
+	padding: 0,
+};
 export const NavBar = ({ navItems }: NavBarProps) => {
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const handleDrawerToggle = () => {
@@ -43,13 +51,40 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 						LOGO AICI
 					</Typography>
 					<Box sx={{ display: { xs: "none", sm: "block" } }}>
-						{navItems.map((item) => (
-							<Button
-								key={item.path}
-								sx={{ color: "#fff" }}>
-								{item.text}
-							</Button>
-						))}
+						<nav>
+							<List sx={flexContainer}>
+								{navItems.map((item) => (
+									<ListItem
+										key={item.path}
+										disablePadding>
+										<ListItemButton
+											sx={{ textAlign: "center" }}>
+											<NavLink
+												to={`/${item.path}`} // Ensure the path is absolute
+												replace={true}
+												style={{
+													textDecoration: "none",
+													textAlign: "center",
+													width: "100%",
+													color: "white",
+												}}
+												className={({
+													isActive,
+													isPending,
+												}) =>
+													isPending
+														? "pending"
+														: isActive
+														? "active"
+														: ""
+												}>
+												{item.text}
+											</NavLink>
+										</ListItemButton>
+									</ListItem>
+								))}
+							</List>
+						</nav>
 					</Box>
 				</Toolbar>
 			</AppBar>
@@ -67,7 +102,10 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 						width: 240,
 					},
 				}}>
-				<DrawerContents navItems={navItems} />
+				<DrawerContents
+					navItems={navItems}
+					closeDrawer={setDrawerOpen}
+				/>
 			</Drawer>
 		</>
 	);

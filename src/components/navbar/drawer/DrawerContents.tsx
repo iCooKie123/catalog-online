@@ -11,9 +11,13 @@ import { NavLink } from "react-router-dom";
 
 interface DrawerContentProps {
 	navItems: CustomRoute[];
+	closeDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const DrawerContents = ({ navItems }: DrawerContentProps) => {
+export const DrawerContents = ({
+	navItems,
+	closeDrawer,
+}: DrawerContentProps) => {
 	return (
 		<Box sx={{ textAlign: "center" }}>
 			<Typography
@@ -29,18 +33,26 @@ export const DrawerContents = ({ navItems }: DrawerContentProps) => {
 						<ListItem
 							key={item.path}
 							disablePadding>
-							<NavLink
-								to={`/${item.path}`} // Ensure the path is absolute
-								replace={true}
-								className={({ isActive, isPending }) =>
-									isPending
-										? "pending"
-										: isActive
-										? "active"
-										: ""
-								}>
-								{item.text}
-							</NavLink>
+							<ListItemButton sx={{ textAlign: "center" }}>
+								<NavLink
+									to={`/${item.path}`} // Ensure the path is absolute
+									replace={true}
+									style={{
+										textDecoration: "none",
+										textAlign: "center",
+										width: "100%",
+									}}
+									className={({ isActive, isPending }) =>
+										isPending
+											? "pending"
+											: isActive
+											? "active"
+											: ""
+									}
+									onClick={() => closeDrawer(false)}>
+									{item.text}
+								</NavLink>
+							</ListItemButton>
 						</ListItem>
 					))}
 				</List>
