@@ -1,19 +1,23 @@
 import { useContext } from "react";
 import { AuthContext } from "../../contexts";
-import { Show, ShowIf, ShowElse } from "../../components";
+import { Show, ShowIf, ShowElse, NavBar } from "../../components";
 import { LoggedHomePage } from "./loged-user";
 import { NotLoggedHomePage } from "./not-logged-user";
 
 export const HomePage = () => {
 	const { currentUser } = useContext(AuthContext);
+	const navItems = ["Home", "About", "Contact"];
 	return (
-		<Show>
-			<ShowIf condition={currentUser !== null}>
-				<LoggedHomePage></LoggedHomePage>
-			</ShowIf>
-			<ShowElse>
-				<NotLoggedHomePage></NotLoggedHomePage>
-			</ShowElse>
-		</Show>
+		<>
+			<NavBar navItems={navItems}></NavBar>
+			<Show>
+				<ShowIf condition={currentUser !== null}>
+					<LoggedHomePage></LoggedHomePage>
+				</ShowIf>
+				<ShowElse>
+					<NotLoggedHomePage></NotLoggedHomePage>
+				</ShowElse>
+			</Show>
+		</>
 	);
 };
