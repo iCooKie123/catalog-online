@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { User } from "./models";
 import { AuthContextProvider } from "./contexts/AuthContext";
-import { ProtectedRoute } from "./components/private-route/PrivateRoute";
 import { NavBar } from "./components";
 import { routes } from "./Routes";
 
@@ -22,15 +21,7 @@ const App = () => {
 						<Route
 							key={route.path}
 							path={route.path}
-							element={
-								route.isPrivate ? (
-									<ProtectedRoute>
-										{route.element}
-									</ProtectedRoute>
-								) : (
-									route.element
-								)
-							}
+							element={route.element}
 						/>
 					))}
 				</Routes>

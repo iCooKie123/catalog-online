@@ -55,7 +55,13 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 						<nav>
 							<List sx={flexContainer}>
 								{navItems.map((item) => {
-									if (!item.isPrivate || currentUser)
+									if (
+										(item.type === "public" ||
+											(item.type === "protected" &&
+												currentUser) ||
+											(item.type === "anonymous" &&
+												!currentUser)) as boolean
+									)
 										return (
 											<ListItem
 												key={item.path}

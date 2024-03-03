@@ -1,14 +1,13 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../../contexts";
 
-type ProtectedRouteProps = {
+type AnonymousRouteProps = {
 	children: React.ReactNode;
 };
-
-export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+export const AnonymousRoute = ({ children }: AnonymousRouteProps) => {
 	const { currentUser } = useContext(AuthContext);
-	if (!currentUser) {
+	if (currentUser) {
 		return (
 			<Navigate
 				to="/"

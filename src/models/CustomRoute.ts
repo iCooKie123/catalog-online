@@ -1,6 +1,6 @@
 export type CustomRoute = {
 	path: string;
 	element: JSX.Element;
-	isPrivate: boolean;
+	type: "protected" | "anonymous" | "public";
 	text: string;
 };
