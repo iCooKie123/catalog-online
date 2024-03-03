@@ -9,7 +9,7 @@ export const HomePage = () => {
 	return (
 		<>
 			<Show>
-				<ShowIf condition={currentUser !== null}>
+				<ShowIf condition={!!currentUser}>
 					<LoggedHomePage></LoggedHomePage>
 				</ShowIf>
 				<ShowElse>
