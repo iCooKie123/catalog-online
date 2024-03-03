@@ -30,7 +30,7 @@ export const DrawerContents = ({ navItems }: DrawerContentProps) => {
 							key={item.path}
 							disablePadding>
 							<NavLink
-								to={item.path}
+								to={`/${item.path}`} // Ensure the path is absolute
 								replace={true}
 								className={({ isActive, isPending }) =>
 									isPending
