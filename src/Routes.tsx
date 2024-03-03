@@ -1,5 +1,5 @@
 import { CustomRoute } from "./models/CustomRoute";
-import { HomePage } from "./pages";
+import { HomePage, TestPage } from "./pages";
 
 export const routes: CustomRoute[] = [
 	{
@@ -9,9 +9,9 @@ export const routes: CustomRoute[] = [
 		text: "Home",
 	},
 	{
-		path: "home",
-		element: <HomePage></HomePage>,
+		path: "TestPage",
+		element: <TestPage></TestPage>,
 		isPrivate: false,
-		text: "HomeHome",
+		text: "Test",
 	},
 ];
