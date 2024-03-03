@@ -5,6 +5,7 @@ import {
 	InputAdornment,
 	IconButton,
 	FilledInput,
+	FormHelperText,
 } from "@mui/material";
 import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
@@ -13,12 +14,14 @@ interface PasswordFieldProps {
 	name: string;
 	defaultValue?: string;
 	label?: string;
+	id: string;
 }
 
 export const PasswordField = ({
 	name,
 	defaultValue,
 	label,
+	id,
 }: PasswordFieldProps) => {
 	const methods = useFormContext();
 	const [showPassword, setShowPassword] = useState(false);
@@ -46,11 +49,9 @@ export const PasswordField = ({
 					sx={{ width: "100%" }}
 					variant="filled"
 					error={!!errors[name]}>
-					<InputLabel htmlFor="filled-adornment-password">
-						{label ?? "Password"}
-					</InputLabel>
+					<InputLabel htmlFor={id}>{label ?? "Password"}</InputLabel>
 					<FilledInput
-						id="standard-adornment-password"
+						id={id}
 						type={showPassword ? "text" : "password"}
 						endAdornment={
 							<InputAdornment position="end">
@@ -73,6 +74,9 @@ export const PasswordField = ({
 							trigger(name);
 						}}
 					/>
+					<FormHelperText>
+						{errors[name]?.message?.toString()}
+					</FormHelperText>
 				</FormControl>
 			)}></Controller>
 	);
