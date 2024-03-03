@@ -5,10 +5,10 @@ import {
 	Button,
 	IconButton,
 	Toolbar,
+	Drawer,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import { Show, ShowElse, ShowIf } from "../../show";
 import { DrawerContents } from "../drawer";
 
 interface NavBarProps {
@@ -52,14 +52,22 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 					</Box>
 				</Toolbar>
 			</AppBar>
-			<Show>
-				<ShowIf condition={drawerOpen}>
-					<DrawerContents navItems={[]}></DrawerContents>
-				</ShowIf>
-				<ShowElse>
-					<></>
-				</ShowElse>
-			</Show>
+			<Drawer
+				variant="temporary"
+				open={drawerOpen}
+				onClose={handleDrawerToggle}
+				ModalProps={{
+					keepMounted: true, // Better open performance on mobile.
+				}}
+				sx={{
+					display: { xs: "block", sm: "none" },
+					"& .MuiDrawer-paper": {
+						boxSizing: "border-box",
+						width: 240,
+					},
+				}}>
+				<DrawerContents navItems={navItems} />
+			</Drawer>
 		</>
 	);
 };
