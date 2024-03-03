@@ -44,7 +44,7 @@ export const PasswordField = ({
 			defaultValue={defaultValue ?? ""}
 			render={({ field }) => (
 				<FormControl
-					sx={{ m: 1, width: "25ch" }}
+					sx={{ m: 1, width: "100%" }}
 					variant="filled"
 					error={!!errors[name]}>
 					<InputLabel htmlFor="filled-adornment-password">
