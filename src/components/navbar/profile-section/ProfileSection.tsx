@@ -1,16 +1,97 @@
-import { Avatar, Box, Typography } from "@mui/material";
-import { useContext } from "react";
+import {
+	Avatar,
+	Box,
+	Button,
+	ListItemIcon,
+	Menu,
+	MenuItem,
+	Tooltip,
+	Typography,
+} from "@mui/material";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts";
-
+import { Logout } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 export const ProfileSection = () => {
-	const { currentUser } = useContext(AuthContext);
+	const { currentUser, setCurrentUser } = useContext(AuthContext);
+	const navigate = useNavigate();
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 	return currentUser ? (
-		<Box
-			display={"flex"}
-			alignItems="center"
-			gap={1}>
-			<Avatar>{currentUser?.name.charAt(0)}</Avatar>
-			<Typography variant="h6">{currentUser?.name}</Typography>
-		</Box>
+		<>
+			<Tooltip title="Setari profil">
+				<Button
+					onClick={handleClick}
+					size="small"
+					sx={{ ml: 2 }}
+					aria-controls={open ? "account-menu" : undefined}
+					aria-haspopup="true"
+					aria-expanded={open ? "true" : undefined}>
+					<Box
+						display={"flex"}
+						alignItems="center"
+						gap={1}>
+						<Avatar>{currentUser?.name.charAt(0)}</Avatar>
+						<Typography
+							variant="h6"
+							color="white">
+							{currentUser?.name}
+						</Typography>
+					</Box>
+				</Button>
+			</Tooltip>
+			<Menu
+				anchorEl={anchorEl}
+				id="account-menu"
+				open={open}
+				onClose={handleClose}
+				onClick={handleClose}
+				PaperProps={{
+					elevation: 0,
+					sx: {
+						overflow: "visible",
+						filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+						mt: 1.5,
+						"& .MuiAvatar-root": {
+							width: 32,
+							height: 32,
+							ml: -0.5,
+							mr: 1,
+						},
+						"&::before": {
+							content: '""',
+							display: "block",
+							position: "absolute",
+							top: 0,
+							right: 14,
+							width: 10,
+							height: 10,
+							bgcolor: "background.paper",
+							transform: "translateY(-50%) rotate(45deg)",
+							zIndex: 0,
+						},
+					},
+				}}
+				transformOrigin={{ horizontal: "right", vertical: "top" }}
+				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}>
+				<MenuItem
+					onClick={() => {
+						setCurrentUser(null);
+						navigate("/login");
+						handleClose();
+					}}>
+					<ListItemIcon>
+						<Logout fontSize="small" />
+					</ListItemIcon>
+					Logout
+				</MenuItem>
+			</Menu>
+		</>
 	) : null;
 };
