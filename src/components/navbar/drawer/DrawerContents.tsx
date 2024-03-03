@@ -5,11 +5,12 @@ import {
 	List,
 	ListItem,
 	ListItemButton,
-	ListItemText,
 } from "@mui/material";
+import { CustomRoute } from "../../../models/";
+import { NavLink } from "react-router-dom";
 
 interface DrawerContentProps {
-	navItems: string[];
+	navItems: CustomRoute[];
 }
 
 export const DrawerContents = ({ navItems }: DrawerContentProps) => {
@@ -26,11 +27,20 @@ export const DrawerContents = ({ navItems }: DrawerContentProps) => {
 				<List>
 					{navItems.map((item) => (
 						<ListItem
-							key={item}
+							key={item.path}
 							disablePadding>
-							<ListItemButton sx={{ textAlign: "center" }}>
-								<ListItemText primary={item} />
-							</ListItemButton>
+							<NavLink
+								to={item.path}
+								replace={true}
+								className={({ isActive, isPending }) =>
+									isPending
+										? "pending"
+										: isActive
+										? "active"
+										: ""
+								}>
+								{item.text}
+							</NavLink>
 						</ListItem>
 					))}
 				</List>

@@ -3,13 +3,13 @@ import { AuthContext } from "../../contexts";
 import { Show, ShowIf, ShowElse, NavBar } from "../../components";
 import { LoggedHomePage } from "./loged-user";
 import { NotLoggedHomePage } from "./not-logged-user";
-
+import { routes } from "../../Routes";
 export const HomePage = () => {
 	const { currentUser } = useContext(AuthContext);
-	const navItems = ["Home", "About", "Contact"];
+
 	return (
 		<>
-			<NavBar navItems={navItems}></NavBar>
+			<NavBar navItems={routes}></NavBar>
 			<Show>
 				<ShowIf condition={currentUser !== null}>
 					<LoggedHomePage></LoggedHomePage>

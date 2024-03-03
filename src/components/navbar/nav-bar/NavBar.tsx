@@ -10,9 +10,10 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { DrawerContents } from "../drawer";
+import { CustomRoute } from "../../../models";
 
 interface NavBarProps {
-	navItems: string[];
+	navItems: CustomRoute[];
 }
 
 export const NavBar = ({ navItems }: NavBarProps) => {
@@ -44,9 +45,9 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 					<Box sx={{ display: { xs: "none", sm: "block" } }}>
 						{navItems.map((item) => (
 							<Button
-								key={item}
+								key={item.path}
 								sx={{ color: "#fff" }}>
-								{item}
+								{item.text}
 							</Button>
 						))}
 					</Box>
@@ -57,7 +58,7 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 				open={drawerOpen}
 				onClose={handleDrawerToggle}
 				ModalProps={{
-					keepMounted: true, // Better open performance on mobile.
+					keepMounted: true,
 				}}
 				sx={{
 					display: { xs: "block", sm: "none" },
