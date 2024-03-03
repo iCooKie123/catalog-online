@@ -60,7 +60,7 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 										<ListItemButton
 											sx={{ textAlign: "center" }}>
 											<NavLink
-												to={`/${item.path}`} // Ensure the path is absolute
+												to={`/${item.path}`}
 												replace={true}
 												style={{
 													textDecoration: "none",
