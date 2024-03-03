@@ -1,7 +1,7 @@
-import { useEffect, useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../../contexts/AuthContext";
 
-export const HomePage = () => {
+export const LoggedHomePage = () => {
 	const { currentUser } = useContext(AuthContext);
 	useEffect(() => {
 		console.log(currentUser);
