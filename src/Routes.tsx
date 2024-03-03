@@ -1,5 +1,5 @@
 import { CustomRoute } from "./models/CustomRoute";
-import { HomePage, TestPage } from "./pages";
+import { HomePage, TestPage, LoginPage } from "./pages";
 
 export const routes: CustomRoute[] = [
 	{
@@ -13,5 +13,11 @@ export const routes: CustomRoute[] = [
 		element: <TestPage></TestPage>,
 		isPrivate: true,
 		text: "Test",
+	},
+	{
+		path: "login",
+		element: <LoginPage></LoginPage>,
+		isPrivate: false,
+		text: "Login",
 	},
 ];

@@ -10,6 +10,7 @@ export const LoggedHomePage = () => {
 		<div>
 			<h1>Home Page</h1>
 			<p>Welcome to the home page!</p>
+			<p>User is logged in :{currentUser?.name}</p>
 		</div>
 	);
 };
