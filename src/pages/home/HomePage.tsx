@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
-import { Show, ShowIf, ShowElse } from "../../components/show/Show";
-import { LoggedHomePage } from "./loged-user/LoggedHomePage";
-import { NotLoggedHomePage } from "./not-logged-user/NotLoggedHomePage";
+import { AuthContext } from "../../contexts";
+import { Show, ShowIf, ShowElse } from "../../components";
+import { LoggedHomePage } from "./loged-user";
+import { NotLoggedHomePage } from "./not-logged-user";
 
 export const HomePage = () => {
 	const { currentUser } = useContext(AuthContext);
