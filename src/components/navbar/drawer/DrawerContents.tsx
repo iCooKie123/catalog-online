@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import { CustomRoute } from "../../../models/";
 import { Navlink } from "../links";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts";
 
 interface DrawerContentProps {
 	navItems: CustomRoute[];
@@ -18,6 +20,7 @@ export const DrawerContents = ({
 	navItems,
 	closeDrawer,
 }: DrawerContentProps) => {
+	const { currentUser } = useContext(AuthContext);
 	return (
 		<Box sx={{ textAlign: "center" }}>
 			<Typography
@@ -29,18 +32,24 @@ export const DrawerContents = ({
 
 			<nav>
 				<List>
-					{navItems.map((item) => (
-						<ListItem
-							key={item.path}
-							disablePadding>
-							<ListItemButton sx={{ textAlign: "center" }}>
-								<Navlink
-									item={item}
-									setModalIsOpen={closeDrawer}
-									textColor="black"></Navlink>
-							</ListItemButton>
-						</ListItem>
-					))}
+					{navItems.map((item) => {
+						if (!item.isPrivate || currentUser)
+							return (
+								<ListItem
+									key={item.path}
+									disablePadding>
+									<ListItemButton
+										sx={{
+											textAlign: "center",
+										}}>
+										<Navlink
+											item={item}
+											setModalIsOpen={closeDrawer}
+											textColor="black"></Navlink>
+									</ListItemButton>
+								</ListItem>
+							);
+					})}
 				</List>
 			</nav>
 		</Box>

@@ -7,7 +7,9 @@ import { NavBar } from "./components";
 import { routes } from "./Routes";
 
 const App = () => {
-	const [currentUser, setCurrentUser] = useState<User | null>(null);
+	const [currentUser, setCurrentUser] = useState<User | null>({
+		name: "aleex",
+	});
 
 	return (
 		<AuthContextProvider

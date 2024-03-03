@@ -10,10 +10,11 @@ import {
 	ListItemButton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { DrawerContents } from "../drawer";
 import { CustomRoute } from "../../../models";
 import { Navlink } from "../links";
+import { AuthContext } from "../../../contexts";
 
 interface NavBarProps {
 	navItems: CustomRoute[];
@@ -28,6 +29,7 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);
 	};
+	const { currentUser } = useContext(AuthContext);
 	return (
 		<>
 			<AppBar component="nav">
@@ -52,16 +54,22 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 					<Box sx={{ display: { xs: "none", sm: "block" } }}>
 						<nav>
 							<List sx={flexContainer}>
-								{navItems.map((item) => (
-									<ListItem
-										key={item.path}
-										disablePadding>
-										<ListItemButton
-											sx={{ textAlign: "center" }}>
-											<Navlink item={item}></Navlink>
-										</ListItemButton>
-									</ListItem>
-								))}
+								{navItems.map((item) => {
+									if (!item.isPrivate || currentUser)
+										return (
+											<ListItem
+												key={item.path}
+												disablePadding>
+												<ListItemButton
+													sx={{
+														textAlign: "center",
+													}}>
+													<Navlink
+														item={item}></Navlink>
+												</ListItemButton>
+											</ListItem>
+										);
+								})}
 							</List>
 						</nav>
 					</Box>

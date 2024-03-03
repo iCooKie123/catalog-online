@@ -9,9 +9,9 @@ export const routes: CustomRoute[] = [
 		text: "Home",
 	},
 	{
-		path: "TestPage",
+		path: "test-page",
 		element: <TestPage></TestPage>,
-		isPrivate: false,
+		isPrivate: true,
 		text: "Test",
 	},
 ];
