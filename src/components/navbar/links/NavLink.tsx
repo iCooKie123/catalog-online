@@ -17,6 +17,7 @@ export const Navlink = ({ item, setModalIsOpen, textColor }: NavLinkProps) => {
 				textDecoration: "none",
 				textAlign: "center",
 				width: "100%",
+				height: "100%",
 				color: textColor ? textColor : "inherit",
 			}}
 			className={({ isActive, isPending }) =>
