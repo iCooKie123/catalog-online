@@ -4,4 +4,5 @@ export type User = {
 	// password: string;
 	// id: string;
 	// token: string;
+	yearOfStudy: number;
 };

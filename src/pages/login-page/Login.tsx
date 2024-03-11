@@ -55,12 +55,16 @@ export const LoginPage = () => {
 						xs={2}>
 						<Button
 							variant="contained"
-							onClick={() => setCurrentUser({ name: "Alex" })}>
+							onClick={() =>
+								setCurrentUser({ name: "Alex", yearOfStudy: 4 })
+							}>
 							Login
 						</Button>
 						<Button
 							variant="outlined"
-							onClick={() => setCurrentUser({ name: "Alex" })}>
+							onClick={() =>
+								setCurrentUser({ name: "Alex", yearOfStudy: 4 })
+							}>
 							Register
 						</Button>
 					</Grid>

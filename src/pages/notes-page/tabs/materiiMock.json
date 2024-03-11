@@ -1,0 +1,202 @@
+[
+	{
+		"year": 1,
+		"classes": [
+			{
+				"id": "class-1-id",
+				"name": "Class 1",
+				"yearOfStudy": 1,
+				"credits": 3,
+				"type": "seminar",
+				"grade": 85,
+				"semester": 1
+			},
+			{
+				"id": "class-2-id",
+				"name": "Class 2",
+				"yearOfStudy": 1,
+				"credits": 4,
+				"type": "proiect",
+				"grade": 92,
+				"semester": 2
+			},
+			{
+				"id": "class-3-id",
+				"name": "Class 3",
+				"yearOfStudy": 1,
+				"credits": 5,
+				"type": "lab",
+				"grade": 78,
+				"semester": 1
+			},
+			{
+				"id": "class-4-id",
+				"name": "Class 4",
+				"yearOfStudy": 1,
+				"credits": 2,
+				"type": "seminar",
+				"grade": 80,
+				"semester": 2
+			},
+			{
+				"id": "class-5-id",
+				"name": "Class 5",
+				"yearOfStudy": 1,
+				"credits": 6,
+				"type": "proiect",
+				"grade": 90,
+				"semester": 1
+			}
+		]
+	},
+	{
+		"year": 2,
+		"classes": [
+			{
+				"id": "class-6-id",
+				"name": "Class 6",
+				"yearOfStudy": 2,
+				"credits": 4,
+				"type": "lab",
+				"grade": 82,
+				"semester": 1
+			},
+			{
+				"id": "class-7-id",
+				"name": "Class 7",
+				"yearOfStudy": 2,
+				"credits": 3,
+				"type": "seminar",
+				"grade": 95,
+				"semester": 2
+			},
+			{
+				"id": "class-8-id",
+				"name": "Class 8",
+				"yearOfStudy": 2,
+				"credits": 5,
+				"type": "proiect",
+				"grade": 88,
+				"semester": 1
+			},
+			{
+				"id": "class-9-id",
+				"name": "Class 9",
+				"yearOfStudy": 2,
+				"credits": 2,
+				"type": "lab",
+				"grade": 75,
+				"semester": 2
+			},
+			{
+				"id": "class-10-id",
+				"name": "Class 10",
+				"yearOfStudy": 2,
+				"credits": 6,
+				"type": "seminar",
+				"grade": 91,
+				"semester": 1
+			}
+		]
+	},
+	{
+		"year": 3,
+		"classes": [
+			{
+				"id": "class-6-id",
+				"name": "Class 6",
+				"yearOfStudy": 3,
+				"credits": 4,
+				"type": "lab",
+				"grade": 82,
+				"semester": 1
+			},
+			{
+				"id": "class-7-id",
+				"name": "Class 7",
+				"yearOfStudy": 3,
+				"credits": 3,
+				"type": "seminar",
+				"grade": 95,
+				"semester": 2
+			},
+			{
+				"id": "class-8-id",
+				"name": "Class 8",
+				"yearOfStudy": 3,
+				"credits": 5,
+				"type": "proiect",
+				"grade": 88,
+				"semester": 1
+			},
+			{
+				"id": "class-9-id",
+				"name": "Class 9",
+				"yearOfStudy": 3,
+				"credits": 2,
+				"type": "lab",
+				"grade": 75,
+				"semester": 2
+			},
+			{
+				"id": "class-10-id",
+				"name": "Class 10",
+				"yearOfStudy": 3,
+				"credits": 6,
+				"type": "seminar",
+				"grade": 91,
+				"semester": 1
+			}
+		]
+	},
+	{
+		"year": 4,
+		"classes": [
+			{
+				"id": "class-6-id",
+				"name": "Class 6",
+				"yearOfStudy": 4,
+				"credits": 4,
+				"type": "lab",
+				"grade": 82,
+				"semester": 1
+			},
+			{
+				"id": "class-7-id",
+				"name": "Class 7",
+				"yearOfStudy": 4,
+				"credits": 3,
+				"type": "seminar",
+				"grade": 95,
+				"semester": 2
+			},
+			{
+				"id": "class-8-id",
+				"name": "Class 8",
+				"yearOfStudy": 4,
+				"credits": 5,
+				"type": "proiect",
+				"grade": 88,
+				"semester": 1
+			},
+			{
+				"id": "class-9-id",
+				"name": "Class 9",
+				"yearOfStudy": 4,
+				"credits": 2,
+				"type": "lab",
+				"grade": 75,
+				"semester": 2
+			},
+			{
+				"id": "class-10-id",
+				"name": "Class 10",
+				"yearOfStudy": 4,
+				"credits": 6,
+				"type": "seminar",
+				"grade": 91,
+				"semester": 1
+			}
+		]
+	}
+]
