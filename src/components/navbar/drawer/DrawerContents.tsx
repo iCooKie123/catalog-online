@@ -6,21 +6,17 @@ import {
 	ListItem,
 	ListItemButton,
 } from "@mui/material";
-import { CustomRoute } from "../../../models/";
 import { Navlink } from "../links";
 import { useContext } from "react";
-import { AuthContext } from "../../../contexts";
+import { AuthContext, RoutesContext } from "../../../contexts";
 
 interface DrawerContentProps {
-	navItems: CustomRoute[];
 	closeDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const DrawerContents = ({
-	navItems,
-	closeDrawer,
-}: DrawerContentProps) => {
+export const DrawerContents = ({ closeDrawer }: DrawerContentProps) => {
 	const { currentUser } = useContext(AuthContext);
+	const { navItems } = useContext(RoutesContext);
 	return (
 		<Box sx={{ textAlign: "center" }}>
 			<Typography
@@ -36,8 +32,8 @@ export const DrawerContents = ({
 						if (
 							(item.type === "public" ||
 								(item.type === "protected" && currentUser) ||
-								(item.type === "anonymous" &&
-									!currentUser)) as boolean
+								(item.type === "anonymous" && !currentUser)) &&
+							item.visible !== false
 						)
 							return (
 								<ListItem

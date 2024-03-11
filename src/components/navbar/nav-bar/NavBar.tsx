@@ -12,24 +12,21 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useContext, useState } from "react";
 import { DrawerContents } from "../drawer";
-import { CustomRoute } from "../../../models";
 import { Navlink } from "../links";
-import { AuthContext } from "../../../contexts";
+import { AuthContext, RoutesContext } from "../../../contexts";
 import { ProfileSection } from "../profile-section";
 
-interface NavBarProps {
-	navItems: CustomRoute[];
-}
 const flexContainer = {
 	display: "flex",
 	flexDirection: "row",
 	padding: 0,
 };
-export const NavBar = ({ navItems }: NavBarProps) => {
+export const NavBar = () => {
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const handleDrawerToggle = () => {
 		setDrawerOpen(!drawerOpen);
 	};
+	const { navItems } = useContext(RoutesContext);
 	const { currentUser } = useContext(AuthContext);
 	return (
 		<>
@@ -55,7 +52,7 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 					<Box sx={{ display: { xs: "none", sm: "block" } }}>
 						<nav>
 							<List sx={flexContainer}>
-								{navItems.map((item) => {
+								{navItems?.map((item) => {
 									if (
 										(item.type === "public" ||
 											(item.type === "protected" &&
@@ -104,10 +101,7 @@ export const NavBar = ({ navItems }: NavBarProps) => {
 						width: 240,
 					},
 				}}>
-				<DrawerContents
-					navItems={navItems}
-					closeDrawer={setDrawerOpen}
-				/>
+				<DrawerContents closeDrawer={setDrawerOpen} />
 			</Drawer>
 		</>
 	);
