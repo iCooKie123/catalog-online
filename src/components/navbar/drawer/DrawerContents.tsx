@@ -28,29 +28,21 @@ export const DrawerContents = ({ closeDrawer }: DrawerContentProps) => {
 
 			<nav>
 				<List>
-					{navItems.map((item) => {
-						if (
-							(item.type === "public" ||
-								(item.type === "protected" && currentUser) ||
-								(item.type === "anonymous" && !currentUser)) &&
-							item.visible !== false
-						)
-							return (
-								<ListItem
-									key={item.path}
-									disablePadding>
-									<ListItemButton
-										sx={{
-											textAlign: "center",
-										}}>
-										<Navlink
-											item={item}
-											setModalIsOpen={closeDrawer}
-											textColor="black"></Navlink>
-									</ListItemButton>
-								</ListItem>
-							);
-					})}
+					{navItems.map((item) => (
+						<ListItem
+							key={item.path}
+							disablePadding>
+							<ListItemButton
+								sx={{
+									textAlign: "center",
+								}}>
+								<Navlink
+									item={item}
+									setModalIsOpen={closeDrawer}
+									textColor="black"></Navlink>
+							</ListItemButton>
+						</ListItem>
+					))}
 				</List>
 			</nav>
 		</Box>

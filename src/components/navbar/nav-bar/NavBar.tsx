@@ -52,28 +52,18 @@ export const NavBar = () => {
 					<Box sx={{ display: { xs: "none", sm: "block" } }}>
 						<nav>
 							<List sx={flexContainer}>
-								{navItems?.map((item) => {
-									if (
-										(item.type === "public" ||
-											(item.type === "protected" &&
-												currentUser) ||
-											(item.type === "anonymous" &&
-												!currentUser)) as boolean
-									)
-										return (
-											<ListItem
-												key={item.path}
-												disablePadding>
-												<ListItemButton
-													sx={{
-														textAlign: "center",
-													}}>
-													<Navlink
-														item={item}></Navlink>
-												</ListItemButton>
-											</ListItem>
-										);
-								})}
+								{navItems?.map((item) => (
+									<ListItem
+										key={item.path}
+										disablePadding>
+										<ListItemButton
+											sx={{
+												textAlign: "center",
+											}}>
+											<Navlink item={item}></Navlink>
+										</ListItemButton>
+									</ListItem>
+								))}
 							</List>
 						</nav>
 					</Box>
