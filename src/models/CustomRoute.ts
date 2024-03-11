@@ -3,4 +3,5 @@ export type CustomRoute = {
 	element: JSX.Element;
 	type: "protected" | "anonymous" | "public";
 	text: string;
+	visible?: boolean;
 };

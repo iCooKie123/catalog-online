@@ -15,10 +15,8 @@ export const LoginPage = () => {
 					backgroundColor: "white",
 					padding: "1rem",
 					margin: "1rem",
-					display: "flex",
-					alignItems: "center",
-					width: "100%",
-				}}>
+				}}
+				width={{ xs: "80%", sm: "75%", md: "60%", xl: "50%" }}>
 				<Grid
 					container
 					spacing={{ xs: 2 }}
@@ -50,10 +48,20 @@ export const LoginPage = () => {
 					</Grid>
 					<Grid
 						item
+						display="flex"
+						justifyContent="flex-start"
+						alignItems="center"
+						gap={2}
 						xs={2}>
 						<Button
+							variant="contained"
 							onClick={() => setCurrentUser({ name: "Alex" })}>
-							asd
+							Login
+						</Button>
+						<Button
+							variant="outlined"
+							onClick={() => setCurrentUser({ name: "Alex" })}>
+							Register
 						</Button>
 					</Grid>
 				</Grid>

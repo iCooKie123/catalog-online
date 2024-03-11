@@ -1,6 +1,6 @@
 import { AnonymousRoute, ProtectedRoute } from "./components";
 import { CustomRoute } from "./models/CustomRoute";
-import { HomePage, TestPage, LoginPage } from "./pages";
+import { HomePage, TestPage, LoginPage, RegisterPage } from "./pages";
 
 export const routes: CustomRoute[] = [
 	{
@@ -28,5 +28,16 @@ export const routes: CustomRoute[] = [
 		),
 		type: "anonymous",
 		text: "Login",
+	},
+	{
+		path: "register",
+		element: (
+			<AnonymousRoute>
+				<RegisterPage></RegisterPage>
+			</AnonymousRoute>
+		),
+		type: "anonymous",
+		text: "Register",
+		visible: false,
 	},
 ];
