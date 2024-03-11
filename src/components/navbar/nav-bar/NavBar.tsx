@@ -13,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useContext, useState } from "react";
 import { DrawerContents } from "../drawer";
 import { Navlink } from "../links";
-import { AuthContext, RoutesContext } from "../../../contexts";
+import { RoutesContext } from "../../../contexts";
 import { ProfileSection } from "../profile-section";
 
 const flexContainer = {
@@ -27,7 +27,6 @@ export const NavBar = () => {
 		setDrawerOpen(!drawerOpen);
 	};
 	const { navItems } = useContext(RoutesContext);
-	const { currentUser } = useContext(AuthContext);
 	return (
 		<>
 			<AppBar component="nav">

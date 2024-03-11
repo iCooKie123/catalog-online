@@ -8,14 +8,13 @@ import {
 } from "@mui/material";
 import { Navlink } from "../links";
 import { useContext } from "react";
-import { AuthContext, RoutesContext } from "../../../contexts";
+import { RoutesContext } from "../../../contexts";
 
 interface DrawerContentProps {
 	closeDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const DrawerContents = ({ closeDrawer }: DrawerContentProps) => {
-	const { currentUser } = useContext(AuthContext);
 	const { navItems } = useContext(RoutesContext);
 	return (
 		<Box sx={{ textAlign: "center" }}>

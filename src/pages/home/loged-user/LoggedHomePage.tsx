@@ -1,13 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { Card, CardContent, Typography } from "@mui/material";
 
 export const LoggedHomePage = () => {
 	const { currentUser } = useContext(AuthContext);
 	return (
-		<div>
-			<h1>Home Page</h1>
-			<p>Welcome to the home page!</p>
-			<p>User is logged in :{currentUser?.name}</p>
-		</div>
+		<Card sx={{ minWidth: "100%" }}>
+			<CardContent>
+				<Typography variant="h4">
+					Bine ai venit, {currentUser?.name}!
+				</Typography>
+			</CardContent>
+		</Card>
 	);
 };
