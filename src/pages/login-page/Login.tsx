@@ -12,15 +12,17 @@ export const LoginPage = () => {
 		<FormProvider {...methods}>
 			<Box
 				sx={{
-					flexGrow: 1,
 					backgroundColor: "white",
 					padding: "1rem",
 					margin: "1rem",
+					display: "flex",
+					alignItems: "center",
+					width: "100%",
 				}}>
 				<Grid
 					container
 					spacing={{ xs: 2 }}
-					columns={{ xs: 2, md: 4 }}
+					columns={2}
 					padding={4}>
 					<Grid
 						xs={2}
