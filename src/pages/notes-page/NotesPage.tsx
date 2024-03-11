@@ -21,7 +21,6 @@ export const NotesPages = () => {
 				"/src/pages/notes-page/tabs/materiiMock.json"
 			);
 			setYearsOfStudy(result.data);
-			console.log(yearsOfStudy);
 		};
 
 		fetchData();
@@ -29,13 +28,10 @@ export const NotesPages = () => {
 	}, []);
 	const classes = yearsOfStudy[value]?.classes;
 
-	useEffect(() => {
-		console.log(classes);
-	}, [classes]);
 	return (
 		<>
 			<Box
-				width="90%"
+				width={{ xs: "100%", md: "50%" }}
 				sx={{ backgroundColor: "white" }}>
 				<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
 					<Tabs
