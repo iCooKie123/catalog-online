@@ -17,7 +17,12 @@ interface TabPanelProps {
 }
 
 export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
-	console.log({ index, classes });
+	const sortedClasses = [...(classes ?? [])].sort((a, b) => {
+		if (a.semester === b.semester) {
+			return a.name.localeCompare(b.name);
+		}
+		return a.semester - b.semester;
+	});
 
 	return (
 		<Typography
@@ -48,7 +53,7 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								{classes?.map((cls, index) => {
+								{sortedClasses?.map((cls, index) => {
 									const typeOfClass =
 										cls.type.toLocaleUpperCase()[0];
 									return (

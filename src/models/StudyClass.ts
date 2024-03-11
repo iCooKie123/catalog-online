@@ -4,7 +4,7 @@ export type StudyClass = {
 	yearOfStudy: number;
 	credits: number;
 	type: "lab" | "seminar" | "proiect";
-	grade: number;
+	grade?: number;
 	semester: 1 | 2;
 };
 
