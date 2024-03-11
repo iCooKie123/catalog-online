@@ -104,7 +104,7 @@
 		"classes": [
 			{
 				"id": "class-6-id",
-				"name": "Class 6",
+				"name": "Class 7",
 				"yearOfStudy": 3,
 				"credits": 4,
 				"type": "lab",
@@ -113,7 +113,7 @@
 			},
 			{
 				"id": "class-7-id",
-				"name": "Class 7",
+				"name": "Class 8",
 				"yearOfStudy": 3,
 				"credits": 3,
 				"type": "seminar",
@@ -122,7 +122,7 @@
 			},
 			{
 				"id": "class-8-id",
-				"name": "Class 8",
+				"name": "Class 9",
 				"yearOfStudy": 3,
 				"credits": 5,
 				"type": "proiect",
@@ -131,7 +131,7 @@
 			},
 			{
 				"id": "class-9-id",
-				"name": "Class 9",
+				"name": "Class 10",
 				"yearOfStudy": 3,
 				"credits": 2,
 				"type": "lab",
@@ -140,7 +140,7 @@
 			},
 			{
 				"id": "class-10-id",
-				"name": "Class 10",
+				"name": "Class 11",
 				"yearOfStudy": 3,
 				"credits": 6,
 				"type": "seminar",
@@ -154,7 +154,7 @@
 		"classes": [
 			{
 				"id": "class-6-id",
-				"name": "Class 6",
+				"name": "Class 12",
 				"yearOfStudy": 4,
 				"credits": 4,
 				"type": "lab",
@@ -163,7 +163,7 @@
 			},
 			{
 				"id": "class-7-id",
-				"name": "Class 7",
+				"name": "Class 13",
 				"yearOfStudy": 4,
 				"credits": 3,
 				"type": "seminar",
@@ -172,7 +172,7 @@
 			},
 			{
 				"id": "class-8-id",
-				"name": "Class 8",
+				"name": "Class 14",
 				"yearOfStudy": 4,
 				"credits": 5,
 				"type": "proiect",
@@ -181,7 +181,7 @@
 			},
 			{
 				"id": "class-9-id",
-				"name": "Class 9",
+				"name": "Class 15",
 				"yearOfStudy": 4,
 				"credits": 2,
 				"type": "lab",
@@ -190,7 +190,7 @@
 			},
 			{
 				"id": "class-10-id",
-				"name": "Class 10",
+				"name": "Class 16",
 				"yearOfStudy": 4,
 				"credits": 6,
 				"type": "seminar",

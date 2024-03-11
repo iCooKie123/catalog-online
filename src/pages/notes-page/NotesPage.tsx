@@ -27,9 +27,11 @@ export const NotesPages = () => {
 		fetchData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+	const classes = yearsOfStudy[value]?.classes;
+
 	useEffect(() => {
-		console.log(yearsOfStudy);
-	}, [yearsOfStudy]);
+		console.log(classes);
+	}, [classes]);
 	return (
 		<>
 			<Box
@@ -51,7 +53,7 @@ export const NotesPages = () => {
 						<CustomTabPanel
 							index={index}
 							value={value}
-							classes={[]}></CustomTabPanel>
+							classes={classes}></CustomTabPanel>
 					)
 				)}
 			</Box>
