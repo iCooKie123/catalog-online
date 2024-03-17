@@ -45,7 +45,7 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 								<col style={{ width: "10%" }}></col>
 							</colgroup>
 							<TableHead>
-								<TableRow>
+								<TableRow key={"no mopre"}>
 									<TableCell sx={{ width: "1%" }}>
 										Nr.Crt
 									</TableCell>
@@ -67,7 +67,14 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 									const typeOfClass =
 										cls.type.toLocaleUpperCase()[0];
 									return (
-										<TableRow key={index}>
+										<TableRow
+											key={cls.id}
+											sx={{
+												backgroundColor:
+													!!cls.grade && cls.grade < 4
+														? "red"
+														: "unset",
+											}}>
 											<TableCell sx={{ width: "1%" }}>
 												{index + 1}
 											</TableCell>

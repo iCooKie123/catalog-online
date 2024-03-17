@@ -6,7 +6,10 @@ import { routes } from "./Routes";
 import { RoutesContextProvider, AuthContextProvider } from "./contexts";
 
 const App = () => {
-	const [currentUser, setCurrentUser] = useState<User | null>(null);
+	const [currentUser, setCurrentUser] = useState<User | null>({
+		name: "John Doe",
+		yearOfStudy: 4,
+	});
 
 	const filteredNavItems = routes.filter(
 		(item) =>

@@ -3,49 +3,94 @@
 		"year": 1,
 		"classes": [
 			{
-				"id": "class-1-id",
-				"name": "Class 1",
-				"yearOfStudy": 1,
-				"credits": 3,
-				"type": "seminar",
-				"grade": 8,
-				"semester": 1
-			},
-			{
-				"id": "class-2-id",
-				"name": "Class 2",
-				"yearOfStudy": 1,
-				"credits": 4,
-				"type": "proiect",
-				"grade": 9,
-				"semester": 2
-			},
-			{
-				"id": "class-3-id",
-				"name": "Class 3",
-				"yearOfStudy": 1,
-				"credits": 5,
-				"type": "lab",
-				"grade": 8,
-				"semester": 1
-			},
-			{
-				"id": "class-4-id",
-				"name": "Class 4",
+				"id": "81376f6a-a327-4a70-bd9e-9a6f5ad02b73",
+				"name": "X-Links Gold Shares Covered Call ETN",
 				"yearOfStudy": 1,
 				"credits": 2,
 				"type": "seminar",
+				"grade": null,
+				"semester": 2
+			},
+			{
+				"id": "a6fc7222-57c8-4f2d-91cc-095c779c54e0",
+				"name": "Sound Financial Bancorp, Inc.",
+				"yearOfStudy": 1,
+				"credits": 4,
+				"type": "seminar",
+				"grade": 9,
+				"semester": 1
+			},
+			{
+				"id": "fbc8f397-f93b-46ea-a9f6-0483ad00fff1",
+				"name": "Carnival Corporation",
+				"yearOfStudy": 1,
+				"credits": 6,
+				"type": "lab",
 				"grade": 8,
 				"semester": 2
 			},
 			{
-				"id": "class-5-id",
-				"name": "Class 5",
+				"id": "96a0f9e7-1c79-4d87-b749-26a622cd1de7",
+				"name": "Cemtrex Inc.",
 				"yearOfStudy": 1,
-				"credits": 6,
+				"credits": 5,
 				"type": "proiect",
-				"grade": 9,
+				"grade": 1,
+				"semester": 2
+			},
+			{
+				"id": "0b36755c-5ecb-48d7-8aa3-1de547ada8c8",
+				"name": "Neothetics, Inc.",
+				"yearOfStudy": 1,
+				"credits": 5,
+				"type": "proiect",
+				"grade": null,
+				"semester": 2
+			},
+			{
+				"id": "3404ac27-09f3-4731-9aaa-af71f6a83453",
+				"name": "The GDL Fund",
+				"yearOfStudy": 1,
+				"credits": 3,
+				"type": "proiect",
+				"grade": 5,
 				"semester": 1
+			},
+			{
+				"id": "151ac937-6cec-480d-8bc0-8f69f69a5ad7",
+				"name": "iRhythm Technologies, Inc.",
+				"yearOfStudy": 1,
+				"credits": 5,
+				"type": "proiect",
+				"grade": 8,
+				"semester": 2
+			},
+			{
+				"id": "dd07416f-4438-4049-bb72-f2a834b19524",
+				"name": "Air Lease Corporation",
+				"yearOfStudy": 1,
+				"credits": 4,
+				"type": "seminar",
+				"grade": 6,
+				"semester": 1
+			},
+			{
+				"id": "35d045c2-1033-4976-b008-fc293f72431d",
+				"name": "HFF, Inc.",
+				"yearOfStudy": 1,
+				"credits": 2,
+				"type": "seminar",
+				"grade": null,
+				"semester": 1
+			},
+			{
+				"id": "692cb6eb-1f5b-4fd4-ac58-a07e6888eba6",
+				"name": "MaxLinear, Inc",
+				"yearOfStudy": 1,
+				"credits": 5,
+				"type": "seminar",
+				"grade": 8,
+				"semester": 2
 			}
 		]
 	},
@@ -53,49 +98,85 @@
 		"year": 2,
 		"classes": [
 			{
-				"id": "class-6-id",
-				"name": "Class 6",
-				"yearOfStudy": 2,
-				"credits": 4,
-				"type": "lab",
-				"grade": 8,
-				"semester": 1
-			},
-			{
-				"id": "class-7-id",
-				"name": "Class 7",
-				"yearOfStudy": 2,
-				"credits": 3,
-				"type": "seminar",
-				"grade": 9,
-				"semester": 2
-			},
-			{
-				"id": "class-8-id",
-				"name": "Class 8",
+				"id": "c4165f9b-40d9-483c-a26d-66076cb16187",
+				"name": "VanEck Vectors Biotech ETF",
 				"yearOfStudy": 2,
 				"credits": 5,
-				"type": "proiect",
-				"grade": 8,
+				"type": "lab",
+				"grade": null,
 				"semester": 1
 			},
 			{
-				"id": "class-9-id",
-				"name": "Class 9",
+				"id": "73e59928-c05c-42f7-b622-7b53ba0903ef",
+				"name": "Revolution Lighting Technologies, Inc.",
+				"yearOfStudy": 2,
+				"credits": 5,
+				"type": "seminar",
+				"grade": null,
+				"semester": 1
+			},
+			{
+				"id": "2840dd60-45e5-478e-9b6e-4ea627086f01",
+				"name": "PowerShares S&P SmallCap Consumer Discretionary Portfolio",
+				"yearOfStudy": 2,
+				"credits": 5,
+				"type": "seminar",
+				"grade": null,
+				"semester": 1
+			},
+			{
+				"id": "93d645a7-8113-430f-b39f-aba4275b5a7e",
+				"name": "Grupo Aeroportuario del Centro Norte S.A.B. de C.V.",
 				"yearOfStudy": 2,
 				"credits": 2,
 				"type": "lab",
-				"grade": 7,
+				"grade": 8,
 				"semester": 2
 			},
 			{
-				"id": "class-10-id",
-				"name": "Class 10",
+				"id": "8eaf19fc-cde5-415d-b9b1-0571c938c321",
+				"name": "Masonite International Corporation",
+				"yearOfStudy": 2,
+				"credits": 2,
+				"type": "lab",
+				"grade": 8,
+				"semester": 1
+			},
+			{
+				"id": "512e59cb-532d-4d2e-a6c9-8b7789666724",
+				"name": "iShares MSCI New Zealand Capped ETF",
+				"yearOfStudy": 2,
+				"credits": 4,
+				"type": "lab",
+				"grade": 3,
+				"semester": 1
+			},
+			{
+				"id": "e95f250e-15d7-400b-a6fb-908308d3ff63",
+				"name": "Mazor Robotics Ltd.",
 				"yearOfStudy": 2,
 				"credits": 6,
-				"type": "seminar",
-				"grade": 9,
+				"type": "lab",
+				"grade": null,
 				"semester": 1
+			},
+			{
+				"id": "bf2b9edf-225d-45c8-b474-e945dce00cf3",
+				"name": "W.R. Berkley Corporation",
+				"yearOfStudy": 2,
+				"credits": 2,
+				"type": "seminar",
+				"grade": null,
+				"semester": 2
+			},
+			{
+				"id": "f2fba118-e750-4109-b39d-ecc1500477ad",
+				"name": "CytomX Therapeutics, Inc.",
+				"yearOfStudy": 2,
+				"credits": 4,
+				"type": "lab",
+				"grade": 6,
+				"semester": 2
 			}
 		]
 	},
@@ -103,48 +184,84 @@
 		"year": 3,
 		"classes": [
 			{
-				"id": "class-6-id",
-				"name": "Class 7",
-				"yearOfStudy": 3,
-				"credits": 4,
-				"type": "lab",
-				"grade": 8,
-				"semester": 1
-			},
-			{
-				"id": "class-7-id",
-				"name": "Class 8",
+				"id": "4f8cd443-8107-4601-a56c-478cd5ab6ae2",
+				"name": "ProPetro Holding Corp.",
 				"yearOfStudy": 3,
 				"credits": 3,
-				"type": "seminar",
-				"grade": 9,
-				"semester": 2
-			},
-			{
-				"id": "class-8-id",
-				"name": "Class 9",
-				"yearOfStudy": 3,
-				"credits": 5,
-				"type": "proiect",
-				"grade": 8,
+				"type": "lab",
+				"grade": 7,
 				"semester": 1
 			},
 			{
-				"id": "class-9-id",
-				"name": "Class 10",
-				"yearOfStudy": 3,
-				"credits": 2,
-				"type": "lab",
-				"grade": 7,
-				"semester": 2
-			},
-			{
-				"id": "class-10-id",
-				"name": "Class 11",
+				"id": "019a1986-9cca-44e1-9389-992bfdf78cca",
+				"name": "Nuveen Quality Municipal Income Fund",
 				"yearOfStudy": 3,
 				"credits": 6,
 				"type": "seminar",
-				"grade": 9,
+				"grade": 2,
+				"semester": 1
+			},
+			{
+				"id": "5083d86a-3d8d-4cdc-80b6-249b8ae35a1c",
+				"name": "Pacific Coast Oil Trust",
+				"yearOfStudy": 3,
+				"credits": 6,
+				"type": "proiect",
+				"grade": 6,
+				"semester": 2
+			},
+			{
+				"id": "034f0b91-d5c7-48bc-bf67-ef364081124a",
+				"name": "Saul Centers, Inc.",
+				"yearOfStudy": 3,
+				"credits": 6,
+				"type": "seminar",
+				"grade": 4,
+				"semester": 2
+			},
+			{
+				"id": "641cdd8c-0a26-475b-b6cf-da287c93a372",
+				"name": "Unit Corporation",
+				"yearOfStudy": 3,
+				"credits": 4,
+				"type": "lab",
+				"grade": 4,
+				"semester": 2
+			},
+			{
+				"id": "b03b0ba3-f1d1-4638-bf78-089b6998c5ca",
+				"name": "Urban One, Inc. ",
+				"yearOfStudy": 3,
+				"credits": 2,
+				"type": "seminar",
+				"grade": 4,
+				"semester": 2
+			},
+			{
+				"id": "dbf8c612-4b54-4a0d-92be-6eb740492464",
+				"name": "Investors Real Estate Trust",
+				"yearOfStudy": 3,
+				"credits": 3,
+				"type": "lab",
+				"grade": 8,
+				"semester": 2
+			},
+			{
+				"id": "5f5b596d-c71b-4315-afec-e22c652b5d16",
+				"name": "Cemex S.A.B. de C.V.",
+				"yearOfStudy": 3,
+				"credits": 5,
+				"type": "lab",
+				"grade": 4,
+				"semester": 2
+			},
+			{
+				"id": "ce1b6660-ba4a-43bb-a2ba-430535e57ff3",
+				"name": "Rosetta Genomics Ltd.",
+				"yearOfStudy": 3,
+				"credits": 4,
+				"type": "lab",
+				"grade": 6,
 				"semester": 1
 			}
 		]
@@ -153,49 +270,85 @@
 		"year": 4,
 		"classes": [
 			{
-				"id": "class-6-id",
-				"name": "Class 12",
-				"yearOfStudy": 4,
-				"credits": 4,
-				"type": "lab",
-				"grade": 8,
-				"semester": 1
-			},
-			{
-				"id": "class-7-id",
-				"name": "Class 13",
-				"yearOfStudy": 4,
-				"credits": 3,
-				"type": "seminar",
-				"grade": 9,
-				"semester": 2
-			},
-			{
-				"id": "class-8-id",
-				"name": "Class 14",
-				"yearOfStudy": 4,
-				"credits": 5,
-				"type": "proiect",
-				"grade": 8,
-				"semester": 1
-			},
-			{
-				"id": "class-9-id",
-				"name": "Class 15",
+				"id": "d65b740a-6416-4982-81ec-3643e7f89a5a",
+				"name": "Blackrock Health Sciences Trust",
 				"yearOfStudy": 4,
 				"credits": 2,
 				"type": "lab",
+				"grade": null,
+				"semester": 1
+			},
+			{
+				"id": "87dfd228-6c29-416b-bb22-ac4f9413f7be",
+				"name": "U.S. Bancorp",
+				"yearOfStudy": 4,
+				"credits": 3,
+				"type": "proiect",
+				"grade": 9,
+				"semester": 1
+			},
+			{
+				"id": "71d473b5-6d4e-4c5b-9167-fce0afa152bf",
+				"name": "North American Energy Partners, Inc.",
+				"yearOfStudy": 4,
+				"credits": 5,
+				"type": "proiect",
+				"grade": 3,
+				"semester": 1
+			},
+			{
+				"id": "8150715b-b831-403a-8ac7-dd6e26bc9b82",
+				"name": "ONE Gas, Inc.",
+				"yearOfStudy": 4,
+				"credits": 6,
+				"type": "seminar",
+				"grade": 7,
+				"semester": 1
+			},
+			{
+				"id": "b4bd5f24-381d-4ad1-a115-47611cf4a733",
+				"name": "Sangamo Therapeutics, Inc.",
+				"yearOfStudy": 4,
+				"credits": 3,
+				"type": "proiect",
+				"grade": null,
+				"semester": 1
+			},
+			{
+				"id": "64784465-617d-4bff-baaa-84a10ce4b732",
+				"name": "First Trust Nasdaq Oil & Gas ETF",
+				"yearOfStudy": 4,
+				"credits": 3,
+				"type": "lab",
+				"grade": 3,
+				"semester": 2
+			},
+			{
+				"id": "d1d0884f-62d3-4333-b429-d857629e22b7",
+				"name": "Taubman Centers, Inc.",
+				"yearOfStudy": 4,
+				"credits": 6,
+				"type": "lab",
+				"grade": 9,
+				"semester": 1
+			},
+			{
+				"id": "665601d4-af18-4fa2-b723-32b886c15521",
+				"name": "Mettler-Toledo International, Inc.",
+				"yearOfStudy": 4,
+				"credits": 4,
+				"type": "seminar",
 				"grade": 7,
 				"semester": 2
 			},
 			{
-				"id": "class-10-id",
-				"name": "Class 16",
+				"id": "8c1876d5-4a35-4175-bc2f-4384fee3159f",
+				"name": "Ramco-Gershenson Properties Trust",
 				"yearOfStudy": 4,
-				"credits": 6,
+				"credits": 3,
 				"type": "seminar",
-				"grade": 2,
-				"semester": 1
+				"grade": 8,
+				"semester": 2
 			}
 		]
 	}

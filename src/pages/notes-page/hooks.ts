@@ -26,14 +26,11 @@ export const useNotesPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const allClasses = yearsOfStudy[currentTab]?.classes.map((cls) => ({
-		...cls,
-		grade: !!cls.grade && cls.grade > 4 ? cls.grade : undefined,
-	}));
+	const allClasses = yearsOfStudy[currentTab]?.classes;
 
-	const passedClasses = allClasses
-		?.filter((cls) => !!cls.grade && cls.grade > 4)
-		.map((cls) => ({ ...cls, grade: cls.grade }));
+	const passedClasses = allClasses?.filter(
+		(cls) => !!cls.grade && cls.grade > 4
+	);
 
 	const totalCredits = passedClasses?.reduce(
 		(acc, cls) => acc + (cls?.grade ?? 0),
@@ -45,7 +42,9 @@ export const useNotesPage = () => {
 		0
 	);
 
-	const averageGrade = allPassedGrades / allClasses?.length;
+	const averageGrade = Number(
+		(allPassedGrades / allClasses?.length).toFixed(2)
+	);
 
 	const yearsOfStudyArray = Array.from(
 		{ length: Number(currentUser?.yearOfStudy) },
