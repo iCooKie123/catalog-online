@@ -10,12 +10,15 @@ export const NotesPages = () => {
 		averageGrade,
 		totalCredits,
 		yearsOfStudyArray,
+		firstSemesterAverageGrade,
+		secondSemesterAverageGrade,
 	} = useNotesPage();
 
 	return (
 		<>
 			<Box
 				width={{ xs: "100%", md: "50%" }}
+				marginTop={12}
 				sx={{ backgroundColor: "white" }}>
 				<Typography
 					variant="h3"
@@ -30,6 +33,7 @@ export const NotesPages = () => {
 						color: "black",
 					}}>
 					<Typography
+						key={"year of study"}
 						variant="body1"
 						color="black"
 						paddingLeft={2}
@@ -40,6 +44,7 @@ export const NotesPages = () => {
 						variant="body1"
 						color="black"
 						paddingLeft={2}
+						key={"average grade"}
 						paddingBottom={1}>
 						Media generala: {averageGrade}
 					</Typography>
@@ -47,8 +52,25 @@ export const NotesPages = () => {
 						variant="body1"
 						color="black"
 						paddingLeft={2}
+						key={"totalCreditsFirstSemester"}
 						paddingBottom={1}>
-						PC total: {totalCredits}
+						Medie generala sem I: {firstSemesterAverageGrade}
+					</Typography>
+					<Typography
+						variant="body1"
+						color="black"
+						paddingLeft={2}
+						key={"totalCreditsSecondSemester"}
+						paddingBottom={1}>
+						Medie generala sem II: {secondSemesterAverageGrade}
+					</Typography>
+					<Typography
+						variant="body1"
+						color="black"
+						paddingLeft={2}
+						key={"totalCredits"}
+						paddingBottom={1}>
+						Puncte credit total: {totalCredits}
 					</Typography>
 				</Box>
 				<Box

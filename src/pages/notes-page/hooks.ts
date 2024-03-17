@@ -51,6 +51,24 @@ export const useNotesPage = () => {
 		(_, index) => index
 	);
 
+	const firstSemesterAverageGrade = Number(
+		(
+			allClasses
+				?.filter((cls) => cls.semester === 1)
+				.reduce((acc, cls) => acc + (cls.grade ?? 0), 0) /
+			allClasses?.filter((cls) => cls.semester === 1).length
+		).toFixed(2)
+	);
+
+	const secondSemesterAverageGrade = Number(
+		(
+			allClasses
+				?.filter((cls) => cls.semester === 2)
+				.reduce((acc, cls) => acc + (cls.grade ?? 0), 0) /
+			allClasses?.filter((cls) => cls.semester === 2).length
+		).toFixed(2)
+	);
+
 	return {
 		handleChange,
 		yearsOfStudy,
@@ -59,5 +77,7 @@ export const useNotesPage = () => {
 		totalCredits,
 		yearsOfStudyArray,
 		allClasses,
+		firstSemesterAverageGrade,
+		secondSemesterAverageGrade,
 	};
 };
