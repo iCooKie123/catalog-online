@@ -36,20 +36,30 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 				<Box p={3}>
 					<TableContainer>
 						<Table sx={{ width: "100%" }}>
+							<colgroup>
+								<col style={{ width: "5%" }}></col>
+								<col style={{ width: "30%" }}></col>
+								<col style={{ width: "5%" }}></col>
+								<col style={{ width: "10%" }}></col>
+								<col style={{ width: "10%" }}></col>
+								<col style={{ width: "10%" }}></col>
+							</colgroup>
 							<TableHead>
 								<TableRow>
-									<TableCell>Nr.Crt</TableCell>
-									<TableCell align="right">
+									<TableCell sx={{ width: "1%" }}>
+										Nr.Crt
+									</TableCell>
+									<TableCell align="center">
 										Numele disciplinei
 									</TableCell>
-									<TableCell align="right">
+									<TableCell align="center">
 										Nr. credite
 									</TableCell>
-									<TableCell align="right">Tip</TableCell>
-									<TableCell align="right">
+									<TableCell align="center">Tip</TableCell>
+									<TableCell align="center">
 										Semestru
 									</TableCell>
-									<TableCell align="right">Nota</TableCell>
+									<TableCell align="center">Nota</TableCell>
 								</TableRow>
 							</TableHead>
 							<TableBody>
@@ -58,18 +68,23 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 										cls.type.toLocaleUpperCase()[0];
 									return (
 										<TableRow key={index}>
-											<TableCell>{index + 1}</TableCell>
-											<TableCell align="right">
+											<TableCell sx={{ width: "1%" }}>
+												{index + 1}
+											</TableCell>
+											<TableCell align="center">
 												{cls.name}
 											</TableCell>
-											<TableCell align="right">
+											<TableCell align="center">
 												{cls.credits}
 											</TableCell>
-											<TableCell align="right">
+											<TableCell align="center">
 												{typeOfClass}
 											</TableCell>
-											<TableCell align="right">
+											<TableCell align="center">
 												{cls.semester}
+											</TableCell>
+											<TableCell align="center">
+												{cls.grade}
 											</TableCell>
 										</TableRow>
 									);
