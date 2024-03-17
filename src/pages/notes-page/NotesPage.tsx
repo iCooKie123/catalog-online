@@ -1,57 +1,76 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../contexts";
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
 import { CustomTabPanel } from "./tabs/CustomTabPanel";
-import axios from "axios";
-import { YearOfStudy } from "../../models/StudyClass";
+import { useNotesPage } from "./hooks";
 
 export const NotesPages = () => {
-	const { currentUser } = useContext(AuthContext);
-	const [value, setValue] = useState(0);
-
-	const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-		setValue(newValue);
-	};
-
-	const [yearsOfStudy, setYearsOfStudy] = useState<YearOfStudy[]>([]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const result = await axios.get(
-				"/src/pages/notes-page/tabs/materiiMock.json"
-			);
-			setYearsOfStudy(result.data);
-		};
-
-		fetchData();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-	const classes = yearsOfStudy[value]?.classes;
+	const {
+		handleChange,
+		allClasses,
+		currentTab,
+		averageGrade,
+		totalCredits,
+		yearsOfStudyArray,
+	} = useNotesPage();
 
 	return (
 		<>
 			<Box
 				width={{ xs: "100%", md: "50%" }}
 				sx={{ backgroundColor: "white" }}>
-				<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+				<Typography
+					variant="h3"
+					color="black"
+					mb={2}
+					padding={2}>
+					Registru note
+				</Typography>
+				<Box
+					sx={{
+						width: "50%",
+						color: "black",
+					}}>
+					<Typography
+						variant="body1"
+						color="black"
+						paddingLeft={2}
+						paddingBottom={1}>
+						Anul de studiu: {currentTab + 1}
+					</Typography>
+					<Typography
+						variant="body1"
+						color="black"
+						paddingLeft={2}
+						paddingBottom={1}>
+						Media generala: {averageGrade}
+					</Typography>
+					<Typography
+						variant="body1"
+						color="black"
+						paddingLeft={2}
+						paddingBottom={1}>
+						PC total: {totalCredits}
+					</Typography>
+				</Box>
+				<Box
+					padding={2}
+					sx={{ borderBottom: 1, borderColor: "divider" }}>
 					<Tabs
-						value={value}
+						value={currentTab}
 						onChange={handleChange}
 						aria-label="basic tabs example">
-						<Tab label="Item One" />
-						<Tab label="Item Two" />
-						<Tab label="Item Three" />
+						{yearsOfStudyArray?.map((year) => (
+							<Tab
+								label={`Anul ${year + 1}`}
+								key={year}></Tab>
+						))}
 					</Tabs>
 				</Box>
-				{Array.from(
-					{ length: Number(currentUser?.yearOfStudy) },
-					(_, index) => (
-						<CustomTabPanel
-							index={index}
-							value={value}
-							classes={classes}></CustomTabPanel>
-					)
-				)}
+				{yearsOfStudyArray?.map((_, year) => (
+					<CustomTabPanel
+						index={year}
+						value={currentTab}
+						classes={allClasses}></CustomTabPanel>
+				))}
 			</Box>
 		</>
 	);

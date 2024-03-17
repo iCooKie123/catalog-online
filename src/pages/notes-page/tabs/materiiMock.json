@@ -8,7 +8,7 @@
 				"yearOfStudy": 1,
 				"credits": 3,
 				"type": "seminar",
-				"grade": 85,
+				"grade": 8,
 				"semester": 1
 			},
 			{
@@ -17,7 +17,7 @@
 				"yearOfStudy": 1,
 				"credits": 4,
 				"type": "proiect",
-				"grade": 92,
+				"grade": 9,
 				"semester": 2
 			},
 			{
@@ -26,7 +26,7 @@
 				"yearOfStudy": 1,
 				"credits": 5,
 				"type": "lab",
-				"grade": 78,
+				"grade": 8,
 				"semester": 1
 			},
 			{
@@ -35,7 +35,7 @@
 				"yearOfStudy": 1,
 				"credits": 2,
 				"type": "seminar",
-				"grade": 80,
+				"grade": 8,
 				"semester": 2
 			},
 			{
@@ -44,7 +44,7 @@
 				"yearOfStudy": 1,
 				"credits": 6,
 				"type": "proiect",
-				"grade": 90,
+				"grade": 9,
 				"semester": 1
 			}
 		]
@@ -58,7 +58,7 @@
 				"yearOfStudy": 2,
 				"credits": 4,
 				"type": "lab",
-				"grade": 82,
+				"grade": 8,
 				"semester": 1
 			},
 			{
@@ -67,7 +67,7 @@
 				"yearOfStudy": 2,
 				"credits": 3,
 				"type": "seminar",
-				"grade": 95,
+				"grade": 9,
 				"semester": 2
 			},
 			{
@@ -76,7 +76,7 @@
 				"yearOfStudy": 2,
 				"credits": 5,
 				"type": "proiect",
-				"grade": 88,
+				"grade": 8,
 				"semester": 1
 			},
 			{
@@ -85,7 +85,7 @@
 				"yearOfStudy": 2,
 				"credits": 2,
 				"type": "lab",
-				"grade": 75,
+				"grade": 7,
 				"semester": 2
 			},
 			{
@@ -94,7 +94,7 @@
 				"yearOfStudy": 2,
 				"credits": 6,
 				"type": "seminar",
-				"grade": 91,
+				"grade": 9,
 				"semester": 1
 			}
 		]
@@ -108,7 +108,7 @@
 				"yearOfStudy": 3,
 				"credits": 4,
 				"type": "lab",
-				"grade": 82,
+				"grade": 8,
 				"semester": 1
 			},
 			{
@@ -117,7 +117,7 @@
 				"yearOfStudy": 3,
 				"credits": 3,
 				"type": "seminar",
-				"grade": 95,
+				"grade": 9,
 				"semester": 2
 			},
 			{
@@ -126,7 +126,7 @@
 				"yearOfStudy": 3,
 				"credits": 5,
 				"type": "proiect",
-				"grade": 88,
+				"grade": 8,
 				"semester": 1
 			},
 			{
@@ -135,7 +135,7 @@
 				"yearOfStudy": 3,
 				"credits": 2,
 				"type": "lab",
-				"grade": 75,
+				"grade": 7,
 				"semester": 2
 			},
 			{
@@ -144,7 +144,7 @@
 				"yearOfStudy": 3,
 				"credits": 6,
 				"type": "seminar",
-				"grade": 91,
+				"grade": 9,
 				"semester": 1
 			}
 		]
@@ -158,7 +158,7 @@
 				"yearOfStudy": 4,
 				"credits": 4,
 				"type": "lab",
-				"grade": 82,
+				"grade": 8,
 				"semester": 1
 			},
 			{
@@ -167,7 +167,7 @@
 				"yearOfStudy": 4,
 				"credits": 3,
 				"type": "seminar",
-				"grade": 95,
+				"grade": 9,
 				"semester": 2
 			},
 			{
@@ -176,7 +176,7 @@
 				"yearOfStudy": 4,
 				"credits": 5,
 				"type": "proiect",
-				"grade": 88,
+				"grade": 8,
 				"semester": 1
 			},
 			{
@@ -185,7 +185,7 @@
 				"yearOfStudy": 4,
 				"credits": 2,
 				"type": "lab",
-				"grade": 75,
+				"grade": 7,
 				"semester": 2
 			},
 			{
@@ -194,7 +194,7 @@
 				"yearOfStudy": 4,
 				"credits": 6,
 				"type": "seminar",
-				"grade": 91,
+				"grade": 2,
 				"semester": 1
 			}
 		]

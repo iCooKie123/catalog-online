@@ -84,7 +84,7 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 												{cls.semester}
 											</TableCell>
 											<TableCell align="center">
-												{cls.grade}
+												{cls.grade ?? "-"}
 											</TableCell>
 										</TableRow>
 									);
