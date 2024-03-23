@@ -36,18 +36,16 @@ export const useNotesPage = () => {
 		(cls) => !!cls.grade && cls.grade > 4
 	);
 
-	const allClassesCredits = allClasses?.reduce(
-		(acc, cls) => acc + (cls?.credits ?? 0),
-		0
-	);
-
 	const totalCredits = passedClasses?.reduce(
 		(acc, cls) => acc + (cls?.credits ?? 0),
 		0
 	);
 
 	const averageGrade = Number(
-		(allClassesCredits / allClasses?.length).toFixed(2)
+		(
+			allClasses?.reduce((acc, cls) => acc + (cls.grade ?? 0), 0) /
+			allClasses?.length
+		).toFixed(2)
 	);
 
 	const yearsOfStudyArray = Array.from(

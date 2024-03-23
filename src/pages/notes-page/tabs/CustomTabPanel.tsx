@@ -34,7 +34,9 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 			style={{ width: "100%", color: "black" }}>
 			{value === index && (
 				<Box p={3}>
-					<TableContainer data-testid="main-table">
+					<TableContainer
+						data-testid="main-table"
+						key={"table-container"}>
 						<Table sx={{ width: "100%" }}>
 							<colgroup>
 								<col style={{ width: "5%" }}></col>
@@ -45,7 +47,7 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 								<col style={{ width: "10%" }}></col>
 							</colgroup>
 							<TableHead>
-								<TableRow key={"no mopre"}>
+								<TableRow key={"no key"}>
 									<TableCell sx={{ width: "1%" }}>
 										Nr.Crt
 									</TableCell>
@@ -68,7 +70,7 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 										cls.type.toLocaleUpperCase()[0];
 									return (
 										<TableRow
-											key={cls.id}
+											key={`row-${cls.name}-${cls.id}`}
 											sx={{
 												backgroundColor:
 													!!cls.grade && cls.grade < 4
@@ -76,22 +78,34 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 														: "unset",
 											}}
 											data-testid="table-row">
-											<TableCell sx={{ width: "1%" }}>
+											<TableCell
+												key={index + 1}
+												sx={{ width: "1%" }}>
 												{index + 1}
 											</TableCell>
-											<TableCell align="center">
+											<TableCell
+												align="center"
+												key={`${cls.name}-${cls.id}`}>
 												{cls.name}
 											</TableCell>
-											<TableCell align="center">
+											<TableCell
+												align="center"
+												key={`${cls.credits}-${cls.id}`}>
 												{cls.credits}
 											</TableCell>
-											<TableCell align="center">
+											<TableCell
+												align="center"
+												key={`${typeOfClass}-${cls.id}`}>
 												{typeOfClass}
 											</TableCell>
-											<TableCell align="center">
+											<TableCell
+												align="center"
+												key={`semester-${cls.id}`}>
 												{cls.semester}
 											</TableCell>
-											<TableCell align="center">
+											<TableCell
+												align="center"
+												key={`grade-${cls.id}`}>
 												{cls.grade ?? "-"}
 											</TableCell>
 										</TableRow>

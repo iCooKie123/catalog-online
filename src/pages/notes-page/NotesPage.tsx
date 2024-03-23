@@ -16,7 +16,7 @@ export const NotesPages = () => {
 	} = useNotesPage();
 
 	if (isLoading) {
-		return <div data-testId="loading">Loading...</div>;
+		return <div data-testid="loading">Loading...</div>;
 	}
 
 	return (
@@ -102,7 +102,8 @@ export const NotesPages = () => {
 					<CustomTabPanel
 						index={year}
 						value={currentTab}
-						classes={allClasses}></CustomTabPanel>
+						classes={allClasses}
+						key={`Anul-${year}`}></CustomTabPanel>
 				))}
 			</Box>
 		</>
