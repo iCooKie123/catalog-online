@@ -40,8 +40,7 @@
 		"jsdom": "^24.0.0",
 		"typescript": "^5.2.2",
 		"vite": "^5.1.4",
-		"vitest": "^1.4.0",
-		"vitest-mock-axios": "^0.1.0"
+		"vitest": "^1.4.0"
 	},
 	"packageManager": "yarn@4.1.0"
 }
