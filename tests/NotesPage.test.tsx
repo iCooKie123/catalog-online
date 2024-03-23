@@ -1,50 +1,57 @@
+import "@testing-library/jest-dom";
+import { AuthWrapper } from "./AuthWrapper";
+import { NotesPages } from "../src/pages/notes-page/NotesPage";
+import { User } from "@/models";
 import {
 	render,
 	screen,
 	waitForElementToBeRemoved,
 } from "@testing-library/react";
-
-import { NotesPages } from "../src/pages/notes-page/NotesPage";
+import anul1 from "./dataMock/anul1.json";
+import anul3 from "./dataMock/anul3.json";
+import axios from "../src/axios";
 import mockAxios from "axios-mock-adapter";
-import axios from "axios";
-import { AuthContextProvider } from "../src/contexts";
-import { User } from "@/models";
-import { vi } from "vitest";
-import data from "./dataMock/notes.json";
-import "@testing-library/jest-dom";
-
-const Wrapper = ({ children }: { children: React.ReactNode }) => {
-	const currentUserMock: User = { name: "test", yearOfStudy: 1 };
-	return (
-		<AuthContextProvider
-			value={{
-				currentUser: currentUserMock,
-				setCurrentUser: vi.fn(),
-			}}>
-			{children}
-		</AuthContextProvider>
-	);
-};
 
 describe("NotesPage", () => {
 	it("should render the component", async () => {
 		const mock = new mockAxios(axios);
-		mock.onGet(
-			"https://my.api.mockaroo.com/years_of_study.json?key=1b233db0"
-		).reply(200, data);
+		mock.onGet("years_of_study.json").reply(200, anul1);
+
+		const user: User = {
+			name: "test",
+			yearOfStudy: 1,
+		};
 
 		render(
-			<Wrapper>
+			<AuthWrapper user={user}>
 				<NotesPages></NotesPages>
-			</Wrapper>
+			</AuthWrapper>
 		);
 
 		await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
 
-		screen.debug();
-
 		expect(screen.getByTestId("tab-1")).toBeInTheDocument();
+		expect(screen.queryByTestId("tab-2")).not.toBeInTheDocument();
+		expect(screen.queryByTestId("tab-3")).not.toBeInTheDocument();
 		expect(screen.queryByTestId("tab-4")).not.toBeInTheDocument();
+	});
+
+	it("should calculate averages correctly", async () => {
+		const mock = new mockAxios(axios);
+		mock.onGet("years_of_study.json").reply(200, anul1);
+
+		const user: User = {
+			name: "test",
+			yearOfStudy: 1,
+		};
+
+		render(
+			<AuthWrapper user={user}>
+				<NotesPages></NotesPages>
+			</AuthWrapper>
+		);
+
+		await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
 
 		expect(screen.queryAllByTestId("table-row").length).toBe(4);
 
@@ -57,5 +64,29 @@ describe("NotesPage", () => {
 			screen.getByText("Medie generala sem II: 4")
 		).toBeInTheDocument();
 		expect(screen.getByText("Puncte credit total: 10")).toBeInTheDocument();
+	});
+
+	it("should render the component for year 3", async () => {
+		const mock = new mockAxios(axios);
+		mock.onGet("years_of_study.json").reply(200, anul3);
+
+		const user: User = {
+			name: "test",
+			yearOfStudy: 3,
+		};
+
+		render(
+			<AuthWrapper user={user}>
+				<NotesPages></NotesPages>
+			</AuthWrapper>
+		);
+
+		await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+		expect(screen.getByText("Anul 3")).toBeInTheDocument();
+		expect(screen.queryByTestId("tab-1")).toBeInTheDocument();
+		expect(screen.queryByTestId("tab-2")).toBeInTheDocument();
+		expect(screen.queryByTestId("tab-3")).toBeInTheDocument();
+		expect(screen.queryByTestId("tab-4")).not.toBeInTheDocument();
 	});
 });

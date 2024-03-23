@@ -1,0 +1,134 @@
+[
+	{
+		"year": 1,
+		"classes": [
+			{
+				"id": "81376f6a-a327-4a70-bd9e-9a6f5ad02b73",
+				"name": "X-Links Gold Shares Covered Call ETN",
+				"yearOfStudy": 1,
+				"credits": 2,
+				"type": "seminar",
+				"grade": null,
+				"semester": 2
+			},
+			{
+				"id": "a6fc7222-57c8-4f2d-91cc-095c779c54e0",
+				"name": "Sound Financial Bancorp, Inc.",
+				"yearOfStudy": 1,
+				"credits": 4,
+				"type": "seminar",
+				"grade": 9,
+				"semester": 1
+			},
+			{
+				"id": "fbc8f397-f93b-46ea-a9f6-0483ad00fff1",
+				"name": "Carnival Corporation",
+				"yearOfStudy": 1,
+				"credits": 6,
+				"type": "lab",
+				"grade": 8,
+				"semester": 2
+			},
+			{
+				"id": "a6fc7222-57c8-4f2d-91cc-095c779c54e0",
+				"name": "Sound Financial Bancorp, Inc.",
+				"yearOfStudy": 1,
+				"credits": 4,
+				"type": "seminar",
+				"grade": 4,
+				"semester": 1
+			}
+		]
+	},
+	{
+		"year": 2,
+		"classes": [
+			{
+				"id": "81376f6a-a327-4a70-bd9e-9a6f5ad02b73",
+				"name": "X-Links Gold Shares Covered Call ETN",
+				"yearOfStudy": 2,
+				"credits": 2,
+				"type": "seminar",
+				"grade": null,
+				"semester": 2
+			},
+			{
+				"id": "a6fc7222-57c8-4f2d-91cc-095c779c54e0",
+				"name": "Sound Financial Bancorp, Inc.",
+				"yearOfStudy": 2,
+				"credits": 4,
+				"type": "seminar",
+				"grade": 9,
+				"semester": 1
+			},
+			{
+				"id": "fbc8f397-f93b-46ea-a9f6-0483ad00fff1",
+				"name": "Carnival Corporation",
+				"yearOfStudy": 2,
+				"credits": 6,
+				"type": "lab",
+				"grade": 8,
+				"semester": 2
+			},
+			{
+				"id": "a6fc7222-57c8-4f2d-91cc-095c779c54e0",
+				"name": "Sound Financial Bancorp, Inc.",
+				"yearOfStudy": 2,
+				"credits": 4,
+				"type": "seminar",
+				"grade": 4,
+				"semester": 1
+			}
+		]
+	},
+	{
+		"year": 3,
+		"classes": [
+			{
+				"id": "81376f6a-a327-4a70-bd9e-9a6f5ad02b73",
+				"name": "X-Links Gold Shares Covered Call ETN",
+				"yearOfStudy": 3,
+				"credits": 2,
+				"type": "seminar",
+				"grade": null,
+				"semester": 2
+			},
+			{
+				"id": "a6fc7222-57c8-4f2d-91cc-095c779c54e0",
+				"name": "Sound Financial Bancorp, Inc.",
+				"yearOfStudy": 3,
+				"credits": 4,
+				"type": "seminar",
+				"grade": 9,
+				"semester": 1
+			},
+			{
+				"id": "fbc8f397-f93b-46ea-a9f6-0483ad00fff1",
+				"name": "Carnival Corporation",
+				"yearOfStudy": 3,
+				"credits": 6,
+				"type": "lab",
+				"grade": 8,
+				"semester": 2
+			},
+			{
+				"id": "a6fc7222-57c8-4f2d-91cc-095c779c54e0",
+				"name": "Sound Financial Bancorp, Inc.",
+				"yearOfStudy": 3,
+				"credits": 4,
+				"type": "seminar",
+				"grade": 4,
+				"semester": 1
+			},
+			{
+				"id": "a6fc7222-57c8-4f2d-91cc-095c779c54e0",
+				"name": "Sound Financial Bancorp, Inc.",
+				"yearOfStudy": 3,
+				"credits": 4,
+				"type": "seminar",
+				"grade": 5,
+				"semester": 1
+			}
+		]
+	}
+]

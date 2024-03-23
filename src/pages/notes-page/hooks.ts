@@ -1,13 +1,15 @@
-import axios from "axios";
+import axios from "../../axios";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts";
 import { YearOfStudy } from "../../models/StudyClass";
 
-const basicURL = "/src/pages/notes-page/tabs/materiiMock.json";
-
 export const useNotesPage = () => {
 	const { currentUser } = useContext(AuthContext);
-	const [currentTab, setCurrentTab] = useState(0);
+
+	const [currentTab, setCurrentTab] = useState(
+		currentUser?.yearOfStudy ? currentUser?.yearOfStudy - 1 : 0
+	);
+
 	const [isLoading, setIsLoading] = useState(false);
 
 	const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -20,15 +22,12 @@ export const useNotesPage = () => {
 		const fetchData = async () => {
 			setIsLoading(true);
 
-			const result = await axios.get(
-				"https://my.api.mockaroo.com/years_of_study.json?key=1b233db0"
-			);
+			const result = await axios.get("years_of_study.json");
 			setYearsOfStudy(result.data);
 			setIsLoading(false);
 		};
 
 		fetchData();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const allClasses = yearsOfStudy[currentTab]?.classes;

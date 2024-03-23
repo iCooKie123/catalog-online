@@ -4,7 +4,6 @@ import { User } from "./models";
 import { NavBar } from "./components";
 import { routes } from "./Routes";
 import { RoutesContextProvider, AuthContextProvider } from "./contexts";
-
 const App = () => {
 	const [currentUser, setCurrentUser] = useState<User | null>({
 		name: "John Doe",
