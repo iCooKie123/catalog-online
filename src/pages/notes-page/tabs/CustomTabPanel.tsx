@@ -34,7 +34,7 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 			style={{ width: "100%", color: "black" }}>
 			{value === index && (
 				<Box p={3}>
-					<TableContainer>
+					<TableContainer data-testid="main-table">
 						<Table sx={{ width: "100%" }}>
 							<colgroup>
 								<col style={{ width: "5%" }}></col>
@@ -74,7 +74,8 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 													!!cls.grade && cls.grade < 4
 														? "red"
 														: "unset",
-											}}>
+											}}
+											data-testid="table-row">
 											<TableCell sx={{ width: "1%" }}>
 												{index + 1}
 											</TableCell>

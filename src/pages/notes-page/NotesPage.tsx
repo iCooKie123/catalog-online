@@ -12,7 +12,12 @@ export const NotesPages = () => {
 		yearsOfStudyArray,
 		firstSemesterAverageGrade,
 		secondSemesterAverageGrade,
+		isLoading,
 	} = useNotesPage();
+
+	if (isLoading) {
+		return <div data-testId="loading">Loading...</div>;
+	}
 
 	return (
 		<>
@@ -33,7 +38,8 @@ export const NotesPages = () => {
 						color: "black",
 					}}>
 					<Typography
-						key={"year of study"}
+						key="year of study"
+						id="year-of-study"
 						variant="body1"
 						color="black"
 						paddingLeft={2}
@@ -44,6 +50,7 @@ export const NotesPages = () => {
 						variant="body1"
 						color="black"
 						paddingLeft={2}
+						id="average-grade"
 						key={"average grade"}
 						paddingBottom={1}>
 						Media generala: {averageGrade}
@@ -53,6 +60,7 @@ export const NotesPages = () => {
 						color="black"
 						paddingLeft={2}
 						key={"totalCreditsFirstSemester"}
+						id="totalCreditsFirstSemester"
 						paddingBottom={1}>
 						Medie generala sem I: {firstSemesterAverageGrade}
 					</Typography>
@@ -61,6 +69,7 @@ export const NotesPages = () => {
 						color="black"
 						paddingLeft={2}
 						key={"totalCreditsSecondSemester"}
+						id="totalCreditsSecondSemester"
 						paddingBottom={1}>
 						Medie generala sem II: {secondSemesterAverageGrade}
 					</Typography>
@@ -69,6 +78,7 @@ export const NotesPages = () => {
 						color="black"
 						paddingLeft={2}
 						key={"totalCredits"}
+						id="totalCredits"
 						paddingBottom={1}>
 						Puncte credit total: {totalCredits}
 					</Typography>
@@ -83,7 +93,8 @@ export const NotesPages = () => {
 						{yearsOfStudyArray?.map((year) => (
 							<Tab
 								label={`Anul ${year + 1}`}
-								key={year}></Tab>
+								key={year}
+								data-testid={`tab-${year + 1}`}></Tab>
 						))}
 					</Tabs>
 				</Box>

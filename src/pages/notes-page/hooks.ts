@@ -3,9 +3,12 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts";
 import { YearOfStudy } from "../../models/StudyClass";
 
+const basicURL = "/src/pages/notes-page/tabs/materiiMock.json";
+
 export const useNotesPage = () => {
 	const { currentUser } = useContext(AuthContext);
 	const [currentTab, setCurrentTab] = useState(0);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
 		setCurrentTab(newValue);
@@ -15,11 +18,13 @@ export const useNotesPage = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			//TODO: replace with real data
+			setIsLoading(true);
+
 			const result = await axios.get(
-				"/src/pages/notes-page/tabs/materiiMock.json"
+				"https://my.api.mockaroo.com/years_of_study.json?key=1b233db0"
 			);
 			setYearsOfStudy(result.data);
+			setIsLoading(false);
 		};
 
 		fetchData();
@@ -32,18 +37,18 @@ export const useNotesPage = () => {
 		(cls) => !!cls.grade && cls.grade > 4
 	);
 
-	const totalCredits = passedClasses?.reduce(
-		(acc, cls) => acc + (cls?.grade ?? 0),
+	const allClassesCredits = allClasses?.reduce(
+		(acc, cls) => acc + (cls?.credits ?? 0),
 		0
 	);
 
-	const allPassedGrades = passedClasses?.reduce(
-		(acc, cls) => acc + (cls.grade ?? 0),
+	const totalCredits = passedClasses?.reduce(
+		(acc, cls) => acc + (cls?.credits ?? 0),
 		0
 	);
 
 	const averageGrade = Number(
-		(allPassedGrades / allClasses?.length).toFixed(2)
+		(allClassesCredits / allClasses?.length).toFixed(2)
 	);
 
 	const yearsOfStudyArray = Array.from(
@@ -79,5 +84,6 @@ export const useNotesPage = () => {
 		allClasses,
 		firstSemesterAverageGrade,
 		secondSemesterAverageGrade,
+		isLoading,
 	};
 };
