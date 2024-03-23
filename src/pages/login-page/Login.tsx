@@ -6,8 +6,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts";
 
 export const LoginPage = () => {
-	const methods = useLoginPage();
+	const { methods, onLogin } = useLoginPage();
 	const { setCurrentUser } = useContext(AuthContext);
+
 	return (
 		<FormProvider {...methods}>
 			<Box
@@ -36,8 +37,8 @@ export const LoginPage = () => {
 						xs={2}>
 						<Textfield
 							id={"input-username-login"}
-							name={"username"}
-							label={"Username"}></Textfield>
+							name={"email"}
+							label={"Email"}></Textfield>
 					</Grid>
 					<Grid
 						item
@@ -55,9 +56,7 @@ export const LoginPage = () => {
 						xs={2}>
 						<Button
 							variant="contained"
-							onClick={() =>
-								setCurrentUser({ name: "Alex", yearOfStudy: 4 })
-							}>
+							onClick={methods.handleSubmit(onLogin)}>
 							Login
 						</Button>
 						<Button

@@ -9,7 +9,7 @@ import {
 	Typography,
 } from "@mui/material";
 import { useContext, useState } from "react";
-import { AuthContext } from "../../../contexts";
+import { AuthContext } from "@/contexts";
 import { Logout } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 export const ProfileSection = () => {
