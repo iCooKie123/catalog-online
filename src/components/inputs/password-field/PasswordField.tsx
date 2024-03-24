@@ -15,6 +15,7 @@ interface PasswordFieldProps {
 	defaultValue?: string;
 	label?: string;
 	id: string;
+	dataTestId: string;
 }
 
 export const PasswordField = ({
@@ -22,6 +23,7 @@ export const PasswordField = ({
 	defaultValue,
 	label,
 	id,
+	dataTestId,
 }: PasswordFieldProps) => {
 	const methods = useFormContext();
 	const [showPassword, setShowPassword] = useState(false);
@@ -53,6 +55,7 @@ export const PasswordField = ({
 					<FilledInput
 						id={id}
 						type={showPassword ? "text" : "password"}
+						data-testid={dataTestId}
 						endAdornment={
 							<InputAdornment position="end">
 								<IconButton
@@ -74,7 +77,7 @@ export const PasswordField = ({
 							trigger(name);
 						}}
 					/>
-					<FormHelperText>
+					<FormHelperText data-testid={`${dataTestId}-error`}>
 						{errors[name]?.message?.toString()}
 					</FormHelperText>
 				</FormControl>

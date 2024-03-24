@@ -41,7 +41,8 @@
   },
   "include": [
     "src",
-    "tests/NotesPage.test.tsx"
+    "tests/NotesPage.test.tsx",
+    "./tests/setup.js"
   ],
   "references": [
     {

@@ -5,7 +5,7 @@ import { vi } from "vitest";
 
 interface AuthWrapperProps {
 	children: React.ReactNode;
-	user: User;
+	user?: User;
 	setUser?: (user: User | null) => void;
 }
 
@@ -13,7 +13,7 @@ export const AuthWrapper = ({ children, user, setUser }: AuthWrapperProps) => {
 	return (
 		<AuthContextProvider
 			value={{
-				currentUser: user,
+				currentUser: user ?? null,
 				setCurrentUser: setUser ?? vi.fn(),
 			}}>
 			{children}

@@ -6,6 +6,7 @@ interface TextFieldProps {
 	defaultValue?: string;
 	label: string;
 	id: string;
+	dataTestId: string;
 }
 
 export const Textfield = ({
@@ -13,6 +14,7 @@ export const Textfield = ({
 	defaultValue,
 	label,
 	id,
+	dataTestId,
 }: TextFieldProps) => {
 	const {
 		watch,
@@ -42,7 +44,8 @@ export const Textfield = ({
 						}}
 						error={!!errors[name]}
 						helperText={errors[name]?.message?.toString()}
-						variant="filled"></TextField>
+						variant="filled"
+						data-testid={dataTestId}></TextField>
 				</FormControl>
 			)}></Controller>
 	);

@@ -5,8 +5,10 @@ import { FormProvider } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts";
 
+export const headingText = "Login page";
+
 export const LoginPage = () => {
-	const { methods, onLogin } = useLoginPage();
+	const { methods, onLogin, isLoading } = useLoginPage();
 	const { setCurrentUser } = useContext(AuthContext);
 
 	return (
@@ -28,14 +30,16 @@ export const LoginPage = () => {
 						md={4}>
 						<Typography
 							variant="h3"
-							color="black">
-							Login page
+							color="black"
+							data-testid="login-page-header">
+							{headingText}
 						</Typography>
 					</Grid>
 					<Grid
 						item
 						xs={2}>
 						<Textfield
+							dataTestId="input-email-login"
 							id={"input-username-login"}
 							name={"email"}
 							label={"Email"}></Textfield>
@@ -45,6 +49,7 @@ export const LoginPage = () => {
 						xs={2}>
 						<PasswordField
 							id="input-password-login"
+							dataTestId="input-password-login"
 							name="password"></PasswordField>
 					</Grid>
 					<Grid
@@ -56,11 +61,13 @@ export const LoginPage = () => {
 						xs={2}>
 						<Button
 							variant="contained"
+							data-testid="login-button"
 							onClick={methods.handleSubmit(onLogin)}>
 							Login
 						</Button>
 						<Button
 							variant="outlined"
+							data-testid="register-button"
 							onClick={() =>
 								setCurrentUser({ name: "Alex", yearOfStudy: 4 })
 							}>
@@ -69,6 +76,7 @@ export const LoginPage = () => {
 					</Grid>
 				</Grid>
 			</Box>
+			{isLoading ?? <Box data-testid="loading">loading..</Box>}
 		</FormProvider>
 	);
 };

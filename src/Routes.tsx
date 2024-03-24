@@ -6,7 +6,7 @@ import {
 	LoginPage,
 	RegisterPage,
 	NotesPages,
-} from "./pages";
+} from "@/pages";
 
 export const routes: CustomRoute[] = [
 	{

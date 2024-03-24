@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { loginInfoValidationSchema } from "./validation-schema";
 import { LoginInfo, User } from "@/models";
 import axios from "../../axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "@/contexts";
 
 export const useLoginPage = () => {
 	const { setCurrentUser } = useContext(AuthContext);
+	const [isLoading, setIsLoading] = useState(false);
 	const methods = useForm<LoginInfo>({
 		defaultValues: { email: "", password: "" },
 		resolver: yupResolver(loginInfoValidationSchema),
@@ -16,7 +17,7 @@ export const useLoginPage = () => {
 
 	const onLogin = async () => {
 		const formValues = methods.getValues();
-
+		setIsLoading(true);
 		await axios
 			.post("user/login", formValues)
 			.then((response) => {
@@ -25,11 +26,15 @@ export const useLoginPage = () => {
 			})
 			.catch((error) => {
 				console.error(error);
+			})
+			.finally(() => {
+				setIsLoading(false);
 			});
 	};
 
 	return {
 		methods,
 		onLogin,
+		isLoading,
 	};
 };
