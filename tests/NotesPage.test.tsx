@@ -16,7 +16,7 @@ import mockAxios from "axios-mock-adapter";
 describe("NotesPage", () => {
 	it("should render the component", async () => {
 		const mock = new mockAxios(axios);
-		mock.onGet("years_of_study.json").reply(200, anul1);
+		mock.onGet("years_of_study").reply(200, anul1);
 
 		const user: User = {
 			name: "test",
@@ -39,7 +39,7 @@ describe("NotesPage", () => {
 
 	it("should calculate averages correctly", async () => {
 		const mock = new mockAxios(axios);
-		mock.onGet("years_of_study.json").reply(200, anul1);
+		mock.onGet("years_of_study").reply(200, anul1);
 
 		const user: User = {
 			name: "test",
@@ -69,7 +69,7 @@ describe("NotesPage", () => {
 
 	it("should render the component for year 3", async () => {
 		const mock = new mockAxios(axios);
-		mock.onGet("years_of_study.json").reply(200, anul3);
+		mock.onGet("years_of_study").reply(200, anul3);
 
 		const user: User = {
 			name: "test",
@@ -93,7 +93,7 @@ describe("NotesPage", () => {
 
 	it("should calculate averages correctly for year 3", async () => {
 		const mock = new mockAxios(axios);
-		mock.onGet("years_of_study.json").reply(200, anul3);
+		mock.onGet("years_of_study").reply(200, anul3);
 
 		const user: User = {
 			name: "test",
@@ -121,7 +121,7 @@ describe("NotesPage", () => {
 
 	it("should change the tab and calculate averages correctly", async () => {
 		const mock = new mockAxios(axios);
-		mock.onGet("years_of_study.json").reply(200, anul3);
+		mock.onGet("years_of_study").reply(200, anul3);
 
 		const user: User = {
 			name: "test",
