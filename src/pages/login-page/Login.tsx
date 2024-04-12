@@ -20,9 +20,15 @@ export const LoginPage = () => {
 				}}
 				width={{ xs: "80%", sm: "75%", md: "60%", xl: "50%" }}>
 				{!!errorMessage && (
-					<Alert severity="error">{errorMessage.toString()}</Alert>
+					<Alert
+						severity="error"
+						data-testid="error-alert">
+						{errorMessage.toString()}
+					</Alert>
 				)}
-				<form onSubmit={methods.handleSubmit(onLogin)}>
+				<form
+					data-testid="login-form"
+					onSubmit={methods.handleSubmit(onLogin)}>
 					<Grid
 						container
 						spacing={{ xs: 2 }}
