@@ -9,6 +9,7 @@ import { AuthContext } from "@/contexts";
 export const useLoginPage = () => {
 	const { setCurrentUser } = useContext(AuthContext);
 	const [isLoading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 	const methods = useForm<LoginInfo>({
 		defaultValues: { email: "", password: "" },
 		resolver: yupResolver(loginInfoValidationSchema),
@@ -25,7 +26,7 @@ export const useLoginPage = () => {
 				setCurrentUser(userResponse);
 			})
 			.catch((error) => {
-				console.error(error);
+				setErrorMessage(error);
 			})
 			.finally(() => {
 				setIsLoading(false);
@@ -36,5 +37,6 @@ export const useLoginPage = () => {
 		methods,
 		onLogin,
 		isLoading,
+		errorMessage,
 	};
 };
