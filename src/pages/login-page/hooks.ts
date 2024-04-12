@@ -20,13 +20,13 @@ export const useLoginPage = () => {
 		const formValues = methods.getValues();
 		setIsLoading(true);
 		await axios
-			.post("user/login", formValues)
+			.put("users/login", formValues)
 			.then((response) => {
 				const userResponse = response.data as User;
 				setCurrentUser(userResponse);
 			})
 			.catch((error) => {
-				setErrorMessage(error);
+				setErrorMessage(error.response.data);
 			})
 			.finally(() => {
 				setIsLoading(false);
