@@ -1,14 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "./models";
 import { NavBar } from "./components";
 import { routes } from "./Routes";
 import { RoutesContextProvider, AuthContextProvider } from "./contexts";
+import { getUserFromToken, validateTokenAtStartup } from "./utils/JwtUtils";
+
 const App = () => {
-	const [currentUser, setCurrentUser] = useState<User | null>({
-		name: "John Doe",
-		yearOfStudy: 4,
-	});
+	const [currentUser, setCurrentUser] = useState<User | null>(null);
+	const [token, setToken] = useState<string | null>(null);
+
+	const setCurrentToken = (token: string | null) => {
+		setToken(token);
+		if (token) localStorage.setItem("token", token);
+		else localStorage.removeItem("token");
+	};
 
 	const filteredNavItems = routes.filter(
 		(item) =>
@@ -18,11 +24,22 @@ const App = () => {
 			item.visible !== false
 	);
 
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+
+		if (validateTokenAtStartup()) {
+			const user = getUserFromToken(token!);
+			setCurrentUser(user);
+		}
+	}, []);
+
 	return (
 		<AuthContextProvider
 			value={{
 				currentUser: currentUser,
 				setCurrentUser: setCurrentUser,
+				token: token,
+				setToken: setCurrentToken,
 			}}>
 			<RoutesContextProvider value={{ navItems: filteredNavItems }}>
 				<Router>

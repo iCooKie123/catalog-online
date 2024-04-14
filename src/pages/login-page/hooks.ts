@@ -1,10 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { loginInfoValidationSchema } from "./validation-schema";
-import { LoginInfo, User } from "@/models";
+import { LoginInfo } from "@/models";
 import axios from "../../axios";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/contexts";
+import { getUserFromToken } from "@/utils/JwtUtils";
 
 export const useLoginPage = () => {
 	const { setCurrentUser } = useContext(AuthContext);
@@ -22,8 +23,10 @@ export const useLoginPage = () => {
 		await axios
 			.put("users/login", formValues)
 			.then((response) => {
-				const userResponse = response.data as User;
-				setCurrentUser(userResponse);
+				const token = response.data as string;
+				localStorage.setItem("token", token);
+				const user = getUserFromToken(token);
+				setCurrentUser(user);
 			})
 			.catch((error) => {
 				setErrorMessage(error.response.data);

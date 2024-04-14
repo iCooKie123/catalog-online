@@ -40,7 +40,6 @@ export const Textfield = ({
 						onChange={field.onChange}
 						onBlur={() => {
 							trigger(name);
-							console.log(errors[name]);
 						}}
 						error={!!errors[name]}
 						helperText={errors[name]?.message?.toString()}

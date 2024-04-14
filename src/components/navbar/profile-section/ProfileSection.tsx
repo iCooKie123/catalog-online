@@ -37,11 +37,11 @@ export const ProfileSection = () => {
 						display={"flex"}
 						alignItems="center"
 						gap={1}>
-						<Avatar>{currentUser?.name.charAt(0)}</Avatar>
+						<Avatar>{currentUser?.firstName.charAt(0)}</Avatar>
 						<Typography
 							variant="h6"
 							color="white">
-							{currentUser?.name}
+							{currentUser?.firstName}
 						</Typography>
 					</Box>
 				</Button>

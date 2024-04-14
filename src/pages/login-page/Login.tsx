@@ -2,13 +2,11 @@ import { Alert, Box, Button, Grid, Typography } from "@mui/material";
 import { useLoginPage } from "./hooks";
 import { PasswordField, Textfield } from "../../components";
 import { FormProvider } from "react-hook-form";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts";
+
 export const headingText = "Login page";
 
 export const LoginPage = () => {
 	const { methods, onLogin, isLoading, errorMessage } = useLoginPage();
-	const { setCurrentUser } = useContext(AuthContext);
 
 	return (
 		<FormProvider {...methods}>
@@ -79,12 +77,7 @@ export const LoginPage = () => {
 								variant="outlined"
 								data-testid="register-button"
 								disabled={isLoading}
-								onClick={() =>
-									setCurrentUser({
-										name: "Alex",
-										yearOfStudy: 4,
-									})
-								}>
+								onClick={() => console.error("not done yet")}>
 								Register
 							</Button>
 						</Grid>

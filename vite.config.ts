@@ -12,6 +12,7 @@ export default defineConfig({
 			"@/contexts": path.resolve(__dirname, "./src/contexts"),
 			"@/pages": path.resolve(__dirname, "./src/pages"),
 			"@/models": path.resolve(__dirname, "./src/models"),
+			"@/utils": path.resolve(__dirname, "./src/utils"),
 		},
 	},
 });
