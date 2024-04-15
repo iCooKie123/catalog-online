@@ -19,7 +19,9 @@ describe("NotesPage", () => {
 		mock.onGet("years_of_study").reply(200, anul1);
 
 		const user: User = {
-			name: "test",
+			firstName: "test",
+			lastName: "test",
+			email: "test",
 			yearOfStudy: 1,
 		};
 
@@ -42,7 +44,9 @@ describe("NotesPage", () => {
 		mock.onGet("years_of_study").reply(200, anul1);
 
 		const user: User = {
-			name: "test",
+			firstName: "test",
+			lastName: "test",
+			email: "test",
 			yearOfStudy: 1,
 		};
 
@@ -72,8 +76,10 @@ describe("NotesPage", () => {
 		mock.onGet("years_of_study").reply(200, anul3);
 
 		const user: User = {
-			name: "test",
-			yearOfStudy: 3,
+			firstName: "test",
+			lastName: "test",
+			email: "test",
+			yearOfStudy: 1,
 		};
 
 		render(
@@ -96,8 +102,10 @@ describe("NotesPage", () => {
 		mock.onGet("years_of_study").reply(200, anul3);
 
 		const user: User = {
-			name: "test",
-			yearOfStudy: 3,
+			firstName: "test",
+			lastName: "test",
+			email: "test",
+			yearOfStudy: 1,
 		};
 
 		render(
@@ -124,8 +132,10 @@ describe("NotesPage", () => {
 		mock.onGet("years_of_study").reply(200, anul3);
 
 		const user: User = {
-			name: "test",
-			yearOfStudy: 3,
+			firstName: "test",
+			lastName: "test",
+			email: "test",
+			yearOfStudy: 1,
 		};
 
 		render(
