@@ -33,6 +33,7 @@ export const LoginPage = () => {
 						columns={2}
 						padding={4}>
 						<Grid
+							item
 							xs={2}
 							md={4}>
 							<Typography
