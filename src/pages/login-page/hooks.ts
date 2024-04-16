@@ -12,7 +12,7 @@ export const useLoginPage = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 	const methods = useForm<LoginInfo>({
-		defaultValues: { email: "", password: "" },
+		defaultValues: { email: "johnDoe@test.com", password: "password123" },
 		resolver: yupResolver(loginInfoValidationSchema),
 		mode: "onBlur",
 	});

@@ -22,7 +22,7 @@ export const useNotesPage = () => {
 		const fetchData = async () => {
 			setIsLoading(true);
 
-			const result = await axios.get("years_of_study");
+			const result = await axios.get("classes/all");
 			setYearsOfStudy(result.data);
 			setIsLoading(false);
 		};
