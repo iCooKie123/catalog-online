@@ -1,7 +1,7 @@
 import axios from "../../axios";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts";
-import { YearOfStudy } from "../../models/StudyClass";
+import { StudentClass } from "../../models/StudyClass";
 
 export const useNotesPage = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -16,28 +16,47 @@ export const useNotesPage = () => {
 		setCurrentTab(newValue);
 	};
 
-	const [yearsOfStudy, setYearsOfStudy] = useState<YearOfStudy[]>([]);
+	const [studentClasses, setStudentClasses] = useState<StudentClass[][]>([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			setIsLoading(true);
 
 			const result = await axios.get("classes/all");
-			setYearsOfStudy(result.data);
+			const responseData: StudentClass[] = result.data;
+			const organizedData: StudentClass[][] = [];
+
+			responseData.forEach((studentClass) => {
+				const index = organizedData.findIndex(
+					(arr) =>
+						arr.length > 0 &&
+						arr[0].class.yearOfStudy ===
+							studentClass.class.yearOfStudy
+				);
+				if (index === -1) {
+					// If no array exists for this yearOfStudy, create a new one
+					organizedData.push([studentClass]);
+				} else {
+					// Add the class to the existing array
+					organizedData[index].push(studentClass);
+				}
+			});
+			setStudentClasses(organizedData);
+			console.log(organizedData);
 			setIsLoading(false);
 		};
 
 		fetchData();
 	}, []);
 
-	const allClasses = yearsOfStudy[currentTab]?.classes;
+	const allClasses = studentClasses[currentTab];
 
 	const passedClasses = allClasses?.filter(
 		(cls) => !!cls.grade && cls.grade > 4
 	);
 
 	const totalCredits = passedClasses?.reduce(
-		(acc, cls) => acc + (cls?.credits ?? 0),
+		(acc, cls) => acc + (cls?.class.credits ?? 0),
 		0
 	);
 
@@ -56,24 +75,24 @@ export const useNotesPage = () => {
 	const firstSemesterAverageGrade = Number(
 		(
 			allClasses
-				?.filter((cls) => cls.semester === 1)
+				?.filter((cls) => cls.class.semester === 1)
 				.reduce((acc, cls) => acc + (cls.grade ?? 0), 0) /
-			allClasses?.filter((cls) => cls.semester === 1).length
+			allClasses?.filter((cls) => cls.class.semester === 1).length
 		).toFixed(2)
 	);
 
 	const secondSemesterAverageGrade = Number(
 		(
 			allClasses
-				?.filter((cls) => cls.semester === 2)
+				?.filter((cls) => cls.class.semester === 2)
 				.reduce((acc, cls) => acc + (cls.grade ?? 0), 0) /
-			allClasses?.filter((cls) => cls.semester === 2).length
+			allClasses?.filter((cls) => cls.class.semester === 2).length
 		).toFixed(2)
 	);
 
 	return {
 		handleChange,
-		yearsOfStudy,
+		yearsOfStudy: studentClasses,
 		currentTab,
 		averageGrade,
 		totalCredits,

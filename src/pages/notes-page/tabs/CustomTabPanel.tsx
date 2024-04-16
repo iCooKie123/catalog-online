@@ -8,20 +8,20 @@ import {
 	TableRow,
 	Typography,
 } from "@mui/material";
-import { StudyClass } from "../../../models/StudyClass";
+import { StudentClass } from "../../../models/StudyClass";
 
 interface TabPanelProps {
 	index: number;
 	value: number;
-	classes?: StudyClass[];
+	classes?: StudentClass[];
 }
 
 export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 	const sortedClasses = [...(classes ?? [])].sort((a, b) => {
-		if (a.semester === b.semester) {
-			return a.name.localeCompare(b.name);
+		if (a.class.semester === b.class.semester) {
+			return a.class.name.localeCompare(b.class.name);
 		}
-		return a.semester - b.semester;
+		return a.class.semester - b.class.semester;
 	});
 
 	return (
@@ -65,15 +65,18 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								{sortedClasses?.map((cls, index) => {
-									const typeOfClass =
-										cls.type.toLocaleUpperCase()[0];
+								{sortedClasses?.map((studentClass, index) => {
+									const cls = studentClass.class;
+									const typeOfClass = cls.type
+										.toString()
+										.toLocaleUpperCase()[0];
 									return (
 										<TableRow
 											key={`row-${cls.name}-${cls.id}`}
 											sx={{
 												backgroundColor:
-													!!cls.grade && cls.grade < 4
+													!!studentClass.grade &&
+													studentClass.grade < 4
 														? "red"
 														: "unset",
 											}}
@@ -106,7 +109,7 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
 											<TableCell
 												align="center"
 												key={`grade-${cls.id}`}>
-												{cls.grade ?? "-"}
+												{studentClass.grade ?? "-"}
 											</TableCell>
 										</TableRow>
 									);
