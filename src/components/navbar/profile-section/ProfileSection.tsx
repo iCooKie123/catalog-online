@@ -85,6 +85,7 @@ export const ProfileSection = () => {
 						setCurrentUser(null);
 						navigate("/login");
 						handleClose();
+						localStorage.removeItem("token");
 					}}>
 					<ListItemIcon>
 						<Logout fontSize="small" />

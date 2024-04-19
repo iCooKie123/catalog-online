@@ -15,6 +15,8 @@ export const AuthWrapper = ({ children, user, setUser }: AuthWrapperProps) => {
 			value={{
 				currentUser: user ?? null,
 				setCurrentUser: setUser ?? vi.fn(),
+				token: "token",
+				setToken: vi.fn(),
 			}}>
 			{children}
 		</AuthContextProvider>

@@ -1,6 +1,18 @@
-import { Box, Tab, Tabs, Typography } from "@mui/material";
+import {
+	Box,
+	Divider,
+	Tab,
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableRow,
+	Tabs,
+	Typography,
+} from "@mui/material";
 import { CustomTabPanel } from "./tabs/CustomTabPanel";
 import { useNotesPage } from "./hooks";
+import { VerticalTable } from "@/components";
 
 export const NotesPages = () => {
 	const {
@@ -19,6 +31,14 @@ export const NotesPages = () => {
 		return <div data-testid="loading">Loading...</div>;
 	}
 
+	const verticalTableData = [
+		{ label: "Anul de studiu", value: currentTab + 1 },
+		{ label: "Media generala", value: averageGrade },
+		{ label: "Medie generala sem I", value: firstSemesterAverageGrade },
+		{ label: "Medie generala sem II", value: secondSemesterAverageGrade },
+		{ label: "Puncte credit total", value: totalCredits },
+	];
+
 	return (
 		<>
 			<Box
@@ -32,57 +52,18 @@ export const NotesPages = () => {
 					padding={2}>
 					Registru note
 				</Typography>
+				<Divider></Divider>
+
 				<Box
-					sx={{
-						width: "50%",
-						color: "black",
-					}}>
-					<Typography
-						key="year of study"
-						id="year-of-study"
-						variant="body1"
-						color="black"
-						paddingLeft={2}
-						paddingBottom={1}>
-						Anul de studiu: {currentTab + 1}
-					</Typography>
-					<Typography
-						variant="body1"
-						color="black"
-						paddingLeft={2}
-						id="average-grade"
-						key={"average grade"}
-						paddingBottom={1}>
-						Media generala: {averageGrade}
-					</Typography>
-					<Typography
-						variant="body1"
-						color="black"
-						paddingLeft={2}
-						key={"totalCreditsFirstSemester"}
-						id="totalCreditsFirstSemester"
-						paddingBottom={1}>
-						Medie generala sem I: {firstSemesterAverageGrade}
-					</Typography>
-					<Typography
-						variant="body1"
-						color="black"
-						paddingLeft={2}
-						key={"totalCreditsSecondSemester"}
-						id="totalCreditsSecondSemester"
-						paddingBottom={1}>
-						Medie generala sem II: {secondSemesterAverageGrade}
-					</Typography>
-					<Typography
-						variant="body1"
-						color="black"
-						paddingLeft={2}
-						key={"totalCredits"}
-						id="totalCredits"
-						paddingBottom={1}>
-						Puncte credit total: {totalCredits}
-					</Typography>
+					width="auto"
+					ml={2}
+					mb={2}>
+					<VerticalTable
+						data-testid="notes-situation"
+						data={verticalTableData}
+					/>
 				</Box>
+
 				<Box
 					padding={2}
 					sx={{ borderBottom: 1, borderColor: "divider" }}>
