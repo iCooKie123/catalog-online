@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/contexts";
-import { Logout } from "@mui/icons-material";
+import { AccountCircle, Logout } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 export const ProfileSection = () => {
 	const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -80,6 +80,16 @@ export const ProfileSection = () => {
 				}}
 				transformOrigin={{ horizontal: "right", vertical: "top" }}
 				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}>
+				<MenuItem
+					onClick={() => {
+						navigate("/profile");
+						handleClose();
+					}}>
+					<ListItemIcon>
+						<AccountCircle fontSize="small" />
+					</ListItemIcon>
+					Profile
+				</MenuItem>
 				<MenuItem
 					onClick={() => {
 						setCurrentUser(null);

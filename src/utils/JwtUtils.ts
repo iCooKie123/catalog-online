@@ -27,7 +27,7 @@ const isTokenValid = (token: string): boolean => {
 	return decoded.exp > currentTime;
 };
 
-const validateTokenAtStartup = (): boolean => {
+const validateTokenAtStartup = async (): Promise<boolean> => {
 	const token = localStorage.getItem("token");
 	if (!token) return false;
 

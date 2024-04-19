@@ -9,7 +9,7 @@ import { getUserFromToken, validateTokenAtStartup } from "./utils/JwtUtils";
 const App = () => {
 	const [currentUser, setCurrentUser] = useState<User | null>(null);
 	const [token, setToken] = useState<string | null>(null);
-
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const setCurrentToken = (token: string | null) => {
 		setToken(token);
 		if (token) localStorage.setItem("token", token);
@@ -25,13 +25,21 @@ const App = () => {
 	);
 
 	useEffect(() => {
-		const token = localStorage.getItem("token");
+		const fetchData = async () => {
+			const token = localStorage.getItem("token");
 
-		if (validateTokenAtStartup()) {
-			const user = getUserFromToken(token!);
-			setCurrentUser(user);
-		}
+			if (await validateTokenAtStartup()) {
+				const user = getUserFromToken(token!);
+				setCurrentUser(user);
+			}
+
+			setIsLoading(false);
+		};
+
+		fetchData();
 	}, []);
+
+	if (isLoading) return <div>Loading...</div>;
 
 	return (
 		<AuthContextProvider

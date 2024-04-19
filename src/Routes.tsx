@@ -6,6 +6,7 @@ import {
 	LoginPage,
 	RegisterPage,
 	NotesPages,
+	ProfilePage,
 } from "@/pages";
 
 export const routes: CustomRoute[] = [
@@ -55,5 +56,16 @@ export const routes: CustomRoute[] = [
 		),
 		type: "protected",
 		text: "Note",
+	},
+	{
+		path: "profile",
+		element: (
+			<ProtectedRoute>
+				<ProfilePage></ProfilePage>
+			</ProtectedRoute>
+		),
+		type: "protected",
+		text: "Profil",
+		visible: false,
 	},
 ];

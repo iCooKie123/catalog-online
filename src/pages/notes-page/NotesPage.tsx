@@ -1,15 +1,4 @@
-import {
-	Box,
-	Divider,
-	Tab,
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableRow,
-	Tabs,
-	Typography,
-} from "@mui/material";
+import { Box, Divider, Tab, Tabs, Typography } from "@mui/material";
 import { CustomTabPanel } from "./tabs/CustomTabPanel";
 import { useNotesPage } from "./hooks";
 import { VerticalTable } from "@/components";
