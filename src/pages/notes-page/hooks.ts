@@ -3,6 +3,8 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts";
 import { StudentClass } from "../../models/StudyClass";
 
+export const notesUrl = "classes/all";
+
 export const useNotesPage = () => {
 	const { currentUser } = useContext(AuthContext);
 
@@ -22,7 +24,7 @@ export const useNotesPage = () => {
 		const fetchData = async () => {
 			setIsLoading(true);
 
-			const result = await axios.get("classes/all");
+			const result = await axios.get(notesUrl);
 			const responseData: StudentClass[] = result.data;
 			const organizedData: StudentClass[][] = [];
 
