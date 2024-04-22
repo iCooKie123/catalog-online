@@ -1,33 +1,59 @@
-import { VerticalTable } from "@/components";
-import { AuthContext } from "@/contexts";
-import { Typography, Box, Card } from "@mui/material";
-import { useContext } from "react";
+import { Typography, Box, Card, Grid, Button } from "@mui/material";
+import { useState } from "react";
+import { GeneralInformation } from "./GeneralInformation";
+import { PersonalInformation } from "./PersonalInformation";
 
 export const ProfilePage = () => {
-	const { currentUser } = useContext(AuthContext);
+	const [currentTab, setCurrentTab] = useState<number>(1);
 
-	const data = [
-		{ label: "Ciclu studii", value: currentUser?.learningCycle ?? "" },
-		{ label: "Facultate", value: currentUser?.faculty ?? "" },
-		{ label: "Specializare", value: currentUser?.specialization ?? "" },
-		{ label: "Grupa", value: currentUser?.group ?? "" },
-		{ label: "An de studiu", value: currentUser?.yearOfStudy ?? 0 },
+	const componentArray = [
+		<GeneralInformation></GeneralInformation>,
+		<PersonalInformation></PersonalInformation>,
+		<></>,
 	];
+
 	return (
 		<Card>
-			<Box p={6}>
-				<Typography variant="h5">
-					Informații generale despre ciclul de studii:
-				</Typography>
+			<Box
+				display="flex"
+				flexDirection="column"
+				p={2}>
 				<Box
-					display="flex"
-					justifyContent="center"
-					mt={2}
-					alignItems="center"
-					width="100%">
-					<Box width="auto">
-						<VerticalTable data={data} />
-					</Box>
+					display="grid"
+					sx={{ placeItems: "center" }}>
+					<Typography variant="h5">Setarile profilului</Typography>
+				</Box>
+				<Box
+					sx={{
+						display: "grid",
+						gridTemplateColumns: "1fr 2fr",
+					}}>
+					<Grid
+						display="flex"
+						container
+						flexDirection="column"
+						gap="1rem"
+						p={1}>
+						<Button onClick={() => setCurrentTab(0)}>
+							Informatii generale
+						</Button>
+						<Button onClick={() => setCurrentTab(1)}>
+							Date personale
+						</Button>
+						<Button onClick={() => setCurrentTab(2)}>
+							Schimba parola
+						</Button>
+						<Button>Logout</Button>
+					</Grid>
+					<Grid>
+						{[0, 1, 2].map((index) => (
+							<Box
+								hidden={currentTab !== index}
+								p={2}>
+								{componentArray[index] ?? { index }}
+							</Box>
+						))}
+					</Grid>
 				</Box>
 			</Box>
 		</Card>
