@@ -21,7 +21,7 @@ const App = () => {
 			(item.type === "public" ||
 				(item.type === "protected" && currentUser) ||
 				(item.type === "anonymous" && !currentUser)) &&
-			item.visible !== false
+			item.visible !== false,
 	);
 
 	useEffect(() => {
@@ -48,7 +48,8 @@ const App = () => {
 				setCurrentUser: setCurrentUser,
 				token: token,
 				setToken: setCurrentToken,
-			}}>
+			}}
+		>
 			<RoutesContextProvider value={{ navItems: filteredNavItems }}>
 				<Router>
 					<NavBar />
