@@ -2,6 +2,7 @@ import { Typography, Box, Card, Grid, Button } from "@mui/material";
 import { useState } from "react";
 import { GeneralInformation } from "./GeneralInformation";
 import { PersonalInformation } from "./PersonalInformation";
+import { ChangePassword } from "./ChangePassword";
 
 export const ProfilePage = () => {
 	const [currentTab, setCurrentTab] = useState<number>(1);
@@ -9,7 +10,7 @@ export const ProfilePage = () => {
 	const componentArray = [
 		<GeneralInformation></GeneralInformation>,
 		<PersonalInformation></PersonalInformation>,
-		<></>,
+		<ChangePassword></ChangePassword>,
 	];
 
 	return (
