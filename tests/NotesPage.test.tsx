@@ -23,6 +23,10 @@ describe("NotesPage", () => {
 			lastName: "test",
 			email: "test",
 			yearOfStudy: 1,
+			learningCycle: "test",
+			faculty: "test",
+			specialization: "test",
+			group: "test",
 		};
 
 		render(
@@ -48,6 +52,10 @@ describe("NotesPage", () => {
 			lastName: "test",
 			email: "test",
 			yearOfStudy: 1,
+			learningCycle: "test",
+			faculty: "test",
+			specialization: "test",
+			group: "test",
 		};
 
 		render(
@@ -104,6 +112,10 @@ describe("NotesPage", () => {
 			lastName: "test",
 			email: "test",
 			yearOfStudy: 1,
+			learningCycle: "test",
+			faculty: "test",
+			specialization: "test",
+			group: "test",
 		};
 
 		render(
@@ -130,6 +142,10 @@ describe("NotesPage", () => {
 			lastName: "test",
 			email: "test",
 			yearOfStudy: 1,
+			learningCycle: "test",
+			faculty: "test",
+			specialization: "test",
+			group: "test",
 		};
 
 		render(
@@ -160,6 +176,10 @@ describe("NotesPage", () => {
 			lastName: "test",
 			email: "test",
 			yearOfStudy: 1,
+			learningCycle: "test",
+			faculty: "test",
+			specialization: "test",
+			group: "test",
 		};
 
 		render(

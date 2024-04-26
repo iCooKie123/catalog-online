@@ -24,7 +24,7 @@
       ],
       "@/models/*": [
         "./src/models/*"
-      ],
+      ]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
