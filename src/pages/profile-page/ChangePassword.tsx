@@ -1,5 +1,6 @@
 import axios from "@/axios";
 import { PasswordField } from "@/components";
+import { useSnackBar } from "@/contexts/SnackBarContext";
 import { yupResolver } from "@hookform/resolvers/yup/src/yup.js";
 import { Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
@@ -7,14 +8,14 @@ import * as yup from "yup";
 
 export const ChangePassword = () => {
 	interface ChangePasswordProps {
-		oldPass: string;
-		newPass: string;
-		confirmPass: string;
+		oldPassword: string;
+		newPassword: string;
+		confirmPassword: string;
 	}
 	const validationSchema = yup.object().shape({
-		oldPass: yup.string().required(),
-		newPass: yup.string().required(),
-		confirmPass: yup
+		oldPassword: yup.string().required(),
+		newPassword: yup.string().required(),
+		confirmPassword: yup
 			.string()
 			.required()
 			.oneOf([yup.ref("newPass")], "Passwords do not match"),
@@ -22,44 +23,44 @@ export const ChangePassword = () => {
 
 	const methods = useForm<ChangePasswordProps>({
 		defaultValues: {
-			oldPass: "",
-			newPass: "",
-			confirmPass: "",
+			oldPassword: "",
+			newPassword: "",
+			confirmPassword: "",
 		},
 		resolver: yupResolver(validationSchema),
 		mode: "onBlur",
 	});
 
+	const { showSnackBar } = useSnackBar();
+//TODO: implement something after the change.
 	const changePassword = () => {
 		const form = methods.getValues();
-
+		console.log(form);
 		axios
 			.patch("/users/change-password", form)
-			.then((res) => console.log(res))
-			.catch((err) => console.log(err));
+			.then((res) => showSnackBar("Password changed successfully"))
+			.catch((err) =>showSnackBar("Password change failed"));
 	};
 
 	return (
 		<>
 			<FormProvider {...methods}>
 				<PasswordField
-					name={"oldPass"}
-					id={"oldPass"}
+					name={"oldPassword"}
+					id={"oldPassword"}
 					label="Parolă veche"
 					dataTestId={"oldPass"}></PasswordField>
 				<PasswordField
-					name={"newPass"}
-					id={"newPass"}
+					name={"newPassword"}
+					id={"newPassword"}
 					label="Parolă nouă"
 					dataTestId={"newPass"}></PasswordField>
 				<PasswordField
-					name={"confirmPass"}
-					id={"confirmPass"}
+					name={"confirmPassword"}
+					id={"confirmPassword"}
 					label="Confirmare parolă nouă"
 					dataTestId={"confirmPass"}></PasswordField>
-				<Button onClick={methods.handleSubmit(changePassword)}>
-					Button
-				</Button>
+				<Button onClick={changePassword}>Button</Button>
 			</FormProvider>
 		</>
 	);

@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 
 interface VerticalTableProps {
-	data: { label: string; value: string | number }[];
+	data: { label: string; value: string | number | undefined }[];
 }
 
 export const VerticalTable = ({ data }: VerticalTableProps) => {

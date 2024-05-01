@@ -7,11 +7,14 @@ export const LoggedHomePage = () => {
 	const { currentUser } = useContext(AuthContext);
 
 	const data = [
-		{ label: "Ciclu studii", value: "Licenta" },
-		{ label: "Facultate", value: "Facultatea de Informatica" },
-		{ label: "Specializare", value: "Informatica" },
-		{ label: "Grupa", value: "311CA" },
-		{ label: "An de studiu", value: currentUser?.yearOfStudy ?? 0 },
+		{
+			label: "Ciclu studii",
+			value: currentUser?.learningCycle ?? "N/A",
+		},
+		{ label: "Facultate", value: currentUser?.faculty },
+		{ label: "Specializare", value: currentUser?.specialization ?? "N/A" },
+		{ label: "Grupa", value: currentUser?.group ?? "N/A" },
+		{ label: "An de studiu", value: currentUser?.yearOfStudy ?? "N/A" },
 	];
 	return (
 		<Card sx={{ minWidth: "100%" }}>

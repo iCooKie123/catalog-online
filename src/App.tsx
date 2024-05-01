@@ -5,6 +5,7 @@ import { NavBar } from "./components";
 import { routes } from "./Routes";
 import { RoutesContextProvider, AuthContextProvider } from "./contexts";
 import { getUserFromToken, validateTokenAtStartup } from "./utils/JwtUtils";
+import { SnackBarProvider } from "./contexts/SnackBarContext";
 
 const App = () => {
 	const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -42,29 +43,31 @@ const App = () => {
 	if (isLoading) return <div>Loading...</div>;
 
 	return (
-		<AuthContextProvider
-			value={{
-				currentUser: currentUser,
-				setCurrentUser: setCurrentUser,
-				token: token,
-				setToken: setCurrentToken,
-			}}
-		>
-			<RoutesContextProvider value={{ navItems: filteredNavItems }}>
-				<Router>
-					<NavBar />
-					<Routes>
-						{routes.map((route) => (
-							<Route
-								key={route.path}
-								path={route.path}
-								element={route.element}
-							/>
-						))}
-					</Routes>
-				</Router>
-			</RoutesContextProvider>
-		</AuthContextProvider>
+		<SnackBarProvider>
+			<AuthContextProvider
+				value={{
+					currentUser: currentUser,
+					setCurrentUser: setCurrentUser,
+					token: token,
+					setToken: setCurrentToken,
+				}}
+			>
+				<RoutesContextProvider value={{ navItems: filteredNavItems }}>
+					<Router>
+						<NavBar />
+						<Routes>
+							{routes.map((route) => (
+								<Route
+									key={route.path}
+									path={route.path}
+									element={route.element}
+								/>
+							))}
+						</Routes>
+					</Router>
+				</RoutesContextProvider>
+			</AuthContextProvider>
+		</SnackBarProvider>
 	);
 };
 
