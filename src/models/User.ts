@@ -7,4 +7,11 @@ export type User = {
 	faculty: string;
 	specialization: string;
 	group: string;
+	role: UserRoles;
 };
+
+export enum UserRoles {
+	Admin,
+	Student,
+	Unauthenticated,
+}

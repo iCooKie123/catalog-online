@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { User } from "./models";
+import { User, UserRoles } from "./models";
 import { NavBar } from "./components";
 import { routes } from "./Routes";
 import { RoutesContextProvider, AuthContextProvider } from "./contexts";
@@ -17,13 +17,25 @@ const App = () => {
 		else localStorage.removeItem("token");
 	};
 
-	const filteredNavItems = routes.filter(
-		(item) =>
-			(item.type === "public" ||
-				(item.type === "protected" && currentUser) ||
-				(item.type === "anonymous" && !currentUser)) &&
-			item.visible !== false,
-	);
+	let filteredNavItems = [];
+
+	if (currentUser) {
+		filteredNavItems = routes.filter(
+			(item) =>
+				(item.type === "public" || item.type === "protected") &&
+				item.visible !== false &&
+				(item.role !== UserRoles.Unauthenticated ||
+					(Array.isArray(item.role) &&
+						item.role.includes(currentUser.role)))
+		);
+	} else {
+		// User is not logged in
+		filteredNavItems = routes.filter(
+			(item) =>
+				item.type === "public" ||
+				(item.type === "anonymous" && item.visible !== false)
+		);
+	}
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -50,8 +62,7 @@ const App = () => {
 					setCurrentUser: setCurrentUser,
 					token: token,
 					setToken: setCurrentToken,
-				}}
-			>
+				}}>
 				<RoutesContextProvider value={{ navItems: filteredNavItems }}>
 					<Router>
 						<NavBar />

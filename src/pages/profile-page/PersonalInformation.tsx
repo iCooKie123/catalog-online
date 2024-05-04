@@ -1,5 +1,5 @@
 import { AuthContext } from "@/contexts";
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import { useContext } from "react";
 
 export const PersonalInformation = () => {
@@ -45,11 +45,3 @@ export const PersonalInformation = () => {
 		</Box>
 	);
 };
-{
-	/* <TextField
-	fullWidth
-	value={currentUser?.firstName}
-	label="Prenume"
-	disabled={true}
-	variant="outlined"></TextField>; */
-}

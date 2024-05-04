@@ -1,4 +1,5 @@
-import { AnonymousRoute, ProtectedRoute } from "./components";
+import { RequireRoleRoute } from "./components";
+import { UserRoles } from "./models";
 import { CustomRoute } from "./models/CustomRoute";
 import {
 	HomePage,
@@ -8,6 +9,10 @@ import {
 	NotesPages,
 	ProfilePage,
 } from "@/pages";
+const adminRole = [UserRoles.Admin];
+const unauthenticatedRole = [UserRoles.Unauthenticated];
+const studentRole = [UserRoles.Student];
+const studentAdminRole = [UserRoles.Student, UserRoles.Admin];
 
 export const routes: CustomRoute[] = [
 	{
@@ -19,53 +24,58 @@ export const routes: CustomRoute[] = [
 	{
 		path: "test-page",
 		element: (
-			<ProtectedRoute>
+			<RequireRoleRoute role={adminRole}>
 				<TestPage></TestPage>
-			</ProtectedRoute>
+			</RequireRoleRoute>
 		),
 		type: "protected",
 		text: "Test",
+		role: adminRole,
 	},
 	{
 		path: "login",
 		element: (
-			<AnonymousRoute>
+			<RequireRoleRoute role={unauthenticatedRole}>
 				<LoginPage></LoginPage>
-			</AnonymousRoute>
+			</RequireRoleRoute>
 		),
 		type: "anonymous",
 		text: "Login",
+		role: unauthenticatedRole,
 	},
 	{
 		path: "register",
 		element: (
-			<AnonymousRoute>
+			<RequireRoleRoute role={unauthenticatedRole}>
 				<RegisterPage></RegisterPage>
-			</AnonymousRoute>
+			</RequireRoleRoute>
 		),
 		type: "anonymous",
 		text: "Register",
 		visible: false,
+		role: unauthenticatedRole,
 	},
 	{
 		path: "notes",
 		element: (
-			<ProtectedRoute>
+			<RequireRoleRoute role={studentRole}>
 				<NotesPages></NotesPages>
-			</ProtectedRoute>
+			</RequireRoleRoute>
 		),
 		type: "protected",
 		text: "Note",
+		role: studentRole,
 	},
 	{
 		path: "profile",
 		element: (
-			<ProtectedRoute>
+			<RequireRoleRoute role={studentAdminRole}>
 				<ProfilePage></ProfilePage>
-			</ProtectedRoute>
+			</RequireRoleRoute>
 		),
 		type: "protected",
 		text: "Profil",
 		visible: false,
+		role: studentAdminRole,
 	},
 ];

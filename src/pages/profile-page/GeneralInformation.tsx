@@ -1,5 +1,6 @@
 import { VerticalTable } from "@/components";
 import { AuthContext } from "@/contexts";
+import { UserRoles } from "@/models";
 import { Typography, Box } from "@mui/material";
 import { useContext } from "react";
 
@@ -13,22 +14,29 @@ export const GeneralInformation = () => {
 		{ label: "Grupa", value: currentUser?.group ?? "" },
 		{ label: "An de studiu", value: currentUser?.yearOfStudy ?? 0 },
 	];
+	if (currentUser?.role == UserRoles.Student)
+		return (
+			<>
+				<Typography variant="h5">
+					Informații generale despre ciclul de studii:
+				</Typography>
+				<Box
+					display="flex"
+					justifyContent="center"
+					mt={2}
+					alignItems="center"
+					width="100%">
+					<Box width="auto">
+						<VerticalTable data={data} />
+					</Box>
+				</Box>
+			</>
+		);
 
 	return (
 		<>
-			<Typography variant="h5">
-				Informații generale despre ciclul de studii:
-			</Typography>
-			<Box
-				display="flex"
-				justifyContent="center"
-				mt={2}
-				alignItems="center"
-				width="100%">
-				<Box width="auto">
-					<VerticalTable data={data} />
-				</Box>
-			</Box>
+			asd
+			{/* TODO: implement admin role general information */}
 		</>
 	);
 };
