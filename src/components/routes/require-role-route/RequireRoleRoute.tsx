@@ -15,18 +15,18 @@ export const RequireRoleRoute = ({
   const { currentUser } = useContext(AuthContext);
 
   if (access === "all") {
-    return <>{children}</>;
+    return children;
   }
 
   if (access === "not-logged-in" && !currentUser) {
-    return <>{children}</>;
+    return children;
   }
   if (
     currentUser &&
     Array.isArray(access) &&
     access.includes(currentUser?.role)
   ) {
-    return <>{children}</>;
+    return children;
   }
 
   return (

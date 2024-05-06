@@ -8,6 +8,7 @@ import {
   RegisterPage,
   NotesPages,
   ProfilePage,
+  AdminClassesPage,
 } from "@/pages";
 const adminRole = [UserRoles.Admin];
 const studentRole = [UserRoles.Student];
@@ -72,5 +73,15 @@ export const routes: CustomRoute[] = [
     text: "Profil",
     visible: false,
     access: allRoles,
+  },
+  {
+    path: "classes",
+    element: (
+      <RequireRoleRoute access={adminRole}>
+        <AdminClassesPage></AdminClassesPage>
+      </RequireRoleRoute>
+    ),
+    text: "Classes",
+    access: adminRole,
   },
 ];

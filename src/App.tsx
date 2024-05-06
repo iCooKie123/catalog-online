@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { User, UserRoles } from "./models";
+import { User } from "./models";
 import { NavBar } from "./components";
 import { routes } from "./Routes";
 import { RoutesContextProvider, AuthContextProvider } from "./contexts";
@@ -16,24 +16,6 @@ const App = () => {
     if (token) localStorage.setItem("token", token);
     else localStorage.removeItem("token");
   };
-
-  // if (currentUser) {
-  // 	filteredNavItems = routes.filter(
-  // 		(item) =>
-  // 			(item.type === "public" || item.type === "protected") &&
-  // 			item.visible !== false &&
-  // 			(item.role !== UserRoles.Unauthenticated ||
-  // 				(Array.isArray(item.role) &&
-  // 					item.role.includes(currentUser.role)))
-  // 	);
-  // } else {
-  // 	// User is not logged in
-  // 	filteredNavItems = routes.filter(
-  // 		(item) =>
-  // 			item.type === "public" ||
-  // 			(item.type === "anonymous" && item.visible !== false)
-  // 	);
-  // }
 
   const filteredNavItems = routes.filter((route) => {
     if (route.visible == false) return false;
