@@ -28,10 +28,16 @@ export const AdminClassesPage = () => {
     groupedData[year].push(item);
   }
   return (
-    <Card>
+    <>
       <Box
-        minWidth="700px"
-        minHeight="300px">
+        width={{ xs: "90dvw", md: "60vw" }}
+        minHeight={{ xs: "300px", md: "500px" }}
+        mt={12}
+        sx={{
+          backgroundColor: "white",
+          color: "black",
+          borderRadius: "5px",
+        }}>
         <Box
           mt={2}
           ml={2}>
@@ -74,6 +80,6 @@ export const AdminClassesPage = () => {
           </Box>
         )}
       </Box>
-    </Card>
+    </>
   );
 };
