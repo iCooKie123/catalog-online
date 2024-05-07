@@ -1,15 +1,79 @@
-import { useEffect } from "react";
+import {
+  Box,
+  Card,
+  Divider,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useAdminClassesPage } from "./hooks";
+import { StudyClass } from "@/models";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
+import { useState } from "react";
 
 export const AdminClassesPage = () => {
-  const { getAllClasses } = useAdminClassesPage();
-  useEffect(() => {
-    console.log(getAllClasses());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { classes } = useAdminClassesPage();
+  const [searchValue, setSearchValue] = useState("");
+
+  const filteredClasses = classes.filter((cls) =>
+    cls.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+  );
+  const groupedData: { [year: number]: StudyClass[] } = {};
+  for (const item of filteredClasses) {
+    const year = item.yearOfStudy;
+    if (!groupedData[year]) {
+      groupedData[year] = [];
+    }
+    groupedData[year].push(item);
+  }
   return (
-    <>
-      <p>It works</p>
-    </>
+    <Card>
+      <Box
+        minWidth="700px"
+        minHeight="300px">
+        <Box
+          mt={2}
+          ml={2}>
+          <TextField
+            label="Search class"
+            value={searchValue}
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+            }}></TextField>
+        </Box>
+        {Object.entries(groupedData).map(([year, classes]) => (
+          <Box p={2}>
+            <Typography variant="h4">Year {year}</Typography>
+            {classes.map((cls) => (
+              <>
+                <Box
+                  width="100%"
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  alignItems="center">
+                  <Typography>{cls.name}</Typography>
+                  <Box ml={"4 rem"}>
+                    <IconButton>
+                      <VisibilityIcon color="success"></VisibilityIcon>
+                    </IconButton>
+                    <IconButton>
+                      <EditIcon color="primary"></EditIcon>
+                    </IconButton>
+                  </Box>
+                </Box>
+                <Divider />
+              </>
+            ))}
+          </Box>
+        ))}
+        {filteredClasses.length === 0 && (
+          <Box ml={2}>
+            <p>No Classes found</p>
+          </Box>
+        )}
+      </Box>
+    </Card>
   );
 };
