@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 export const useSingleClassPage = (id: string) => {
   const [studyClass, setStudyClass] = useState<StudyClass>();
   const [students, setStudents] = useState<StudentClass[]>();
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const getClass = async () => {
+      setIsLoading(true);
       axios.get(`classes/class/${id}`).then((res: AxiosResponse) => {
         setStudents(
           res.data.sort(
@@ -16,6 +18,7 @@ export const useSingleClassPage = (id: string) => {
           )
         );
         setStudyClass(res.data[0].class);
+        setIsLoading(false);
       });
     };
 
@@ -23,5 +26,5 @@ export const useSingleClassPage = (id: string) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { studyClass, students };
+  return { studyClass, students, isLoading };
 };
