@@ -1,11 +1,4 @@
-import {
-  Box,
-  Card,
-  Divider,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Divider, IconButton, TextField, Typography } from "@mui/material";
 import { useAdminClassesPage } from "./hooks";
 import { StudyClass } from "@/models";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -62,10 +55,18 @@ export const AdminClassesPage = () => {
                   <Typography>{cls.name}</Typography>
                   <Box ml={"4 rem"}>
                     <IconButton>
-                      <VisibilityIcon color="success"></VisibilityIcon>
+                      <VisibilityIcon
+                        color="success"
+                        onClick={() => {
+                          console.log("viz click");
+                        }}></VisibilityIcon>
                     </IconButton>
                     <IconButton>
-                      <EditIcon color="primary"></EditIcon>
+                      <EditIcon
+                        color="primary"
+                        onClick={() => {
+                          console.log("edit click");
+                        }}></EditIcon>
                     </IconButton>
                   </Box>
                 </Box>
