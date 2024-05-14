@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../contexts";
 import { StudentClass } from "../../models/StudyClass";
 
-export const notesUrl = "classes";
+export const notesUrl = "classes/student";
 
 export const useNotesPage = () => {
   const { currentUser } = useContext(AuthContext);
