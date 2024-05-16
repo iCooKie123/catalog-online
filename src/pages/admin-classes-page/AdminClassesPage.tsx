@@ -4,10 +4,12 @@ import { StudyClass } from "@/models";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AdminClassesPage = () => {
   const { classes } = useAdminClassesPage();
   const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   const filteredClasses = classes.filter((cls) =>
     cls.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
@@ -65,7 +67,9 @@ export const AdminClassesPage = () => {
                       <EditIcon
                         color="primary"
                         onClick={() => {
-                          console.log("edit click");
+                          navigate(
+                            "/classes/" + cls.id
+                          );
                         }}></EditIcon>
                     </IconButton>
                   </Box>

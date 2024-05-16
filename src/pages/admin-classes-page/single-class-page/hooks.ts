@@ -1,30 +1,45 @@
 import axios from "@/axios";
 import { StudentClass, StudyClass } from "@/models";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
+import { Resolver, useForm } from "react-hook-form";
+import * as yup from "yup";
 
-export const useSingleClassPage = (id: string) => {
-  const [studyClass, setStudyClass] = useState<StudyClass>();
-  const [students, setStudents] = useState<StudentClass[]>();
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const getClass = async () => {
-      setIsLoading(true);
-      axios.get(`classes/class/${id}`).then((res: AxiosResponse) => {
-        setStudents(
-          res.data.sort(
-            (a: StudentClass, b: StudentClass) =>
-              a.student.yearOfStudy - b.student.yearOfStudy
-          )
-        );
-        setStudyClass(res.data[0].class);
-        setIsLoading(false);
-      });
-    };
+export const useSingleClassPage = (
+  id: string,
+  studentClasses: StudentClass[],
+  isLoading: boolean
+) => {
+  if (isLoading) return null;
+  interface SingleClassPageForm {
+    studentGrade: {
+      studentId: string;
+      grade: number;
+    }[];
+  }
 
-    getClass();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const validationSchema = yup.object().shape({
+    studentGrade: yup.array().of(
+      yup.object().shape({
+        studentId: yup.string().required(),
+        grade: yup.number().required().min(1).max(10),
+      })
+    ),
+  });
 
-  return { studyClass, students, isLoading };
+  const methods = useForm<SingleClassPageForm>({
+    resolver: yupResolver(
+      validationSchema
+    ) as Resolver<SingleClassPageForm>,
+    mode: "onBlur",
+    defaultValues: {
+      studentGrade: studentClasses?.map((student) => ({
+        studentId: student.student.id,
+        grade: student.grade,
+      })),
+    },
+  });
+
+  return { methods };
 };
