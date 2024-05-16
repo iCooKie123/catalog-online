@@ -1,23 +1,35 @@
 import axios from "@/axios";
-import { StudentClass, StudyClass } from "@/models";
+import { StudentClass, StudyClass, User } from "@/models";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import * as yup from "yup";
 
-export const useSingleClassPage = (
-  id: string,
-  studentClasses: StudentClass[],
-  isLoading: boolean
-) => {
-  if (isLoading) return null;
+export const useSingleClassPage = (studentClasses?: StudentClass[]) => {
   interface SingleClassPageForm {
     studentGrade: {
-      studentId: string;
+      student: User;
       grade: number;
     }[];
   }
+
+  //TODO: fix this
+  //TODO: find a way to pass the user also,without specifying a schema
+  //TODO: get methods working
+  useEffect(() => {
+    console.log(studentClasses);
+  }, [studentClasses]);
+  const getDefaultValues = (
+    studentClasses: StudentClass[]
+  ): SingleClassPageForm => {
+    const studentGrade = studentClasses?.map((student) => ({
+      student: student.student,
+      grade: student.grade,
+    }));
+    console.log("studentGrade: ", studentGrade);
+    return { studentGrade: studentGrade || [] };
+  };
 
   const validationSchema = yup.object().shape({
     studentGrade: yup.array().of(
@@ -33,13 +45,8 @@ export const useSingleClassPage = (
       validationSchema
     ) as Resolver<SingleClassPageForm>,
     mode: "onBlur",
-    defaultValues: {
-      studentGrade: studentClasses?.map((student) => ({
-        studentId: student.student.id,
-        grade: student.grade,
-      })),
-    },
+    defaultValues: getDefaultValues(studentClasses || []),
   });
 
-  return { methods };
+  return methods;
 };

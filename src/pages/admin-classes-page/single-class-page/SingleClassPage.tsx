@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSingleClassPage } from "./hooks";
@@ -12,7 +12,6 @@ export const SingleClassPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const { id } = useParams();
-  const { methods } = useSingleClassPage(id!, studentClasses!);
 
   useEffect(() => {
     const getClass = async () => {
@@ -30,9 +29,11 @@ export const SingleClassPage = () => {
     };
 
     getClass();
-    console.log(methods.getValues());
+    if (!!methods) console.log(methods!.watch("studentGrade"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const methods = useSingleClassPage(studentClasses);
 
   const studentRow = (studentClass: StudentClass) => {
     return <Box sx={{}}></Box>;
@@ -54,7 +55,14 @@ export const SingleClassPage = () => {
         <Divider />
         <Grid
           container
-          flexDirection="column"></Grid>
+          flexDirection="column">
+          <Button
+            onClick={() => {
+              console.log(methods.getValues());
+            }}>
+            asd
+          </Button>
+        </Grid>
       </Box>
     );
 };
