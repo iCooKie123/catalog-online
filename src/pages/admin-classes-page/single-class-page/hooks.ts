@@ -46,5 +46,5 @@ export const useSingleClassPage = (studentClasses?: StudentClass[]) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [studentClasses]);
 
-	return { methods, defaultValues };
+	return { methods };
 };
