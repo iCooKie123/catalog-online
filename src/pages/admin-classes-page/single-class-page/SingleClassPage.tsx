@@ -7,62 +7,61 @@ import axios from "@/axios";
 import { AxiosResponse } from "axios";
 
 export const SingleClassPage = () => {
-  const [studyClass, setStudyClass] = useState<StudyClass>();
-  const [studentClasses, setStudentClasses] = useState<StudentClass[]>();
-  const [isLoading, setIsLoading] = useState(true);
+	const [studyClass, setStudyClass] = useState<StudyClass>();
+	const [studentClasses, setStudentClasses] = useState<StudentClass[]>();
+	const [isLoading, setIsLoading] = useState(true);
+	const { id } = useParams();
+	const { methods, defaultValues } = useSingleClassPage(studentClasses);
 
-  const { id } = useParams();
+	useEffect(() => {
+		const getClass = async () => {
+			setIsLoading(true);
+			axios.get(`classes/class/${id}`).then((res: AxiosResponse) => {
+				setStudentClasses(
+					res.data.sort(
+						(a: StudentClass, b: StudentClass) =>
+							a.student.yearOfStudy - b.student.yearOfStudy
+					)
+				);
+				setStudyClass(res.data[0].class);
+				setIsLoading(false);
+			});
+		};
 
-  useEffect(() => {
-    const getClass = async () => {
-      setIsLoading(true);
-      axios.get(`classes/class/${id}`).then((res: AxiosResponse) => {
-        setStudentClasses(
-          res.data.sort(
-            (a: StudentClass, b: StudentClass) =>
-              a.student.yearOfStudy - b.student.yearOfStudy
-          )
-        );
-        setStudyClass(res.data[0].class);
-        setIsLoading(false);
-      });
-    };
+		getClass();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
-    getClass();
-    if (!!methods) console.log(methods!.watch("studentGrade"));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+	const studentGrades = methods.watch("studentGrade");
 
-  const methods = useSingleClassPage(studentClasses);
+	const studentRow = (studentClass: StudentClass) => {
+		return <Box sx={{}}></Box>;
+	};
 
-  const studentRow = (studentClass: StudentClass) => {
-    return <Box sx={{}}></Box>;
-  };
-
-  if (!isLoading)
-    return (
-      <Box
-        width={{ xs: "90dvw", md: "60vw" }}
-        minHeight={{ xs: "300px", md: "500px" }}
-        mt={12}
-        sx={{
-          backgroundColor: "white",
-          color: "black",
-          borderRadius: "5px",
-        }}
-        p={2}>
-        <Typography variant="h4">{studyClass!.name}</Typography>
-        <Divider />
-        <Grid
-          container
-          flexDirection="column">
-          <Button
-            onClick={() => {
-              console.log(methods.getValues());
-            }}>
-            asd
-          </Button>
-        </Grid>
-      </Box>
-    );
+	if (!isLoading)
+		return (
+			<Box
+				width={{ xs: "90dvw", md: "60vw" }}
+				minHeight={{ xs: "300px", md: "500px" }}
+				mt={12}
+				sx={{
+					backgroundColor: "white",
+					color: "black",
+					borderRadius: "5px",
+				}}
+				p={2}>
+				<Typography variant="h4">{studyClass!.name}</Typography>
+				<Divider />
+				<Grid
+					container
+					flexDirection="column">
+					<Button
+						onClick={() => {
+							console.log(methods.getValues());
+						}}>
+						asd
+					</Button>
+				</Grid>
+			</Box>
+		);
 };

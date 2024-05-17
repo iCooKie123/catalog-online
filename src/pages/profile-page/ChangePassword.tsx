@@ -27,7 +27,6 @@ export const ChangePassword = () => {
 
 	const changePassword = () => {
 		const form = methods.getValues();
-		console.log(form);
 		axios
 			.patch("/users/change-password", form)
 			.then(() => {
