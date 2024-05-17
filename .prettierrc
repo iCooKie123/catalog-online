@@ -16,9 +16,8 @@
   "singleQuote": false,
   "tabWidth": 4,
   "trailingComma": "es5",
-  "useTabs": true,
+  "useTabs": false,
   "embeddedLanguageFormatting": "auto",
   "vueIndentScriptAndStyle": false,
-  "filepath": "f:\\licenta\\catalog-online\\src\\pages\\profile-page\\ProfilePage.tsx",
   "parser": "typescript"
 }
