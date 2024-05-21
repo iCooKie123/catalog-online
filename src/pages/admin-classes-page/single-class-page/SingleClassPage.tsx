@@ -71,7 +71,8 @@ export const SingleClassPage = () => {
                                         studentClass.student.id +
                                         "grade"
                                     }
-                                    disabled={editFieldDisabled}></Textfield>
+                                    disabled={editFieldDisabled}
+                                    type="number"></Textfield>
                             </FormProvider>
                         </Grid>
                     </TableCell>
