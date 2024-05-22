@@ -1,5 +1,4 @@
 import { FormControl, TextField } from "@mui/material";
-import { useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface TextFieldProps {
@@ -22,15 +21,16 @@ export const Textfield = ({
     type = "text",
 }: TextFieldProps) => {
     const {
-        watch,
         trigger,
         control,
         formState: { errors },
     } = useFormContext();
 
-    useEffect(() => {
-        console.log(errors);
-    }, [errors]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const getError = (errors: any, name: string) => {
+        return name.split(".").reduce((acc, part) => acc?.[part], errors);
+    };
+
     return (
         <Controller
             name={name}
@@ -40,28 +40,26 @@ export const Textfield = ({
                 <FormControl
                     sx={{ width: "100%" }}
                     variant="standard"
-                    error={!!errors[name]}>
+                    error={!!getError(errors, name)}>
                     <TextField
+                        {...field}
                         id={id}
-                        value={watch(name)}
-                        defaultValue={defaultValue}
                         label={label}
                         onChange={(e) => {
                             field.onChange(e);
-                            console.log(watch(name));
                             trigger(name);
                         }}
                         onBlur={() => {
                             trigger(name);
-                            console.log(watch(name));
                         }}
-                        error={!!errors[name]}
-                        helperText={errors[name]?.message?.toString()}
+                        error={!!getError(errors, name)}
+                        helperText={getError(errors, name)?.message?.toString()}
                         variant="filled"
                         disabled={disabled}
                         type={type}
                         data-testid={dataTestId}></TextField>
                 </FormControl>
-            )}></Controller>
+            )}
+        />
     );
 };

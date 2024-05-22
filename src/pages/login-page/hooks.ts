@@ -8,38 +8,38 @@ import { AuthContext } from "@/contexts";
 import { getUserFromToken } from "@/utils/JwtUtils";
 
 export const useLoginPage = () => {
-	const { setCurrentUser } = useContext(AuthContext);
-	const [isLoading, setIsLoading] = useState(false);
-	const [errorMessage, setErrorMessage] = useState<string | null>(null);
-	const methods = useForm<LoginInfo>({
-		defaultValues: { email: "johnDoe@test.com", password: "password123" },
-		resolver: yupResolver(loginInfoValidationSchema),
-		mode: "onBlur",
-	});
+    const { setCurrentUser } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const methods = useForm<LoginInfo>({
+        defaultValues: { email: "johnDoe@test.com", password: "password123" },
+        resolver: yupResolver(loginInfoValidationSchema),
+        mode: "onBlur",
+    });
 
-	const onLogin = async () => {
-		const formValues = methods.getValues();
-		setIsLoading(true);
-		await axios
-			.put("users/login", formValues)
-			.then((response) => {
-				const token = response.data as string;
-				localStorage.setItem("token", token);
-				const user = getUserFromToken(token);
-				setCurrentUser(user);
-			})
-			.catch((error) => {
-				setErrorMessage(error.response.data);
-			})
-			.finally(() => {
-				setIsLoading(false);
-			});
-	};
+    const onLogin = async () => {
+        const formValues = methods.getValues();
+        setIsLoading(true);
+        await axios
+            .put("users/login", formValues)
+            .then((response) => {
+                const token = response.data as string;
+                localStorage.setItem("token", token);
+                const user = getUserFromToken(token);
+                setCurrentUser(user);
+            })
+            .catch((error) => {
+                setErrorMessage(error.response.data);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    };
 
-	return {
-		methods,
-		onLogin,
-		isLoading,
-		errorMessage,
-	};
+    return {
+        methods,
+        onLogin,
+        isLoading,
+        errorMessage,
+    };
 };

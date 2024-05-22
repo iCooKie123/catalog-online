@@ -10,7 +10,7 @@ import * as yup from "yup";
 export const useSingleClassPage = (id: string) => {
     const { showSnackBar } = useSnackBar();
     const [studyClass, setStudyClass] = useState<StudyClass>();
-    const [studentClasses, setStudentClasses] = useState<StudentClass[]>();
+    const [studentClasses, setStudentClasses] = useState<StudentClass[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [editFieldDisabled, setEditFieldDisabled] = useState(true);
 
@@ -44,16 +44,6 @@ export const useSingleClassPage = (id: string) => {
         }[];
     }
 
-    const getDefaultValues = (
-        studentClasses: StudentClass[]
-    ): SingleClassPageForm => {
-        const studentGrade = studentClasses?.map((student) => ({
-            studentId: student.student.id,
-            grade: student.grade,
-        }));
-        return { studentGrade: studentGrade } satisfies SingleClassPageForm;
-    };
-
     const validationSchema = yup.object().shape({
         studentGrade: yup.array().of(
             yup.object().shape({
@@ -61,18 +51,21 @@ export const useSingleClassPage = (id: string) => {
                 grade: yup
                     .number()
                     .required()
-                    .min(1)
-                    .max(10)
-                    .test("is-int", "Grade must be an integer", (value) =>
-                        Number.isInteger(value)
-                    )
-                    .test(
-                        "must be less than 11 and greater than 0",
-                        (value) => value < 11 && value > 0
-                    ),
+                    .min(1, "Grade must be between 1 and 10")
+                    .max(10, "Grade must be between 1 and 10"),
             })
         ),
-    }) satisfies yup.ObjectSchema<SingleClassPageForm>;
+    });
+
+    const getDefaultValues = (
+        studentClasses: StudentClass[]
+    ): SingleClassPageForm => {
+        const studentGrade = studentClasses.map((student) => ({
+            studentId: student.student.id,
+            grade: student.grade,
+        }));
+        return { studentGrade } satisfies SingleClassPageForm;
+    };
 
     const defaultValues = getDefaultValues(studentClasses || []);
 
@@ -111,7 +104,6 @@ export const useSingleClassPage = (id: string) => {
             classId: studyClass!.id,
         };
 
-        console.log(formValues);
         await axios
             .patch(`classes/${studyClass!.id}/grades`, request)
             .then(async () => {
