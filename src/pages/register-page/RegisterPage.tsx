@@ -1,3 +1,3 @@
 export const RegisterPage = () => {
-	return <p>asd</p>;
+    return <p>asd</p>;
 };
