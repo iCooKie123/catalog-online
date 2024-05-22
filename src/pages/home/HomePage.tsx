@@ -1,11 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts";
-import { LoggedHomePage } from "./loged-user";
-import { NotLoggedHomePage } from "./not-logged-user";
+import { UserRoles } from "@/models";
+import MDEditor from "@uiw/react-md-editor";
+import { Card, Grid } from "@mui/material";
+import { useHomePage } from "./hooks";
+
 export const HomePage = () => {
     const { currentUser } = useContext(AuthContext);
-    if (!currentUser) {
-        return <LoggedHomePage></LoggedHomePage>;
-    }
-    return <NotLoggedHomePage></NotLoggedHomePage>;
+    const userIsAdmin = currentUser?.role === UserRoles.Admin;
+    const { methods } = useHomePage();
+    const news = methods.getValues("news");
+    useEffect(() => {
+        console.log(news);
+    }, [news]);
+    return (
+        <Card>
+            <Grid
+                container
+                display="flex"
+                flexDirection="column"></Grid>
+        </Card>
+    );
 };
