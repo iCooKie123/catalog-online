@@ -1,39 +1,19 @@
-import axios from "@/axios";
-import { AuthContext } from "@/contexts";
-import { UserRoles, News } from "@/models";
+import { News, NewsForm } from "@/models";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useEffect, useState } from "react";
-import { Resolver, useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-export const useHomePage = () => {
-    const { currentUser } = useContext(AuthContext);
-    const userIsAdmin = currentUser?.role === UserRoles.Admin;
-    const [news, setNews] = useState<News[]>([]);
-
-    useEffect(() => {
-        fetchNews();
-    }, []);
-
-    const fetchNews = async () => {
-        await axios
-            .get<News[]>("news")
-            .then((response) => {
-                setNews(response.data);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    };
-
-    const getDefaultValues = () => {
-        return {
+export const useHomePage = (news: News[]) => {
+    const getDefaultValues = (): NewsForm => {
+        const values: NewsForm = {
             news: news.map((n) => ({
                 id: n.id,
                 title: n.title,
                 content: n.content,
             })),
-        } satisfies NewsForm;
+        };
+        return values;
     };
 
     const validationSchema = yup.object().shape({
@@ -49,17 +29,15 @@ export const useHomePage = () => {
             .required(),
     });
 
-    interface NewsForm {
-        news: { id: number; title: string; content: string }[];
-    }
-
-    const defaultValues = getDefaultValues();
-
     const methods = useForm<NewsForm>({
         resolver: yupResolver(validationSchema),
         mode: "onBlur",
-        defaultValues: defaultValues,
+        defaultValues: getDefaultValues(),
     });
+
+    useEffect(() => {
+        methods.reset(getDefaultValues());
+    }, [news]);
 
     return {
         methods,
