@@ -11,22 +11,21 @@ export const useHomePage = (news: News[]) => {
                 id: n.id,
                 title: n.title,
                 content: n.content,
+                createdAt: n.createdAt,
             })),
         };
         return values;
     };
 
+    const newsSchema = yup.object().shape({
+        id: yup.number().required(),
+        title: yup.string().required("Title is required"),
+        content: yup.string().required("Content is required"),
+        createdAt: yup.date(),
+    });
+
     const validationSchema = yup.object().shape({
-        news: yup
-            .array()
-            .of(
-                yup.object().shape({
-                    id: yup.number().required(),
-                    title: yup.string().required("Title is required"),
-                    content: yup.string().required("Content is required"),
-                })
-            )
-            .required(),
+        news: yup.array().of(newsSchema).required(),
     });
 
     const methods = useForm<NewsForm>({

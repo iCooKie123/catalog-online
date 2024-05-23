@@ -1,1 +1,1 @@
-export * from "./EditClasses";
+export * from "./EditNews";

@@ -1,3 +1,10 @@
 export interface NewsForm {
-    news: { id: number; title: string; content: string }[];
+    news: NewsFormInternal[];
+}
+
+export interface NewsFormInternal {
+    id: number;
+    title: string;
+    content: string;
+    createdAt?: Date;
 }
