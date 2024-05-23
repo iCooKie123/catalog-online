@@ -37,16 +37,16 @@ const style = {
 };
 
 interface AddNewModalProps {
-    onClose: () => void;
+    onClose: (e: boolean) => void;
 }
 
 export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { showSnackBar } = useSnackBar();
 
-    const conditionalOnClose = () => {
+    const conditionalOnClose = (e: boolean) => {
         if (isLoading) return;
-        onClose();
+        onClose(e);
     };
 
     interface NewNewsForm {
@@ -72,6 +72,7 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
         trigger,
         getValues,
         formState: { errors },
+        handleSubmit,
     } = methods;
 
     const saveChanges = async () => {
@@ -81,6 +82,7 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
             .post("news/add", formValues)
             .then(() => {
                 showSnackBar("News added successfully");
+                conditionalOnClose(true);
             })
             .catch(() => {
                 showSnackBar("Error adding news", "error");
@@ -95,7 +97,7 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
             open={true}
             onClose={() => {
                 reset();
-                conditionalOnClose();
+                conditionalOnClose(false);
             }}>
             <Grid sx={{ ...style }}>
                 <Typography
@@ -147,9 +149,7 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => {
-                            saveChanges();
-                        }}
+                        onClick={handleSubmit(saveChanges)}
                         disabled={isLoading}>
                         Save
                     </Button>
@@ -157,7 +157,7 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
                         variant="outlined"
                         color="error"
                         onClick={() => {
-                            conditionalOnClose();
+                            conditionalOnClose(false);
                         }}
                         disabled={isLoading}>
                         Cancel

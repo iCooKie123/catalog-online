@@ -45,10 +45,7 @@ export const Textfield = ({
                         {...field}
                         id={id}
                         label={label}
-                        onChange={(e) => {
-                            field.onChange(e);
-                            trigger(name);
-                        }}
+                        onChange={field.onChange}
                         onBlur={() => {
                             trigger(name);
                         }}

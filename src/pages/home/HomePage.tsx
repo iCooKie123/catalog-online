@@ -15,7 +15,7 @@ export const HomePage = () => {
                     display="flex"
                     flexDirection="column"
                     padding={2}
-                    minWidth={"90vw"}>
+                    width={"90vw"}>
                     {userIsAdmin && (
                         <Grid
                             item
@@ -43,7 +43,9 @@ export const HomePage = () => {
                                     flexDirection="row"
                                     justifyContent="space-between"
                                     alignItems="center">
-                                    <Typography variant="h5">
+                                    <Typography
+                                        variant="h5"
+                                        noWrap={false}>
                                         {n.title}
                                     </Typography>
                                     <Typography variant="caption">
@@ -52,7 +54,15 @@ export const HomePage = () => {
                                 </Box>
                                 <Divider color="#353839" />
                                 <div data-color-mode="light">
-                                    <MDEditor.Markdown source={n.content} />
+                                    <MDEditor.Markdown
+                                        source={n.content}
+                                        style={{
+                                            whiteSpace: "pre-wrap",
+                                            wordWrap: "break-word",
+                                            width: "98%",
+                                            overflowWrap: "break-word",
+                                        }}
+                                    />
                                 </div>
                             </Grid>
                             <Divider color="#353839" />

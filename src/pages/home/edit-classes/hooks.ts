@@ -87,7 +87,6 @@ export const useEditNews = () => {
         watch,
         setValue,
         formState: { errors },
-        getValues,
         reset,
         trigger,
     } = methods;
@@ -147,5 +146,6 @@ export const useEditNews = () => {
         trigger,
         modalIsOpen,
         setModalIsOpen,
+        getClasses,
     };
 };

@@ -69,6 +69,7 @@ export const EditNews = () => {
         trigger,
         modalIsOpen,
         setModalIsOpen,
+        getClasses,
     } = useEditNews();
 
     const handleChange = useCallback(
@@ -83,71 +84,75 @@ export const EditNews = () => {
     return (
         <Box mt={12}>
             <Card>
-                <CardContent>
-                    <Typography
-                        variant="h6"
-                        id="parent-modal-title">
-                        Edit Classes
-                    </Typography>
-                    <Divider />
-                    <Button onClick={() => setModalIsOpen(true)}>
-                        Add new news
-                    </Button>
-                    <FormProvider {...methods}>
-                        {values.map((n, index) => (
-                            <Grid
-                                item
-                                xs={12}
-                                mt={2}
-                                mb={2}
-                                key={watch(`news.${index}.id`)}
-                                height="auto">
-                                <MemoizedTextField
-                                    name={`news.${index}.title`}
-                                    label={"Title"}
-                                    id={`Title-${index}`}
-                                    dataTestId={"test"}
-                                />
-                                <MemoizedMDEditor
-                                    value={n.content}
-                                    onChange={handleChange(index)}
-                                    style={{
-                                        marginBottom: "5px",
-                                        outline: "1px solid red",
-                                    }}
-                                    onBlur={() =>
-                                        trigger(`news.${index}.content`)
-                                    }
-                                />
-                                {errors.news && !!errors.news[index] && (
-                                    <Alert severity="error">
-                                        {errors.news[index]?.title &&
-                                            "Title is required"}
-                                        {errors.news[index]?.content &&
-                                            "Content is required"}
-                                    </Alert>
-                                )}
-                                <Divider color="#353839" />
-                            </Grid>
-                        ))}
-                    </FormProvider>
-
-                    <Box mt={2}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={() => {
-                                console.log(errors);
-                                saveChanges();
-                            }}>
-                            Save
+                <Box width="90vw">
+                    <CardContent>
+                        <Typography
+                            variant="h6"
+                            id="parent-modal-title">
+                            Edit Classes
+                        </Typography>
+                        <Divider />
+                        <Button onClick={() => setModalIsOpen(true)}>
+                            Add new news
                         </Button>
-                    </Box>
-                </CardContent>
+                        <FormProvider {...methods}>
+                            {values.map((n, index) => (
+                                <Grid
+                                    item
+                                    xs={12}
+                                    mt={2}
+                                    mb={2}
+                                    key={watch(`news.${index}.id`)}
+                                    height="auto">
+                                    <MemoizedTextField
+                                        name={`news.${index}.title`}
+                                        label={"Title"}
+                                        id={`Title-${index}`}
+                                        dataTestId={"test"}
+                                    />
+                                    <MemoizedMDEditor
+                                        value={n.content}
+                                        onChange={handleChange(index)}
+                                        style={{
+                                            marginBottom: "5px",
+                                        }}
+                                        onBlur={() =>
+                                            trigger(`news.${index}.content`)
+                                        }
+                                    />
+                                    {errors.news && !!errors.news[index] && (
+                                        <Alert severity="error">
+                                            {errors.news[index]?.title &&
+                                                "Title is required"}
+                                            {errors.news[index]?.content &&
+                                                "Content is required"}
+                                        </Alert>
+                                    )}
+                                    <Divider color="#353839" />
+                                </Grid>
+                            ))}
+                        </FormProvider>
+
+                        <Box mt={2}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={() => {
+                                    console.log(errors);
+                                    saveChanges();
+                                }}>
+                                Save
+                            </Button>
+                        </Box>
+                    </CardContent>
+                </Box>
             </Card>
             {modalIsOpen && (
                 <AddNewsModal
-                    onClose={() => setModalIsOpen(false)}></AddNewsModal>
+                    onClose={(fetch: boolean) => {
+                        setModalIsOpen(false);
+                        if (fetch) getClasses();
+                    }}></AddNewsModal>
             )}
         </Box>
     );
