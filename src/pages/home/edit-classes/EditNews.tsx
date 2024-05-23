@@ -1,5 +1,4 @@
 import { Textfield } from "@/components";
-
 import {
     Alert,
     Box,
@@ -11,20 +10,76 @@ import {
     Typography,
 } from "@mui/material";
 import MDEditor from "@uiw/react-md-editor";
-
 import { useEditNews } from "./hooks";
 import { FormProvider } from "react-hook-form";
+import { memo, useCallback } from "react";
+import { AddNewsModal } from "./AddNewsModal";
+
+interface MemoizedMDEditorProps {
+    value: string;
+    onChange: (value?: string) => void;
+    style?: React.CSSProperties;
+    onBlur: () => void;
+}
+
+const MemoizedMDEditor: React.FC<MemoizedMDEditorProps> = memo(
+    ({ value, onChange, style, onBlur }) => {
+        return (
+            <div
+                data-color-mode="light"
+                style={style}>
+                <MDEditor
+                    value={value}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                />
+            </div>
+        );
+    }
+);
+
+interface MemoizedTextFieldProps {
+    name: string;
+    label: string;
+    id: string;
+    dataTestId: string;
+}
+
+const MemoizedTextField: React.FC<MemoizedTextFieldProps> = memo(
+    ({ name, label, id, dataTestId }) => {
+        return (
+            <Textfield
+                name={name}
+                label={label}
+                id={id}
+                dataTestId={dataTestId}
+            />
+        );
+    }
+);
 
 export const EditNews = () => {
     const {
-        addNewNews,
         saveChanges,
         values,
         setValue,
         errors,
         watch,
         methods,
+        trigger,
+        modalIsOpen,
+        setModalIsOpen,
     } = useEditNews();
+
+    const handleChange = useCallback(
+        (index: number) => (value?: string) => {
+            setValue(`news.${index}.content`, value || "", {
+                shouldDirty: true,
+            });
+        },
+        [setValue]
+    );
+
     return (
         <Box mt={12}>
             <Card>
@@ -35,39 +90,35 @@ export const EditNews = () => {
                         Edit Classes
                     </Typography>
                     <Divider />
-                    <Button onClick={addNewNews}>Add new news</Button>
+                    <Button onClick={() => setModalIsOpen(true)}>
+                        Add new news
+                    </Button>
                     <FormProvider {...methods}>
                         {values.map((n, index) => (
                             <Grid
                                 item
                                 xs={12}
                                 mt={2}
+                                mb={2}
                                 key={watch(`news.${index}.id`)}
                                 height="auto">
-                                <Textfield
+                                <MemoizedTextField
                                     name={`news.${index}.title`}
                                     label={"Title"}
                                     id={`Title-${index}`}
-                                    dataTestId={"test"}></Textfield>
-                                <div
-                                    data-color-mode="light"
+                                    dataTestId={"test"}
+                                />
+                                <MemoizedMDEditor
+                                    value={n.content}
+                                    onChange={handleChange(index)}
                                     style={{
                                         marginBottom: "5px",
                                         outline: "1px solid red",
-                                    }}>
-                                    <MDEditor
-                                        value={n.content}
-                                        onChange={(e) => {
-                                            setValue(
-                                                `news.${index}.content`,
-                                                e || "",
-                                                {
-                                                    shouldDirty: true,
-                                                    shouldValidate: true,
-                                                }
-                                            );
-                                        }}></MDEditor>
-                                </div>
+                                    }}
+                                    onBlur={() =>
+                                        trigger(`news.${index}.content`)
+                                    }
+                                />
                                 {errors.news && !!errors.news[index] && (
                                     <Alert severity="error">
                                         {errors.news[index]?.title &&
@@ -94,6 +145,10 @@ export const EditNews = () => {
                     </Box>
                 </CardContent>
             </Card>
+            {modalIsOpen && (
+                <AddNewsModal
+                    onClose={() => setModalIsOpen(false)}></AddNewsModal>
+            )}
         </Box>
     );
 };

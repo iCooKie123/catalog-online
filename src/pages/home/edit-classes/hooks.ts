@@ -11,10 +11,16 @@ export const useEditNews = () => {
     const [news, setNews] = useState<News[]>([]);
     const { showSnackBar } = useSnackBar();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     useEffect(() => {
         getClasses();
     }, []);
+
+    useEffect(() => {
+        reset(getDefaultValues());
+        console.log("reset");
+    }, [news]);
 
     const getClasses = useCallback(async () => {
         setIsLoading(true);
@@ -82,11 +88,14 @@ export const useEditNews = () => {
         setValue,
         formState: { errors },
         getValues,
+        reset,
+        trigger,
     } = methods;
 
     useEffect(() => {
         methods.reset(getDefaultValues());
     }, [news]);
+
     const getDirtyFields = () => {
         const dirtyFields = methods.formState.dirtyFields.news;
         const formValues = methods.getValues() as NewsForm;
@@ -103,26 +112,6 @@ export const useEditNews = () => {
             }
         }
         return dirtyObjects;
-    };
-
-    const addNewNews = () => {
-        const values = getValues().news;
-        if (values.find((n) => n.id === -1) !== undefined) {
-            showSnackBar(
-                "Un singur anunț nou poate fi adăugat dintr-o dată. Salvează anunțul curent și încearcă din nou.",
-                "warning"
-            );
-            return;
-        }
-
-        const newNews: News = {
-            title: "",
-            content: "",
-            id: -1,
-            createdAt: new Date(),
-            modifiedAt: new Date(),
-        };
-        setValue("news", [newNews, ...values]);
     };
 
     const saveChanges = () => {
@@ -149,12 +138,14 @@ export const useEditNews = () => {
 
     return {
         isLoading,
-        addNewNews,
         saveChanges,
         values: watch("news"),
         errors,
         setValue,
         watch,
         methods,
+        trigger,
+        modalIsOpen,
+        setModalIsOpen,
     };
 };
