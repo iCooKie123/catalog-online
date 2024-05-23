@@ -1,59 +1,10 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import { AuthContext, useSnackBar } from "@/contexts";
-import { News, UserRoles } from "@/models";
 import { Card, Grid, Button, Typography, Divider, Box } from "@mui/material";
-import { useHomePage } from "./hooks";
-import { AxiosError, AxiosResponse } from "axios";
-import axios from "@/axios";
+
 import MDEditor from "@uiw/react-md-editor";
-import { EditClasses } from "./edit-classes";
-import { FormProvider } from "react-hook-form";
+import { useHomePage } from "./hooks";
 
 export const HomePage = () => {
-    const [news, setNews] = useState<News[]>([]);
-    const { showSnackBar } = useSnackBar();
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { methods } = useHomePage(news);
-    const { currentUser } = useContext(AuthContext);
-    const userIsAdmin = currentUser?.role === UserRoles.Admin;
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    useEffect(() => {
-        getClass();
-    }, []);
-
-    const getClass = useCallback(async () => {
-        setIsLoading(true);
-        await axios
-            .get("news")
-            .then((res: AxiosResponse) => {
-                const responseArray: any[] = res.data;
-
-                const newsArray: News[] = responseArray.map((n: any) => {
-                    return {
-                        id: n.id,
-                        title: n.title,
-                        content: n.content,
-                        createdAt: new Date(n.createdAt),
-                        modifiedAt: new Date(n.modifiedAt),
-                    } satisfies News;
-                });
-
-                setNews(
-                    newsArray.sort(
-                        (a: News, b: News) =>
-                            b.createdAt.getTime() - a.createdAt.getTime()
-                    )
-                );
-            })
-            .catch((error: AxiosError) => {
-                showSnackBar("Error fetching data.", "error");
-                console.log(error);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    }, [showSnackBar]);
-
+    const { isLoading, news, userIsAdmin, navigate } = useHomePage();
     if (isLoading) return <div>Loading...</div>;
 
     return (
@@ -74,12 +25,12 @@ export const HomePage = () => {
                             <Button
                                 variant="contained"
                                 color="primary"
-                                onClick={() => setModalIsOpen(true)}>
+                                onClick={() => navigate("edit-news")}>
                                 Edit News
                             </Button>
                         </Grid>
                     )}
-                    {methods.watch("news").map((n) => (
+                    {news.map((n) => (
                         <Box
                             key={n.id}
                             mb={2}>
@@ -109,12 +60,6 @@ export const HomePage = () => {
                     ))}
                 </Grid>
             </Card>
-            {modalIsOpen && (
-                <FormProvider {...methods}>
-                    <EditClasses
-                        onClose={() => setModalIsOpen(false)}></EditClasses>
-                </FormProvider>
-            )}
         </Box>
     );
 };

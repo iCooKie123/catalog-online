@@ -9,6 +9,7 @@ import {
     NotesPages,
     ProfilePage,
     AdminClassesPage,
+    EditNews,
 } from "@/pages";
 import { SingleClassPage } from "./pages/admin-classes-page/single-class-page";
 const adminRole = [UserRoles.Admin];
@@ -93,6 +94,17 @@ export const routes: CustomRoute[] = [
             </RequireRoleRoute>
         ),
         text: "Test",
+        access: adminRole,
+        visible: false,
+    },
+    {
+        path: "edit-news",
+        element: (
+            <RequireRoleRoute access={adminRole}>
+                <EditNews></EditNews>
+            </RequireRoleRoute>
+        ),
+        text: "Edit News",
         access: adminRole,
         visible: false,
     },

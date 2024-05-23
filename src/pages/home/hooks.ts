@@ -1,44 +1,59 @@
-import { News, NewsForm } from "@/models";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import axios from "@/axios";
+import { AuthContext, useSnackBar } from "@/contexts";
+import { News, UserRoles } from "@/models";
+import { AxiosError, AxiosResponse } from "axios";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export const useHomePage = (news: News[]) => {
-    const getDefaultValues = (): NewsForm => {
-        const values: NewsForm = {
-            news: news.map((n) => ({
-                id: n.id,
-                title: n.title,
-                content: n.content,
-                createdAt: n.createdAt,
-            })),
-        };
-        return values;
-    };
-
-    const newsSchema = yup.object().shape({
-        id: yup.number().required(),
-        title: yup.string().required("Title is required"),
-        content: yup.string().required("Content is required"),
-        createdAt: yup.date(),
-    });
-
-    const validationSchema = yup.object().shape({
-        news: yup.array().of(newsSchema).required(),
-    });
-
-    const methods = useForm<NewsForm>({
-        resolver: yupResolver(validationSchema),
-        mode: "onBlur",
-        defaultValues: getDefaultValues(),
-    });
+export const useHomePage = () => {
+    const [news, setNews] = useState<News[]>([]);
+    const { showSnackBar } = useSnackBar();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const { currentUser } = useContext(AuthContext);
+    const userIsAdmin = currentUser?.role === UserRoles.Admin;
+    const navigate = useNavigate();
 
     useEffect(() => {
-        methods.reset(getDefaultValues());
-    }, [news]);
+        getClass();
+    }, []);
+
+    const getClass = useCallback(async () => {
+        setIsLoading(true);
+        await axios
+            .get("news")
+            .then((res: AxiosResponse) => {
+                const responseArray: any[] = res.data;
+
+                const newsArray: News[] = responseArray.map((n: any) => {
+                    return {
+                        id: n.id,
+                        title: n.title,
+                        content: n.content,
+                        createdAt: new Date(n.createdAt),
+                        modifiedAt: new Date(n.modifiedAt),
+                    } satisfies News;
+                });
+
+                setNews(
+                    newsArray.sort(
+                        (a: News, b: News) =>
+                            b.createdAt.getTime() - a.createdAt.getTime()
+                    )
+                );
+            })
+            .catch((error: AxiosError) => {
+                showSnackBar("Error fetching data.", "error");
+                console.log(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, [showSnackBar]);
 
     return {
-        methods,
+        isLoading,
+        news,
+        userIsAdmin,
+        navigate,
     };
 };
