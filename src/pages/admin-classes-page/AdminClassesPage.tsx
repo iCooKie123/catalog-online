@@ -2,7 +2,6 @@ import { Box, Divider, IconButton, TextField, Typography } from "@mui/material";
 import { useAdminClassesPage } from "./hooks";
 import { StudyClass } from "@/models";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +44,7 @@ export const AdminClassesPage = () => {
                 </Box>
                 {Object.entries(groupedData).map(([year, classes]) => (
                     <Box p={2}>
-                        <Typography variant="h4">Year {year}</Typography>
+                        <Typography variant="h4">Anul {year}</Typography>
                         {classes.map((cls) => (
                             <>
                                 <Box

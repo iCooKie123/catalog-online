@@ -2,10 +2,17 @@ import axios from "@/axios";
 import { useSnackBar } from "@/contexts";
 import { News, NewsForm } from "@/models";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+
+const titleIsRequired = "Titlul este obligatoriu";
+const contentIsRequired = "Conținutul este obligatoriu";
+const errorFetchingData = "Eroare la preluarea datelor";
+const successChangesSaved = "Modificări salvate cu success!";
+const errorChangesSaved = "Eroare la salvarea modificărilor";
+const noChanges = "Nu s-au făcut modificări";
 
 export const useEditNews = () => {
     const [news, setNews] = useState<News[]>([]);
@@ -46,9 +53,8 @@ export const useEditNews = () => {
                     )
                 );
             })
-            .catch((error: AxiosError) => {
-                showSnackBar("Error fetching data.", "error");
-                console.log(error);
+            .catch(() => {
+                showSnackBar(errorFetchingData, "error");
             })
             .finally(() => {
                 setIsLoading(false);
@@ -69,8 +75,8 @@ export const useEditNews = () => {
 
     const newsSchema = yup.object().shape({
         id: yup.number().required(),
-        title: yup.string().required("Title is required"),
-        content: yup.string().required("Content is required"),
+        title: yup.string().required(titleIsRequired),
+        content: yup.string().required(contentIsRequired),
         createdAt: yup.date(),
     });
 
@@ -89,6 +95,7 @@ export const useEditNews = () => {
         formState: { errors },
         reset,
         trigger,
+        handleSubmit,
     } = methods;
 
     useEffect(() => {
@@ -116,7 +123,7 @@ export const useEditNews = () => {
     const saveChanges = () => {
         const dirtyFields = getDirtyFields();
         if (dirtyFields.length === 0) {
-            showSnackBar("No changes to save", "info");
+            showSnackBar(noChanges, "info");
             return;
         }
 
@@ -125,10 +132,10 @@ export const useEditNews = () => {
         axios
             .patch("news/edit", { news: dirtyFields })
             .then(() => {
-                showSnackBar("Modificări salvate cu success!", "success");
+                showSnackBar(successChangesSaved, "success");
             })
             .catch(() => {
-                showSnackBar("Eroare la salvarea modificărilor", "error");
+                showSnackBar(errorChangesSaved, "error");
             })
             .finally(() => {
                 setIsLoading(false);
@@ -147,5 +154,6 @@ export const useEditNews = () => {
         modalIsOpen,
         setModalIsOpen,
         getClasses,
+        handleSubmit,
     };
 };

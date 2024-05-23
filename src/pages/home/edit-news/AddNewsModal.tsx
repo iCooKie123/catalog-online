@@ -16,6 +16,12 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import * as yup from "yup";
 
+const modalTitle = "Adaugă anunț nou";
+const titleIsRequired = "Titlul este obligatoriu";
+const contentIsRequired = "Conținutul este obligatoriu";
+const errorAddingNews = "Eroare la adăugarea anunțului";
+const successAddingNews = "Anunț adăugat cu succes!";
+
 const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -55,8 +61,8 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
     }
 
     const validationSchema = yup.object().shape({
-        title: yup.string().required("Title is required."),
-        content: yup.string().required("Content is required."),
+        title: yup.string().required(titleIsRequired),
+        content: yup.string().required(contentIsRequired),
     });
 
     const methods = useForm<NewNewsForm>({
@@ -81,11 +87,11 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
         await axios
             .post("news/add", formValues)
             .then(() => {
-                showSnackBar("News added successfully");
+                showSnackBar(successAddingNews, "success");
                 conditionalOnClose(true);
             })
             .catch(() => {
-                showSnackBar("Error adding news", "error");
+                showSnackBar(errorAddingNews, "error");
             })
             .finally(() => {
                 setIsLoading(false);
@@ -103,7 +109,7 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
                 <Typography
                     variant="h6"
                     id="parent-modal-title">
-                    Add News
+                    {modalTitle}
                 </Typography>
                 <Divider />
                 <Grid
@@ -115,7 +121,7 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
                     <FormProvider {...methods}>
                         <Textfield
                             name={`title`}
-                            label={"Title"}
+                            label={"Titlu"}
                             id={`Title-newTitle`}
                             dataTestId={"test-newTitle"}></Textfield>
                     </FormProvider>
@@ -132,11 +138,14 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
                                 });
                             }}
                             onBlur={() => trigger("content")}
-                            height="50dvh"></MDEditor>
+                            height="50dvh"
+                            textareaProps={{
+                                placeholder: "Conținutul anunțului",
+                            }}></MDEditor>
                     </div>
                     {!!errors.content && (
                         <Alert severity="error">
-                            {errors?.content && "Content is required"}
+                            {errors?.content && errors.content.message}
                         </Alert>
                     )}
                     <Divider color="#353839" />
@@ -145,13 +154,14 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
                 <Box
                     mt={2}
                     display="flex"
-                    flexDirection="row">
+                    flexDirection="row"
+                    gap={2}>
                     <Button
                         variant="contained"
                         color="primary"
                         onClick={handleSubmit(saveChanges)}
                         disabled={isLoading}>
-                        Save
+                        Salvează
                     </Button>
                     <Button
                         variant="outlined"
@@ -160,7 +170,7 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
                             conditionalOnClose(false);
                         }}
                         disabled={isLoading}>
-                        Cancel
+                        Anulează
                     </Button>
                 </Box>
             </Grid>

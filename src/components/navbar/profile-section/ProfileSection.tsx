@@ -88,8 +88,9 @@ export const ProfileSection = () => {
                     <ListItemIcon>
                         <AccountCircle fontSize="small" />
                     </ListItemIcon>
-                    Profile
+                    Profil
                 </MenuItem>
+
                 <MenuItem
                     onClick={() => {
                         setCurrentUser(null);

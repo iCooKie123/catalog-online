@@ -59,6 +59,7 @@ const MemoizedTextField: React.FC<MemoizedTextFieldProps> = memo(
 );
 
 export const EditNews = () => {
+    const addNewsText = "Adaugă anunț nou";
     const {
         saveChanges,
         values,
@@ -70,6 +71,7 @@ export const EditNews = () => {
         modalIsOpen,
         setModalIsOpen,
         getClasses,
+        handleSubmit,
     } = useEditNews();
 
     const handleChange = useCallback(
@@ -92,8 +94,10 @@ export const EditNews = () => {
                             Edit Classes
                         </Typography>
                         <Divider />
-                        <Button onClick={() => setModalIsOpen(true)}>
-                            Add new news
+                        <Button
+                            variant="contained"
+                            onClick={() => setModalIsOpen(true)}>
+                            {addNewsText}
                         </Button>
                         <FormProvider {...methods}>
                             {values.map((n, index) => (
@@ -106,7 +110,7 @@ export const EditNews = () => {
                                     height="auto">
                                     <MemoizedTextField
                                         name={`news.${index}.title`}
-                                        label={"Title"}
+                                        label={"Titlu"}
                                         id={`Title-${index}`}
                                         dataTestId={"test"}
                                     />
@@ -120,14 +124,15 @@ export const EditNews = () => {
                                             trigger(`news.${index}.content`)
                                         }
                                     />
-                                    {errors.news && !!errors.news[index] && (
-                                        <Alert severity="error">
-                                            {errors.news[index]?.title &&
-                                                "Title is required"}
-                                            {errors.news[index]?.content &&
-                                                "Content is required"}
-                                        </Alert>
-                                    )}
+                                    {errors.news &&
+                                        !!errors.news[index]?.content && (
+                                            <Alert severity="error">
+                                                {
+                                                    errors.news[index]!.content
+                                                        ?.message
+                                                }
+                                            </Alert>
+                                        )}
                                     <Divider color="#353839" />
                                 </Grid>
                             ))}
@@ -137,10 +142,7 @@ export const EditNews = () => {
                             <Button
                                 variant="contained"
                                 color="primary"
-                                onClick={() => {
-                                    console.log(errors);
-                                    saveChanges();
-                                }}>
+                                onClick={handleSubmit(saveChanges)}>
                                 Save
                             </Button>
                         </Box>
