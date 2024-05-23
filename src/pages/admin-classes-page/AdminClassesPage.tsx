@@ -37,7 +37,7 @@ export const AdminClassesPage = () => {
                     mt={2}
                     ml={2}>
                     <TextField
-                        label="Search class"
+                        label="Caută după numele clasei"
                         value={searchValue}
                         onChange={(e) => {
                             setSearchValue(e.target.value);
@@ -58,17 +58,12 @@ export const AdminClassesPage = () => {
                                     <Box ml={"4 rem"}>
                                         <IconButton>
                                             <VisibilityIcon
-                                                color="success"
-                                                onClick={() => {}}></VisibilityIcon>
-                                        </IconButton>
-                                        <IconButton>
-                                            <EditIcon
                                                 color="primary"
                                                 onClick={() => {
                                                     navigate(
                                                         "/classes/" + cls.id
                                                     );
-                                                }}></EditIcon>
+                                                }}></VisibilityIcon>
                                         </IconButton>
                                     </Box>
                                 </Box>
@@ -79,7 +74,7 @@ export const AdminClassesPage = () => {
                 ))}
                 {filteredClasses.length === 0 && (
                     <Box ml={2}>
-                        <p>No Classes found</p>
+                        <p>Nu au fost găsite rezultate.</p>
                     </Box>
                 )}
             </Box>

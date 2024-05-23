@@ -3,7 +3,6 @@ import { UserRoles } from "./models";
 import { CustomRoute } from "./models/CustomRoute";
 import {
     HomePage,
-    TestPage,
     LoginPage,
     RegisterPage,
     NotesPages,
@@ -21,18 +20,8 @@ export const routes: CustomRoute[] = [
     {
         path: "",
         element: <HomePage></HomePage>,
-        text: "Home",
+        text: "Acasă",
         access: "all",
-    },
-    {
-        path: "test-page",
-        element: (
-            <RequireRoleRoute access={adminRole}>
-                <TestPage></TestPage>
-            </RequireRoleRoute>
-        ),
-        text: "Test",
-        access: adminRole,
     },
     {
         path: "login",
@@ -83,7 +72,7 @@ export const routes: CustomRoute[] = [
                 <AdminClassesPage></AdminClassesPage>
             </RequireRoleRoute>
         ),
-        text: "Classes",
+        text: "Clase",
         access: adminRole,
     },
     {
@@ -93,7 +82,7 @@ export const routes: CustomRoute[] = [
                 <SingleClassPage></SingleClassPage>
             </RequireRoleRoute>
         ),
-        text: "Test",
+        text: "Edit single class",
         access: adminRole,
         visible: false,
     },

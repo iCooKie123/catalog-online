@@ -26,10 +26,12 @@ export const HomePage = () => {
                                 variant="contained"
                                 color="primary"
                                 onClick={() => navigate("edit-news")}>
-                                Edit News
+                                Editează anunțuri
                             </Button>
                         </Grid>
                     )}
+                    <Typography variant="h4">Anunțuri</Typography>
+                    <Divider color="#353839" />
                     {news.map((n) => (
                         <Box
                             key={n.id}

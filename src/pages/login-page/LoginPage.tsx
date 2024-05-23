@@ -3,7 +3,7 @@ import { useLoginPage } from "./hooks";
 import { PasswordField, Textfield } from "../../components";
 import { FormProvider } from "react-hook-form";
 
-export const headingText = "Login page";
+export const headingText = "Conectați-vă la contul dvs.";
 
 export const LoginPage = () => {
     const { methods, onLogin, isLoading, errorMessage } = useLoginPage();

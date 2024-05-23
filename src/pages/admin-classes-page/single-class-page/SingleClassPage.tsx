@@ -106,7 +106,7 @@ export const SingleClassPage = () => {
                         onClick={() =>
                             setEditFieldDisabled(!editFieldDisabled)
                         }>
-                        Edit
+                        Editează
                     </Button>
                 </Grid>
 
@@ -161,18 +161,27 @@ export const SingleClassPage = () => {
                             </Table>
                         </TableContainer>
                     </Grid>
-                    <Button
-                        onClick={() => {
-                            onSubmit();
-                        }}>
-                        Submit
-                    </Button>
-                    <Button
-                        onClick={() => {
-                            console.log(methods.formState.errors);
-                        }}>
-                        errors
-                    </Button>
+                    <Box
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="space-between">
+                        <Button
+                            variant="contained"
+                            onClick={methods.handleSubmit(onSubmit)}
+                            disabled={isLoading || editFieldDisabled}>
+                            Salvează
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            onClick={() => {
+                                methods.reset();
+                                setEditFieldDisabled(!editFieldDisabled);
+                            }}
+                            disabled={isLoading || editFieldDisabled}>
+                            Anulează
+                        </Button>
+                    </Box>
                 </Grid>
             </Box>
         );
