@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { Button, Snackbar, SnackbarCloseReason, Alert } from "@mui/material";
+import { Snackbar, SnackbarCloseReason, Alert } from "@mui/material";
 import React from "react";
 
 type SnackBarMode = "info" | "warning" | "error" | "success";
@@ -9,7 +9,7 @@ type SnackBarContextProps = {
 };
 
 const SnackBarContext = createContext<SnackBarContextProps>({
-    showSnackBar: () => {},
+    showSnackBar: () => { },
 });
 
 export const useSnackBar = () => {

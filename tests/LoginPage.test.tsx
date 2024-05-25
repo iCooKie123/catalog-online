@@ -1,15 +1,8 @@
 import "@testing-library/jest-dom";
 import { AuthWrapper } from "./AuthWrapper";
-import {
-    act,
-    render,
-    screen,
-    waitFor,
-    waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { LoginPage, headingText } from "../src/pages";
-import axios from "../src/axios";
 
 describe("LoginPage", () => {
     it("should render the component when no user is logged in", async () => {

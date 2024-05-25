@@ -28,6 +28,7 @@ describe("NotesPage", () => {
             specialization: "test",
             group: "test",
             role: UserRoles.Student,
+            id: "",
         };
 
         render(
@@ -58,6 +59,7 @@ describe("NotesPage", () => {
             specialization: "test",
             group: "test",
             role: UserRoles.Student,
+            id: "",
         };
 
         render(
@@ -119,6 +121,7 @@ describe("NotesPage", () => {
             specialization: "test",
             group: "test",
             role: UserRoles.Student,
+            id: "",
         };
 
         render(
@@ -150,6 +153,7 @@ describe("NotesPage", () => {
             specialization: "test",
             group: "test",
             role: UserRoles.Student,
+            id: "",
         };
 
         render(
@@ -185,6 +189,7 @@ describe("NotesPage", () => {
             specialization: "test",
             group: "test",
             role: UserRoles.Student,
+            id: "",
         };
 
         render(

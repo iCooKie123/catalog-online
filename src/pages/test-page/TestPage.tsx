@@ -9,8 +9,8 @@ export const TestPage = () => {
     const testToken = () => {
         axios
             .get("users/validate-token")
-            .then((response) => {})
-            .catch((error) => {
+            .then(() => { })
+            .catch(() => {
                 setIsError(true);
             });
     };
