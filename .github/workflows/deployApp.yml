@@ -1,0 +1,42 @@
+name: Build and Deploy Azure CLI
+
+on:
+  push:
+    branches:
+      - main
+  
+
+jobs:
+  build_and_deploy_job:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '#deploy_app')
+    name: Build and Deploy Job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      - name: Install corepack
+        run: npm install -g corepack
+      - name: Enable corepack
+        run: corepack enable
+      - name: Install yarn 4.1.0
+        run: yarn set version 4.1.0
+      - name: Crea
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DEBUG: false
+          envkey_VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
+          file_name: .env.production
+      - name: Build App
+        run: yarn build 
+      - name: Setup SWA CLI
+        run: npm install -g @azure/static-web-apps-cli
+      - name: Deploy
+        run: swa deploy --deployment-token ${{ secrets.AZURE_STATIC_PAGE_DEPLOYMENT_TOKEN }}
