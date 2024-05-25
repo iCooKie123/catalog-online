@@ -21,6 +21,10 @@ jobs:
           lfs: false
       - name: Install apt-utils
         run: sudo apt-get update && sudo apt-get install -y apt-utils
+      - name: Install corepack
+        run: npm install -g corepack
+      - name: Enable corepack
+        run: corepack enable
       - name: Install yarn 4.1.0
         run: yarn set version 4.1.0
       - name: Build And Deploy
