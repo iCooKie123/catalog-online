@@ -27,6 +27,8 @@ jobs:
         run: corepack enable
       - name: Install yarn 4.1.0
         run: yarn set version 4.1.0
+      - name: Install dependencies
+        run: yarn install
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
