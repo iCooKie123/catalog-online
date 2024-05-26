@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useLoginPage } from "./hooks";
 import { PasswordField, Textfield } from "../../components";
 import { FormProvider } from "react-hook-form";
@@ -6,7 +6,7 @@ import { FormProvider } from "react-hook-form";
 export const headingText = "Conectați-vă la contul dvs.";
 
 export const LoginPage = () => {
-    const { methods, onLogin, isLoading, errorMessage } = useLoginPage();
+    const { methods, onLogin, isLoading } = useLoginPage();
 
     return (
         <FormProvider {...methods}>
@@ -17,13 +17,6 @@ export const LoginPage = () => {
                     margin: "1rem",
                 }}
                 width={{ xs: "80%", sm: "75%", md: "60%", xl: "50%" }}>
-                {!!errorMessage && (
-                    <Alert
-                        severity="error"
-                        data-testid="error-alert">
-                        {errorMessage.toString()}
-                    </Alert>
-                )}
                 <form
                     data-testid="login-form"
                     onSubmit={methods.handleSubmit(onLogin)}>

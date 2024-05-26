@@ -8,6 +8,7 @@ import {
     List,
     ListItem,
     ListItemButton,
+    Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useContext, useState } from "react";
@@ -15,6 +16,8 @@ import { DrawerContents } from "../drawer";
 import { Navlink } from "../links";
 import { RoutesContext } from "../../../contexts";
 import { ProfileSection } from "../profile-section";
+import LogoSvg from "@/assets";
+import { useNavigate } from "react-router-dom";
 
 const flexContainer = {
     display: "flex",
@@ -27,6 +30,7 @@ export const NavBar = () => {
         setDrawerOpen(!drawerOpen);
     };
     const { navItems } = useContext(RoutesContext);
+    const navigate = useNavigate();
     return (
         <>
             <AppBar component="nav">
@@ -46,7 +50,16 @@ export const NavBar = () => {
                             flexGrow: 1,
                             display: { xs: "none", sm: "block" },
                         }}>
-                        LOGO AICI
+                        <Button
+                            onClick={() => navigate("/")}
+                            onBlur={(e) => e.currentTarget.blur()}>
+                            <img
+                                src={LogoSvg.default}
+                                style={{
+                                    height: "3rem",
+                                }}
+                            />
+                        </Button>
                     </Typography>
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         <nav>

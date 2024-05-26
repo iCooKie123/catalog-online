@@ -4,13 +4,14 @@ import { loginInfoValidationSchema } from "./validation-schema";
 import { LoginInfo } from "@/models";
 import axios from "../../axios";
 import { useContext, useState } from "react";
-import { AuthContext } from "@/contexts";
+import { AuthContext, useSnackBar } from "@/contexts";
 import { getUserFromToken } from "@/utils/JwtUtils";
 
 export const useLoginPage = () => {
     const { setCurrentUser } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const { showSnackBar } = useSnackBar();
+
     const methods = useForm<LoginInfo>({
         defaultValues: { email: "johnDoe3@test.com", password: "password123" },
         resolver: yupResolver(loginInfoValidationSchema),
@@ -28,8 +29,8 @@ export const useLoginPage = () => {
                 const user = getUserFromToken(token);
                 setCurrentUser(user);
             })
-            .catch((error) => {
-                setErrorMessage(error.response.data);
+            .catch(() => {
+                showSnackBar("Adresă de email sau parolă incorectă.", "error");
             })
             .finally(() => {
                 setIsLoading(false);
@@ -40,6 +41,5 @@ export const useLoginPage = () => {
         methods,
         onLogin,
         isLoading,
-        errorMessage,
     };
 };

@@ -76,7 +76,7 @@ export const CustomTabPanel = ({ value, index, classes }: TabPanelProps) => {
                                             sx={{
                                                 backgroundColor:
                                                     !!studentClass.grade &&
-                                                    studentClass.grade < 4
+                                                    studentClass.grade < 5
                                                         ? "red"
                                                         : "unset",
                                             }}

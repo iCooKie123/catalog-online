@@ -9,7 +9,7 @@ type SnackBarContextProps = {
 };
 
 const SnackBarContext = createContext<SnackBarContextProps>({
-    showSnackBar: () => { },
+    showSnackBar: () => {},
 });
 
 export const useSnackBar = () => {
@@ -50,7 +50,7 @@ export const SnackBarProvider: React.FC<{ children: React.ReactNode }> = ({
                     if (reason === "clickaway") return;
                     setOpen(false);
                 }}
-                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}>
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}>
                 <Alert
                     onClose={handleClose}
                     severity={mode}>
