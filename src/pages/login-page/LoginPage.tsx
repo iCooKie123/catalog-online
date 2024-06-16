@@ -51,7 +51,8 @@ export const LoginPage = () => {
                             <PasswordField
                                 id="input-password-login"
                                 dataTestId="input-password-login"
-                                name="password"></PasswordField>
+                                name="password"
+                                label="Parolă"></PasswordField>
                         </Grid>
                         <Grid
                             item
