@@ -26,7 +26,7 @@ export const useSingleClassPage = (id: string) => {
             );
             setStudyClass(res.data[0].class);
         } catch (error) {
-            showSnackBar("Error fetching data.", "error");
+            showSnackBar("Eroare la retragerea informațiilor.", "error");
         } finally {
             setIsLoading(false);
         }
@@ -113,7 +113,7 @@ export const useSingleClassPage = (id: string) => {
                 setEditFieldDisabled(true);
             })
             .catch(() => {
-                showSnackBar("Error updating grades!", "error");
+                showSnackBar("Eroare la salvarea notelor.", "error");
             });
     };
 

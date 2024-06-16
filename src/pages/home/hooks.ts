@@ -1,7 +1,7 @@
 import axios from "@/axios";
 import { AuthContext, useSnackBar } from "@/contexts";
 import { News, UserRoles } from "@/models";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -41,9 +41,8 @@ export const useHomePage = () => {
                     )
                 );
             })
-            .catch((error: AxiosError) => {
-                showSnackBar("Error fetching data.", "error");
-                console.log(error);
+            .catch(() => {
+                showSnackBar("Eroare la retragerea informațiilor..", "error");
             })
             .finally(() => {
                 setIsLoading(false);
