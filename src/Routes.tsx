@@ -4,7 +4,6 @@ import { CustomRoute } from "./models/CustomRoute";
 import {
     HomePage,
     LoginPage,
-    RegisterPage,
     NotesPages,
     ProfilePage,
     AdminClassesPage,
@@ -31,17 +30,6 @@ export const routes: CustomRoute[] = [
             </RequireRoleRoute>
         ),
         text: "Login",
-        access: notLoggedInRole,
-    },
-    {
-        path: "register",
-        element: (
-            <RequireRoleRoute access={notLoggedInRole}>
-                <RegisterPage></RegisterPage>
-            </RequireRoleRoute>
-        ),
-        text: "Register",
-        visible: false,
         access: notLoggedInRole,
     },
     {
