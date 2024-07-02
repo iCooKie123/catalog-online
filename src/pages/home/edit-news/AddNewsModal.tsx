@@ -129,6 +129,7 @@ export const AddNewsModal = ({ onClose }: AddNewModalProps) => {
                         data-color-mode="light"
                         style={{
                             marginBottom: "5px",
+                            marginTop: "20px",
                         }}>
                         <MDEditor
                             value={watch("content")}

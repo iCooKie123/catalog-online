@@ -31,9 +31,9 @@ export const ChangePassword = () => {
             .patch("/users/change-password", form)
             .then(() => {
                 methods.reset();
-                showSnackBar("Password changed successfully");
+                showSnackBar("Parolă schimbată cu succes", "success");
             })
-            .catch(() => showSnackBar("Password change failed"));
+            .catch(() => showSnackBar("Eroare la schimbarea parolei", "error"));
     };
 
     return (
@@ -54,7 +54,7 @@ export const ChangePassword = () => {
                 label="Confirmare parolă nouă"
                 dataTestId={"confirmPass"}></PasswordField>
             <Button onClick={methods.handleSubmit(changePassword)}>
-                Button
+                Schimbă parola
             </Button>
         </FormProvider>
     );

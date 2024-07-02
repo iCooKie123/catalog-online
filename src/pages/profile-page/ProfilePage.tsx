@@ -44,7 +44,6 @@ export const ProfilePage = () => {
                         <Button onClick={() => setCurrentTab(2)}>
                             Schimba parola
                         </Button>
-                        <Button>Logout</Button>
                     </Grid>
                     <Grid>
                         {[0, 1, 2].map((index) => (

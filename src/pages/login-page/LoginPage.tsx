@@ -68,13 +68,6 @@ export const LoginPage = () => {
                                 disabled={isLoading}>
                                 Login
                             </Button>
-                            <Button
-                                variant="outlined"
-                                data-testid="register-button"
-                                disabled={isLoading}
-                                onClick={() => console.error("not done yet")}>
-                                Register
-                            </Button>
                         </Grid>
                     </Grid>
                 </form>

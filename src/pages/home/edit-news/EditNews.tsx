@@ -91,7 +91,7 @@ export const EditNews = () => {
                         <Typography
                             variant="h6"
                             id="parent-modal-title">
-                            Edit Classes
+                            Editează Anunțurile
                         </Typography>
                         <Divider />
                         <Button
@@ -108,12 +108,14 @@ export const EditNews = () => {
                                     mb={2}
                                     key={watch(`news.${index}.id`)}
                                     height="auto">
-                                    <MemoizedTextField
-                                        name={`news.${index}.title`}
-                                        label={"Titlu"}
-                                        id={`Title-${index}`}
-                                        dataTestId={"test"}
-                                    />
+                                    <Grid mb={2}>
+                                        <MemoizedTextField
+                                            name={`news.${index}.title`}
+                                            label={"Titlu"}
+                                            id={`Title-${index}`}
+                                            dataTestId={"test"}
+                                        />
+                                    </Grid>
                                     <MemoizedMDEditor
                                         value={n.content}
                                         onChange={handleChange(index)}
@@ -143,7 +145,7 @@ export const EditNews = () => {
                                 variant="contained"
                                 color="primary"
                                 onClick={handleSubmit(saveChanges)}>
-                                Save
+                                Salvează modificările
                             </Button>
                         </Box>
                     </CardContent>
